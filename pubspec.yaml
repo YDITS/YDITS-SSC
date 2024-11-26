@@ -1,5 +1,5 @@
 name: ydits_ssc
-description: "A new Flutter project."
+description: "Saitama Sora Cam 用に制作された防災情報アプリケーションです。"
 publish_to: 'none'
 version: 0.1.0
 
@@ -9,6 +9,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_map: ^7.0.2
+  latlong2: ^0.9.1
 
 dev_dependencies:
   flutter_test:
