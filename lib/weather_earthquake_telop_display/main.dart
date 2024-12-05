@@ -7,31 +7,48 @@
 //
 
 import 'dart:io';
+import 'package:logging/logging.dart';
 import 'package:flutter/material.dart';
 import 'package:ydits_ssc/weather_earthquake_telop_display/widgets/app.dart';
 import 'package:window_size/window_size.dart';
 import 'package:ydits_ssc/weather_earthquake_telop_display/config.dart';
 
 void main() async {
-  initializeDesktopWindow();
+  final log = Logger('Logger');
+  initializeLogger();
+
+  final frame = await initializeDesktopWindow();
+  log.info(frame);
 
   runApp(
     const App(),
   );
 }
 
-void initializeDesktopWindow() async {
+void initializeLogger() {
+  Logger.root.level = Level.ALL;
+  Logger.root.onRecord.listen((record) {
+    print('${record.level.name}: ${record.time}: ${record.message}');
+  });
+}
+
+initializeDesktopWindow() async {
   WidgetsFlutterBinding.ensureInitialized();
+  return await setWindowConfig();
+}
 
-  if (isPlatformDesktop()) {
-    setWindowTitle(Config.windowTitle);
-    setWindowFrame(Config.windowFrame);
-    setWindowMinSize(Config.windowMinSize);
-    setWindowMaxSize(Config.windowMaxSize);
-
-    final info = await getCurrentScreen();
-    print(info?.frame);
+setWindowConfig() async {
+  if (!isPlatformDesktop()) {
+    return;
   }
+
+  setWindowTitle(Config.windowTitle);
+  setWindowFrame(Config.windowFrame);
+  setWindowMinSize(Config.windowMinSize);
+  setWindowMaxSize(Config.windowMaxSize);
+
+  final info = await getCurrentScreen();
+  return info?.frame;
 }
 
 bool isPlatformDesktop() {
