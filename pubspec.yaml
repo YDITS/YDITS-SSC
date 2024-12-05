@@ -11,6 +11,11 @@ dependencies:
     sdk: flutter
   flutter_map: ^7.0.2
   latlong2: ^0.9.1
+  window_size:
+    git:
+      url: https://github.com/google/flutter-desktop-embedding
+      path: plugins/window_size
+      ref: e48abe7
 
 dev_dependencies:
   flutter_test:
