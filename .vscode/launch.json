@@ -48,21 +48,21 @@
             "name": "YDITS-SSC WeatherEarthquakeTelopDisplay",
             "request": "launch",
             "type": "dart",
-            "program": "lib/wearther_earthquake_telop_display/main.dart"
+            "program": "lib/weather_earthquake_telop_display/main.dart"
         },
         {
             "name": "YDITS-SSC WeatherEarthquakeTelopDisplay (profile mode)",
             "request": "launch",
             "type": "dart",
             "flutterMode": "profile",
-            "program": "lib/wearther_earthquake_telop_display/main.dart"
+            "program": "lib/weather_earthquake_telop_display/main.dart"
         },
         {
             "name": "YDITS-SSC WeatherEarthquakeTelopDisplay (release mode)",
             "request": "launch",
             "type": "dart",
             "flutterMode": "release",
-            "program": "lib/wearther_earthquake_telop_display/main.dart"
+            "program": "lib/weather_earthquake_telop_display/main.dart"
         },
     ]
 }
