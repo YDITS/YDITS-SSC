@@ -10,21 +10,30 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:ydits_ssc/weather_earthquake_telop_display/widgets/app.dart';
 import 'package:window_size/window_size.dart';
+import 'package:ydits_ssc/weather_earthquake_telop_display/config.dart';
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-
-  if (Platform.isWindows || Platform.isLinux || Platform.isMacOS) {
-    setWindowTitle('YDITS for SSC - Weather Earthquake Telop Display');
-    setWindowFrame(const Rect.fromLTWH(128, 128, 960, 128));
-    setWindowMinSize(const Size(640, 128));
-    setWindowMaxSize(const Size(960, 128));
-
-    final info = await getCurrentScreen();
-    print(info?.frame);
-  }
+  initializeDesktopWindow();
 
   runApp(
     const App(),
   );
+}
+
+void initializeDesktopWindow() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  if (isPlatformDesktop()) {
+    setWindowTitle(Config.windowTitle);
+    setWindowFrame(Config.windowFrame);
+    setWindowMinSize(Config.windowMinSize);
+    setWindowMaxSize(Config.windowMaxSize);
+
+    final info = await getCurrentScreen();
+    print(info?.frame);
+  }
+}
+
+bool isPlatformDesktop() {
+  return Platform.isWindows || Platform.isLinux || Platform.isMacOS;
 }
