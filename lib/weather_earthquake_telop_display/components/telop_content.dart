@@ -36,61 +36,54 @@ class _TelopContent extends State<TelopContent>
   void initState() {
     super.initState();
 
-    _controller = AnimationController(vsync: this);
+    // アニメーションコントローラの初期化
+    _controller = AnimationController(
+      duration: const Duration(seconds: 15), // スライド時間
+      vsync: this,
+    );
+
+    // アニメーションの範囲を設定
+    _animation = Tween<double>(begin: 1.0, end: -2.0).animate(
+      CurvedAnimation(
+        parent: _controller,
+        curve: Curves.linear, // 直線的に移動
+      ),
+    );
+
+    // アニメーションを繰り返し設定
+    _controller.repeat();
   }
 
   @override
   Widget build(BuildContext context) {
     return ClipRect(
-      child: LayoutBuilder(builder: (context, constraints) {
-        widgetWidth = constraints.maxWidth;
+      child: LayoutBuilder(
+        builder: (context, constraints) {
+          widgetWidth = constraints.maxWidth;
 
-        return Row(
-          children: [
-            MeasureSize(
-              onChange: (size) {
-                if (size.width == textWidth) return;
-                
-                setState(() {
-                  textWidth = size.width;
-                  final distance = widgetWidth + textWidth;
-                  final duration = distance / widget.speed;
+          return AnimatedBuilder(
+            animation: _controller,
+            builder: (context, child) {
+              double screenWidth = MediaQuery.of(context).size.width;
 
-                  _controller.duration = Duration(seconds: duration.toInt());
-                  _animation =
-                      Tween<double>(begin: widgetWidth, end: -textWidth)
-                          .animate(
-                    CurvedAnimation(parent: _controller, curve: Curves.linear),
-                  );
-                  _controller.repeat();
-                });
-              },
-              child: _animation == null
-                ? Container()
-                : AnimatedBuilder(
-                animation: _controller,
-                builder: (context, child) {
-                  double screenWidth = MediaQuery.of(context).size.width;
-
-                  return SizedBox(
-                    width: screenWidth,
-                    child: Transform.translate(
-                      offset: Offset(
-                          screenWidth * _animation!.value, 0),
-                      child: Text(
-                        widget.text,
-                        style: TextStyle(
-                          fontSize: widget.fontSize,
-                        ),
-                      ),
+              return SizedBox(
+                width: screenWidth,
+                child: Transform.translate(
+                  offset: Offset(screenWidth * _animation!.value, 0),
+                  child: Text(
+                    widget.text,
+                    style: TextStyle(
+                      fontSize: widget.fontSize,
                     ),
-                  );
-                },
-              ),
-            )
-          ],
-        );
-      }),
+                    softWrap: false,
+                    overflow: TextOverflow.visible,
+                  ),
+                ),
+              );
+            },
+          );
+        },
+      ),
     );
   }
 

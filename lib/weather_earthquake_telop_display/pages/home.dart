@@ -27,7 +27,7 @@ class _HomePage extends State<HomePage> {
   final Color _labelBgColor = const Color.fromARGB(255, 31, 31, 31);
   final Color _labelFontColor = const Color.fromARGB(255, 223, 223, 223);
   final double _telopSpeed = Config.telopSpeed;
-  final String _labelText = Config.initialLabelText;
+  String _labelText = Config.initialLabelText;
   String _contentText = Config.initialContentText;
 
   @override
@@ -59,11 +59,17 @@ class _HomePage extends State<HomePage> {
     final data = json.decode(response.body);
 
     setState(() {
-      _contentText = data.toString();
+      _labelText = "地震情報";
+      // _contentText = data.toString();
+      _contentText = "2024年12月9日 21時42分頃、北海道東方沖を震源とする地震がありました。最大震度1を北海道で観測しています。震源の深さは約90km、地震の規模はM4.8と推定されます。この地震による津波の心配はありません。";
     });
   }
 
   Future<void> onFetchError(stack) async {
+    setState(() {
+      _labelText = "エラー";
+    });
+
     if (stack is http.Response) {
       setState(() {
         _contentText = "Failed to fetch data: ${stack.statusCode}";
