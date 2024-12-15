@@ -7,7 +7,6 @@
 //
 
 import 'package:flutter/material.dart';
-import 'package:ydits_ssc/weather_earthquake_telop_display/components/measure_size.dart';
 
 class TelopContent extends StatefulWidget {
   final String text;
