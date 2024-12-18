@@ -6,12 +6,16 @@
 // https://github.com/YDITS/YDITS-SSC
 //
 
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'dart:convert';
+import 'package:weather/weather.dart';
+import 'package:ydits_ssc/packages/weather/weatherJapanPrefectures.dart';
 import 'package:ydits_ssc/weather_earthquake_telop_display/config.dart';
 import 'package:ydits_ssc/weather_earthquake_telop_display/components/telop_label.dart';
-import 'package:ydits_ssc/weather_earthquake_telop_display/components/telop_content.dart';
+import 'package:ydits_ssc/weather_earthquake_telop_display/components/telop_content_eqinfo.dart';
+import 'package:ydits_ssc/weather_earthquake_telop_display/components/telop_content_weather.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -29,43 +33,84 @@ class _HomePage extends State<HomePage> {
   final double _telopSpeed = Config.telopSpeed;
   String _labelText = Config.initialLabelText;
   String _contentText = Config.initialContentText;
+  StatefulWidget _telopContent = const TelopContentEqinfo(text: "", fontSize: 0, speed: 0);
+  late WeatherFactory _weatherFactory;
 
   @override
   void initState() {
     super.initState();
-    fetchData();
+    initWeatherFactory();
+    updateWeather();
+    // updateEqinfo();
   }
 
-  Future<void> fetchData() async {
+  Future<void> initWeatherFactory() async {
+    _weatherFactory = WeatherFactory(Config.openWeatherMapApiKey);
+  }
+
+  Future<void> updateWeather() async {
+    await fetchWeatherData();
+  }
+
+  Future<void> updateEqinfo() async {
+    await fetchEqinfoData();
+  }
+
+  Future<void> fetchWeatherData() async {
+    setState(() {
+        _labelText = "現在の天気";
+        _contentText = "";
+    });
+
+    for (String prefecture in WeatherJapanPrefectures.list) {
+      Weather weather =
+          await _weatherFactory.currentWeatherByCityName(prefecture);
+      setState(() {
+        _contentText +=
+            '$prefecture: ${weather.temperature?.celsius?.toStringAsFixed(1)}°C ${weather.weatherDescription} | ';
+        _telopContent = TelopContentWeather(
+          text: _contentText,
+          fontSize: _contentFontSize,
+          speed: _telopSpeed,
+        );
+      });
+    }
+  }
+
+  Future<void> fetchEqinfoData() async {
     final url = Uri.parse("https://api2.ydits.net/eew.json");
 
     try {
       final response = await http.get(url);
 
       if (response.statusCode == 200) {
-        onFetchSuccess(response);
+        onFetchEqinfoSuccess(response);
         return;
       } else {
-        onFetchError(response);
+        onFetchEqinfoError(response);
         return;
       }
     } catch (error) {
-      onFetchError(error);
+      onFetchEqinfoError(error);
       return;
     }
   }
 
-  Future<void> onFetchSuccess(response) async {
+  Future<void> onFetchEqinfoSuccess(response) async {
     final data = json.decode(response.body);
 
     setState(() {
       _labelText = "地震情報";
-      // _contentText = data.toString();
-      _contentText = "2024年12月9日 21時42分頃、北海道東方沖を震源とする地震がありました。最大震度1を北海道で観測しています。震源の深さは約90km、地震の規模はM4.8と推定されます。この地震による津波の心配はありません。";
+      _contentText = data.toString();
+      _telopContent = TelopContentEqinfo(
+        text: _contentText,
+        fontSize: _contentFontSize,
+        speed: _telopSpeed,
+      );
     });
   }
 
-  Future<void> onFetchError(stack) async {
+  Future<void> onFetchEqinfoError(stack) async {
     setState(() {
       _labelText = "エラー";
     });
@@ -96,11 +141,7 @@ class _HomePage extends State<HomePage> {
               fontColor: _labelFontColor,
               fontSize: _labelFontSize,
             ),
-            TelopContent(
-              text: _contentText,
-              fontSize: _contentFontSize,
-              speed: _telopSpeed,
-            ),
+            _telopContent,
           ],
         ),
       ),

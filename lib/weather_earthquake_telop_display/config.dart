@@ -18,4 +18,5 @@ abstract final class Config {
   static double telopSpeed = 100;
   static String initialLabelText = "起動中…";
   static String initialContentText = "情報を取得しています…";
+  static String openWeatherMapApiKey = "c1aa80da02ee7ace26f8a124c82b831d";
 }

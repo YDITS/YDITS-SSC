@@ -8,12 +8,12 @@
 
 import 'package:flutter/material.dart';
 
-class TelopContent extends StatefulWidget {
+class TelopContentEqinfo extends StatefulWidget {
   final String text;
   final double fontSize;
   final double speed;
 
-  const TelopContent({
+  const TelopContentEqinfo({
     super.key,
     required this.text,
     required this.fontSize,
@@ -21,10 +21,10 @@ class TelopContent extends StatefulWidget {
   });
 
   @override
-  State<TelopContent> createState() => _TelopContent();
+  State<TelopContentEqinfo> createState() => _TelopContentEqinfo();
 }
 
-class _TelopContent extends State<TelopContent>
+class _TelopContentEqinfo extends State<TelopContentEqinfo>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double>? _animation;
