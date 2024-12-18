@@ -14,6 +14,7 @@ class TelopLabel extends StatelessWidget {
   final Color bgColor;
   final Color fontColor;
   final double fontSize;
+  final String fontFamily;
 
   const TelopLabel({
     super.key,
@@ -21,19 +22,21 @@ class TelopLabel extends StatelessWidget {
     required this.text,
     required this.bgColor,
     required this.fontColor,
-    required this.fontSize
+    required this.fontSize,
+    required this.fontFamily,
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
+      // decoration: BoxDecoration(color: Colors.black, borderRadius: BorderRadius.circular(8)),
       width: width,
       height: null,
       color: bgColor,
       child: Center(
         child: Text(
           text,
-          style: TextStyle(fontSize: fontSize, color: fontColor),
+          style: TextStyle(fontSize: fontSize, color: fontColor, fontFamily: fontFamily),
         ),
       ),
     );

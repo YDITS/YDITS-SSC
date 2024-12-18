@@ -11,13 +11,17 @@ import 'package:flutter/material.dart';
 class TelopContentWeather extends StatefulWidget {
   final String text;
   final double fontSize;
+  final String fontFamily;
   final double speed;
+  final double labelWidth;
 
   const TelopContentWeather({
     super.key,
     required this.text,
     required this.fontSize,
+    required this.fontFamily,
     required this.speed,
+    required this.labelWidth,
   });
 
   @override
@@ -63,7 +67,7 @@ class _TelopContentWeather extends State<TelopContentWeather>
           return AnimatedBuilder(
             animation: _controller,
             builder: (context, child) {
-              double screenWidth = MediaQuery.of(context).size.width;
+              double screenWidth = MediaQuery.of(context).size.width - widget.labelWidth;
 
               return SizedBox(
                 width: screenWidth,
@@ -73,6 +77,7 @@ class _TelopContentWeather extends State<TelopContentWeather>
                     widget.text,
                     style: TextStyle(
                       fontSize: widget.fontSize,
+                      fontFamily: widget.fontFamily,
                     ),
                     softWrap: false,
                     overflow: TextOverflow.visible,

@@ -27,7 +27,9 @@ class HomePage extends StatefulWidget {
 class _HomePage extends State<HomePage> {
   final double _labelWidth = Config.labelWidth;
   final double _labelFontSize = Config.fontSize;
+  final String _labelFontFamily = Config.fontFamily;
   final double _contentFontSize = Config.fontSize;
+  final String _contentFontFamily = Config.fontFamily;
   final Color _labelBgColor = const Color.fromARGB(255, 31, 31, 31);
   final Color _labelFontColor = const Color.fromARGB(255, 223, 223, 223);
   final double _telopSpeed = Config.telopSpeed;
@@ -71,7 +73,9 @@ class _HomePage extends State<HomePage> {
         _telopContent = TelopContentWeather(
           text: _contentText,
           fontSize: _contentFontSize,
+          fontFamily: _contentFontFamily,
           speed: _telopSpeed,
+          labelWidth: _labelWidth,
         );
       });
     }
@@ -140,6 +144,7 @@ class _HomePage extends State<HomePage> {
               bgColor: _labelBgColor,
               fontColor: _labelFontColor,
               fontSize: _labelFontSize,
+              fontFamily: _labelFontFamily,
             ),
             _telopContent,
           ],

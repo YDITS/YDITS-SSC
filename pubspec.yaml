@@ -27,3 +27,10 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  fonts:
+    - family: M PLUS 2
+      fonts:
+        - asset: fonts/MPLUS2-Medium.ttf
+          weight: 500
+        - asset: fonts/MPLUS2-Bold.ttf
+          weight: 700
