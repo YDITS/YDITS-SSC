@@ -26,69 +26,73 @@ class TelopContentEqinfo extends StatefulWidget {
 
 class _TelopContentEqinfo extends State<TelopContentEqinfo>
     with SingleTickerProviderStateMixin {
-  late AnimationController _controller;
-  late Animation<double>? _animation;
-  double widgetWidth = 0;
-  double textWidth = 0;
+  late ScrollController _scrollController;
+  double _textWidth = 0;
+  double _windowWidth = 0;
 
   @override
   void initState() {
     super.initState();
-
-    // アニメーションコントローラの初期化
-    _controller = AnimationController(
-      duration: const Duration(seconds: 15), // スライド時間
-      vsync: this,
-    );
-
-    // アニメーションの範囲を設定
-    _animation = Tween<double>(begin: 1.0, end: -2.0).animate(
-      CurvedAnimation(
-        parent: _controller,
-        curve: Curves.linear, // 直線的に移動
-      ),
-    );
-
-    // アニメーションを繰り返し設定
-    _controller.repeat();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return ClipRect(
-      child: LayoutBuilder(
-        builder: (context, constraints) {
-          widgetWidth = constraints.maxWidth;
-
-          return AnimatedBuilder(
-            animation: _controller,
-            builder: (context, child) {
-              double screenWidth = MediaQuery.of(context).size.width;
-
-              return SizedBox(
-                width: screenWidth,
-                child: Transform.translate(
-                  offset: Offset(screenWidth * _animation!.value, 0),
-                  child: Text(
-                    widget.text,
-                    style: TextStyle(
-                      fontSize: widget.fontSize,
-                    ),
-                    softWrap: false,
-                    overflow: TextOverflow.visible,
-                  ),
-                ),
-              );
-            },
-          );
-        },
-      ),
-    );
+    _scrollController = ScrollController();
+    WidgetsBinding.instance.addPostFrameCallback((_) => _startScrolling());
   }
 
   @override
   void dispose() {
-    _controller.dispose();
+    _scrollController.dispose();
     super.dispose();
+  }
+
+  void _startScrolling() {
+    final textStyle = Theme.of(context).textTheme.bodyMedium!;
+    final RenderBox renderBox = context.findRenderObject() as RenderBox;
+
+    _windowWidth = renderBox.size.width;
+    _textWidth = _calculateTextWidth(widget.text, textStyle);
+
+    final scrollDistance = _textWidth + _windowWidth;
+    final scrollDuration = (scrollDistance / 50).round(); // 速度を一定に保つ
+
+    _scrollText(scrollDistance, scrollDuration);
+  }
+
+  void _scrollText(double distance, int duration) async {
+    while (true) {
+      await _scrollController.animateTo(
+        distance,
+        duration: Duration(seconds: duration),
+        curve: Curves.linear,
+      );
+      _scrollController.jumpTo(0); // リセットして繰り返す
+    }
+  }
+
+  double _calculateTextWidth(String text, TextStyle style) {
+    final TextPainter textPainter = TextPainter(
+      text: TextSpan(text: text, style: style),
+      maxLines: 1,
+      textDirection: TextDirection.ltr,
+    )..layout();
+    return textPainter.size.width;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+      controller: _scrollController,
+      scrollDirection: Axis.horizontal,
+      child: Row(
+        children: [
+          Text(
+            widget.text,
+            style: TextStyle(
+              fontSize: widget.fontSize,
+            ),
+            softWrap: false,
+            overflow: TextOverflow.visible,
+          ),
+        ],
+      ),
+    );
   }
 }

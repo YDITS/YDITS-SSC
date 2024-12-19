@@ -30,70 +30,80 @@ class TelopContentWeather extends StatefulWidget {
 
 class _TelopContentWeather extends State<TelopContentWeather>
     with SingleTickerProviderStateMixin {
-  late AnimationController _controller;
-  late Animation<double>? _animation;
-  double widgetWidth = 0;
-  double textWidth = 0;
+  late ScrollController _scrollController;
+  final double _textWidth = 0;
+  final double _windowWidth = 0;
 
   @override
   void initState() {
     super.initState();
-
-    // アニメーションコントローラの初期化
-    _controller = AnimationController(
-      duration: const Duration(seconds: 15), // スライド時間
-      vsync: this,
-    );
-
-    // アニメーションの範囲を設定
-    _animation = Tween<double>(begin: 1.0, end: -2.0).animate(
-      CurvedAnimation(
-        parent: _controller,
-        curve: Curves.linear, // 直線的に移動
-      ),
-    );
-
-    // アニメーションを繰り返し設定
-    _controller.repeat();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return ClipRect(
-      child: LayoutBuilder(
-        builder: (context, constraints) {
-          widgetWidth = constraints.maxWidth;
-
-          return AnimatedBuilder(
-            animation: _controller,
-            builder: (context, child) {
-              double screenWidth = MediaQuery.of(context).size.width - widget.labelWidth;
-
-              return SizedBox(
-                width: screenWidth,
-                child: Transform.translate(
-                  offset: Offset(screenWidth * _animation!.value, 0),
-                  child: Text(
-                    widget.text,
-                    style: TextStyle(
-                      fontSize: widget.fontSize,
-                      fontFamily: widget.fontFamily,
-                    ),
-                    softWrap: false,
-                    overflow: TextOverflow.visible,
-                  ),
-                ),
-              );
-            },
-          );
-        },
-      ),
-    );
+    _scrollController = ScrollController();
   }
 
   @override
   void dispose() {
-    _controller.dispose();
+    _scrollController.dispose();
     super.dispose();
+  }
+
+  void _startScrolling(double textWidth, double widgetWidth) {
+    final double scrollDistance = textWidth + widgetWidth;
+    final int scrollDuration = (scrollDistance / 50).round(); // 速度調整
+
+    // 無限スクロール
+    Future.delayed(const Duration(milliseconds: 500), () async {
+      while (mounted) {
+        await _scrollController.animateTo(
+          scrollDistance,
+          duration: Duration(seconds: scrollDuration),
+          curve: Curves.linear,
+        );
+        _scrollController.jumpTo(0); // リセット
+      }
+    });
+  }
+
+  double _calculateTextWidth(String text, TextStyle style) {
+    final TextPainter textPainter = TextPainter(
+      text: TextSpan(text: text, style: style),
+      maxLines: 1,
+      textDirection: TextDirection.ltr,
+    )..layout();
+    return textPainter.size.width;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return LayoutBuilder(builder: (context, constraints) {
+      final double windowWidth = constraints.maxWidth;
+
+      // テキスト幅を計算
+      final textStyle = Theme.of(context).textTheme.bodyMedium!;
+      final double textWidth = _calculateTextWidth(widget.text, textStyle);
+
+      // スクロール開始
+      if (!_scrollController.hasClients) {
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          _startScrolling(textWidth, windowWidth);
+        });
+      }
+      return SingleChildScrollView(
+        controller: _scrollController,
+        scrollDirection: Axis.horizontal,
+        child: Row(
+          children: [
+            Text(
+              widget.text,
+              style: TextStyle(
+                fontSize: widget.fontSize,
+                fontFamily: widget.fontFamily,
+              ),
+              softWrap: false,
+              overflow: TextOverflow.visible,
+            ),
+          ],
+        ),
+      );
+    });
   }
 }
