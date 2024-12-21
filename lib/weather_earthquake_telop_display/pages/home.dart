@@ -9,6 +9,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:logging/logging.dart';
 import 'package:http/http.dart' as http;
 import 'package:weather/weather.dart';
 import 'package:ydits_ssc/packages/weather/weatherJapanPrefectures.dart';
@@ -18,7 +19,9 @@ import 'package:ydits_ssc/weather_earthquake_telop_display/components/telop_cont
 import 'package:ydits_ssc/weather_earthquake_telop_display/components/telop_content_weather.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+  final Logger logger;
+
+  const HomePage({super.key, required this.logger});
 
   @override
   State<HomePage> createState() => _HomePage();
@@ -59,9 +62,19 @@ class _HomePage extends State<HomePage> {
   }
 
   Future<void> fetchWeatherData() async {
+    widget.logger.info("fetchWeatherData");
+
     setState(() {
         _labelText = "現在の天気";
         _contentText = "";
+
+        _telopContent = TelopContentWeather(
+          text: _contentText,
+          fontSize: _contentFontSize,
+          fontFamily: _contentFontFamily,
+          speed: _telopSpeed,
+          labelWidth: _labelWidth,
+        );
     });
 
     for (String prefecture in WeatherJapanPrefectures.list) {
@@ -70,13 +83,6 @@ class _HomePage extends State<HomePage> {
       setState(() {
         _contentText +=
             '$prefecture: ${weather.temperature?.celsius?.toStringAsFixed(1)}°C ${weather.weatherDescription} | ';
-        _telopContent = TelopContentWeather(
-          text: _contentText,
-          fontSize: _contentFontSize,
-          fontFamily: _contentFontFamily,
-          speed: _telopSpeed,
-          labelWidth: _labelWidth,
-        );
       });
     }
   }

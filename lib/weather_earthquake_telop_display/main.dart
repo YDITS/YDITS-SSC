@@ -13,15 +13,17 @@ import 'package:flutter/material.dart';
 import 'package:ydits_ssc/weather_earthquake_telop_display/app.dart';
 import 'package:ydits_ssc/weather_earthquake_telop_display/config.dart';
 
+final logger = Logger('Logger');
+
 void main() async {
-  final log = Logger('Logger');
+  WidgetsFlutterBinding.ensureInitialized();
+
   initializeLogger();
 
-  final frame = await initializeDesktopWindow();
-  log.info(frame);
+  await initializeDesktopWindow();
 
   runApp(
-    const App(),
+    App(logger: logger),
   );
 }
 
@@ -33,8 +35,8 @@ void initializeLogger() {
 }
 
 initializeDesktopWindow() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  return await setWindowConfig();
+  final frame = await setWindowConfig();
+  return frame;
 }
 
 setWindowConfig() async {
@@ -48,6 +50,9 @@ setWindowConfig() async {
   setWindowMaxSize(Config.windowMaxSize);
 
   final info = await getCurrentScreen();
+
+  logger.info(info?.frame);
+
   return info?.frame;
 }
 
