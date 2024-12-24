@@ -66,7 +66,7 @@ class _TelopContentWeather extends State<TelopContentWeather>
     return SingleChildScrollView(
       controller: _scrollController,
       scrollDirection: Axis.horizontal,
-      child: Container(
+      child: SizedBox(
         width: _textWidth,
         child: Text(
           widget.text,
