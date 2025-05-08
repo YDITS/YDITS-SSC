@@ -23,4 +23,4 @@ flutter run lib/main.dart
 Licensed under by よね/Yone.  
 よね/Yone による Saitama Sora Cam 専用使用許諾ライセンス。
 
-Copyright (C) よね/Yone
+Copyright &copy; よね/Yone
