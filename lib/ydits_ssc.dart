@@ -11,7 +11,7 @@ import 'package:logging/logging.dart' as logging;
 import 'package:window_size/window_size.dart' as window_size;
 import 'package:flutter/material.dart' as flutter;
 
-import 'packages/window_manager/window_manager.dart' as window_manager;
+import 'packages/window_manager/window_manager.dart';
 import 'app.dart';
 import 'config.dart';
 
@@ -19,8 +19,8 @@ class YditsSsc {
   late final YditsSscConfig config;
   late final YditsSscWindowConfig windowConfig;
   late final logging.Logger logger;
-  late final dynamic frame;
-  late final YditsSscApp app;
+  late final dynamic mainWindowFrame;
+  late final YditsSscApp mainApp;
   late final WindowManager windowManager;
 
   void runApp() async {
@@ -31,11 +31,13 @@ class YditsSsc {
 
     await initializeDesktopWindow(windowConfig);
 
-    app = YditsSscApp(
+    mainApp = YditsSscApp(
       config: config,
     );
 
-    flutter.runApp(app);
+    windowManager = WindowManager(onFailedCloseWindow: (int windowId) { onFailedCloseWindow(windowId); });
+
+    flutter.runApp(mainApp);
   }
 
   void initializeLogger() {
@@ -61,8 +63,8 @@ class YditsSsc {
     window_size.setWindowMaxSize(windowConfig.windowMaxSize);
 
     final info = await window_size.getCurrentScreen();
-    frame = info?.frame;
-    logger.info(frame);
+    mainWindowFrame = info?.frame;
+    logger.info(mainWindowFrame);
   }
 
   bool get isPlatformMobile {
@@ -73,5 +75,9 @@ class YditsSsc {
     return dart_io.Platform.isWindows ||
         dart_io.Platform.isLinux ||
         dart_io.Platform.isMacOS;
+  }
+
+  void onFailedCloseWindow(int windowId) {
+    logger.warning("Failed to close the window: windowId `$windowId`");
   }
 }

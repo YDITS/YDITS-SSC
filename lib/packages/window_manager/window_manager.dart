@@ -11,11 +11,9 @@ import 'dart:ui';
 import 'package:desktop_multi_window/desktop_multi_window.dart';
 
 class WindowManager {
-  WindowManager({
-    required this.desktopMultiWindow,
-  });
+  WindowManager({ required this.onFailedCloseWindow });
 
-  final DesktopMultiWindow desktopMultiWindow;
+  final Function onFailedCloseWindow;
   final List<WindowController> _windowList = [];
 
   List<WindowController> get windowList {
@@ -41,9 +39,13 @@ class WindowManager {
     return newWindow;
   }
 
-  Future<void> closeAllWindow(windowId) async {
+  Future<void> closeAllWindow() async {
     for (final window in windowList) {
-      await window.close();
+      try {
+        await window.close();
+      } catch(error) {
+        onFailedCloseWindow(window.windowId);
+      }
     }
   }
 
