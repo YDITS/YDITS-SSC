@@ -7,8 +7,8 @@
 //
 
 import 'package:flutter/material.dart';
-import 'package:ydits_ssc/components/map/map.dart';
-import 'package:ydits_ssc/components/map/map_options.dart';
+import 'package:ydits_ssc/packages/map/map.dart';
+import 'package:ydits_ssc/packages/map/map_options.dart';
 
 class MapPage extends StatefulWidget {
   const MapPage({super.key});

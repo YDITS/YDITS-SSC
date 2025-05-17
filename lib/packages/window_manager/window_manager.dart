@@ -1,5 +1,5 @@
 //
-// YDITS for SSC
+// Window Manager
 //
 // Copyright (C) よね/Yone
 //
@@ -8,7 +8,6 @@
 
 import 'dart:convert';
 import 'dart:ui';
-
 import 'package:desktop_multi_window/desktop_multi_window.dart';
 
 class WindowManager {

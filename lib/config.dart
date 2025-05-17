@@ -6,8 +6,8 @@
 // https://github.com/YDITS/YDITS-SSC
 //
 
-import "package:ydits_ssc/packages/version/version.dart";
 import 'dart:ui';
+import "packages/version/version.dart";
 
 final class YditsSscConfig {
   final String title = "YDITS for SSC";

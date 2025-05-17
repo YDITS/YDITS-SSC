@@ -6,4 +6,4 @@
 // https://github.com/YDITS/YDITS-SSC
 //
 
-export './home.dart';
+export 'home.dart';

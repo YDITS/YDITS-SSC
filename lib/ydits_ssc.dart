@@ -10,8 +10,8 @@ import 'dart:io' as dart_io;
 import 'package:logging/logging.dart' as logging;
 import 'package:window_size/window_size.dart' as window_size;
 import 'package:flutter/material.dart' as flutter;
-import 'package:ydits_ssc/ydits_ssc/packages/window_manager/window_manager.dart';
 
+import 'packages/window_manager/window_manager.dart' as window_manager;
 import 'app.dart';
 import 'config.dart';
 

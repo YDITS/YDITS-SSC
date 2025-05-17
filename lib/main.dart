@@ -6,7 +6,7 @@
 // https://github.com/YDITS/YDITS-SSC
 //
 
-import 'ydits_ssc/ydits_ssc.dart';
+import 'ydits_ssc.dart';
 
 void main() async {
   YditsSsc().runApp();
