@@ -24,10 +24,10 @@ class Version {
   };
 
   String get text {
-    String version = "${major}.${minor}.${patch}";
+    String version = "$major.$minor.$patch";
     if (level == VersionLevels.stable) return version;
     String levelText = versionLevelTexts[level] ?? "";
-    return "${version} (${levelText})";
+    return "$version ($levelText)";
   }
 }
 
