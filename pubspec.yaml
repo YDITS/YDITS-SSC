@@ -15,6 +15,7 @@ dependencies:
       url: https://github.com/google/flutter-desktop-embedding
       path: plugins/window_size
       ref: e48abe7
+  desktop_multi_window: ^0.2.1
   http: ^1.2.2
   weather: ^3.1.1
   flutter_map: ^7.0.2
