@@ -10,8 +10,9 @@ import 'dart:io';
 import 'package:logging/logging.dart';
 import 'package:window_size/window_size.dart';
 import 'package:flutter/material.dart';
-import 'package:ydits_ssc/tsunami_monitor_display/app.dart';
-import 'package:ydits_ssc/tsunami_monitor_display/config.dart';
+
+import './app.dart';
+import './config.dart';
 
 void main() async {
   final log = Logger('Logger');

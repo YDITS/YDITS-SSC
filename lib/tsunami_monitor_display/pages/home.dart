@@ -7,7 +7,7 @@
 //
 
 import 'package:flutter/material.dart';
-import 'package:ydits_ssc/tsunami_monitor_display/pages/pages.dart';
+import './pages.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
