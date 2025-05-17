@@ -32,7 +32,7 @@ class _TelopContentWeather extends State<TelopContentWeather>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double>? _animation;
-  double _textWidth = 0;
+  final double _textWidth = 0;
   double _widgetWidth = 0;
 
   @override
