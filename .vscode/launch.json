@@ -5,64 +5,24 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "YDITS-SSC EEWMonitorDisplay",
+            "name": "YDITS-SSC",
             "request": "launch",
             "type": "dart",
-            "program": "lib/eew_monitor_display/main.dart"
+            "program": "lib/main.dart"
         },
         {
-            "name": "YDITS-SSC EEWMonitorDisplay (profile mode)",
+            "name": "YDITS-SSC (profile mode)",
             "request": "launch",
             "type": "dart",
             "flutterMode": "profile",
-            "program": "lib/eew_monitor_display/main.dart"
+            "program": "lib/main.dart"
         },
         {
-            "name": "YDITS-SSC EEWMonitorDisplay (release mode)",
+            "name": "YDITS-SSC (release mode)",
             "request": "launch",
             "type": "dart",
             "flutterMode": "release",
-            "program": "lib/eew_monitor_display/main.dart"
-        },
-        {
-            "name": "YDITS-SSC TsunamiMonitorDisplay",
-            "request": "launch",
-            "type": "dart",
-            "program": "lib/tsunami_monitor_display/main.dart"
-        },
-        {
-            "name": "YDITS-SSC TsunamiMonitorDisplay (profile mode)",
-            "request": "launch",
-            "type": "dart",
-            "flutterMode": "profile",
-            "program": "lib/tsunami_monitor_display/main.dart"
-        },
-        {
-            "name": "YDITS-SSC TsunamiMonitorDisplay (release mode)",
-            "request": "launch",
-            "type": "dart",
-            "flutterMode": "release",
-            "program": "lib/tsunami_monitor_display/main.dart"
-        },
-        {
-            "name": "YDITS-SSC WeatherEarthquakeTelopDisplay",
-            "request": "launch",
-            "type": "dart",
-            "program": "lib/weather_earthquake_telop_display/main.dart"
-        },
-        {
-            "name": "YDITS-SSC WeatherEarthquakeTelopDisplay (profile mode)",
-            "request": "launch",
-            "type": "dart",
-            "flutterMode": "profile",
-            "program": "lib/weather_earthquake_telop_display/main.dart"
-        },
-        {
-            "name": "YDITS-SSC WeatherEarthquakeTelopDisplay (release mode)",
-            "request": "launch",
-            "type": "dart",
-            "flutterMode": "release",
-            "program": "lib/weather_earthquake_telop_display/main.dart"
-        },
+            "program": "lib/main.dart"
+        }
     ]
 }
