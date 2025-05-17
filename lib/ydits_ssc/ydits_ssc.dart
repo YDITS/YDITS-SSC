@@ -15,58 +15,61 @@ import 'app.dart';
 import 'config.dart';
 
 class YditsSsc {
-    late final YditsSscConfig config;
-    late final YditsSscWindowConfig windowConfig;
-    late final logging.Logger logger;
-    late final dynamic frame;
-    late final YditsSscApp app;
+  late final YditsSscConfig config;
+  late final YditsSscWindowConfig windowConfig;
+  late final logging.Logger logger;
+  late final dynamic frame;
+  late final YditsSscApp app;
 
-    void runApp() async {
-        config = YditsSscConfig();
-        windowConfig = YditsSscWindowConfig(title: config.title);
+  void runApp() async {
+    config = YditsSscConfig();
+    windowConfig = YditsSscWindowConfig(title: config.title);
 
-        initializeLogger();
+    initializeLogger();
 
-        await initializeDesktopWindow(windowConfig);
+    await initializeDesktopWindow(windowConfig);
 
-        app = YditsSscApp(
-            config: config,
-        );
+    app = YditsSscApp(
+      config: config,
+    );
 
-        flutter.runApp(app);
-    }
+    flutter.runApp(app);
+  }
 
-    void initializeLogger() {
-        logger = logging.Logger('Logger');
-        logging.Logger.root.level = logging.Level.ALL;
-        logging.Logger.root.onRecord.listen((record) {
-            print('${record.level.name}: ${record.time}: ${record.message}');
-        });
-    }
+  void initializeLogger() {
+    logger = logging.Logger('Logger');
+    logging.Logger.root.level = logging.Level.ALL;
+    logging.Logger.root.onRecord.listen((record) {
+      print('${record.level.name}: ${record.time}: ${record.message}');
+    });
+  }
 
-    Future<void> initializeDesktopWindow(YditsSscWindowConfig windowConfig) async {
-        flutter.WidgetsFlutterBinding.ensureInitialized();
-        await setWindowConfig(windowConfig);
-    }
+  Future<void> initializeDesktopWindow(
+      YditsSscWindowConfig windowConfig) async {
+    flutter.WidgetsFlutterBinding.ensureInitialized();
+    await setWindowConfig(windowConfig);
+  }
 
-    Future<void> setWindowConfig(YditsSscWindowConfig windowConfig) async {
-        if (!isPlatformDesktop) return;
+  Future<void> setWindowConfig(YditsSscWindowConfig windowConfig) async {
+    if (!isPlatformDesktop) return;
 
-        window_size.setWindowTitle(windowConfig.title);
-        window_size.setWindowFrame(windowConfig.windowFrame);
-        window_size.setWindowMinSize(windowConfig.windowMinSize);
-        window_size.setWindowMaxSize(windowConfig.windowMaxSize);
+    window_size.setWindowTitle(windowConfig.title);
+    window_size.setWindowFrame(windowConfig.windowFrame);
+    window_size.setWindowMinSize(windowConfig.windowMinSize);
+    window_size.setWindowMaxSize(windowConfig.windowMaxSize);
 
-        final info = await window_size.getCurrentScreen();
-        frame = info?.frame;
-        logger.info(frame);
-    }
+    final info = await window_size.getCurrentScreen();
+    frame = info?.frame;
+    logger.info(frame);
+  }
 
-    bool get isPlatformMobile {
-        return dart_io.Platform.isAndroid || dart_io.Platform.isIOS;
-    }
+  bool get isPlatformMobile {
+    return dart_io.Platform.isAndroid || dart_io.Platform.isIOS;
+  }
 
-    bool get isPlatformDesktop {
-        return dart_io.Platform.isWindows || dart_io.Platform.isLinux || dart_io.Platform.isMacOS;
-    }
+  bool get isPlatformDesktop {
+    return dart_io.Platform.isWindows ||
+        dart_io.Platform.isLinux ||
+        dart_io.Platform.isMacOS;
+  }
 }

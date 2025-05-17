@@ -38,7 +38,8 @@ class _HomePage extends State<HomePage> {
   final double _telopSpeed = Config.telopSpeed;
   String _labelText = Config.initialLabelText;
   String _contentText = Config.initialContentText;
-  StatefulWidget _telopContent = const TelopContentEqinfo(text: "", fontSize: 0, speed: 0);
+  StatefulWidget _telopContent =
+      const TelopContentEqinfo(text: "", fontSize: 0, speed: 0);
   late WeatherFactory _weatherFactory;
 
   @override
@@ -65,16 +66,16 @@ class _HomePage extends State<HomePage> {
     widget.logger.info("fetchWeatherData");
 
     setState(() {
-        _labelText = "現在の天気";
-        _contentText = "";
+      _labelText = "現在の天気";
+      _contentText = "";
 
-        _telopContent = TelopContentWeather(
-          text: _contentText,
-          fontSize: _contentFontSize,
-          fontFamily: _contentFontFamily,
-          speed: _telopSpeed,
-          labelWidth: _labelWidth,
-        );
+      _telopContent = TelopContentWeather(
+        text: _contentText,
+        fontSize: _contentFontSize,
+        fontFamily: _contentFontFamily,
+        speed: _telopSpeed,
+        labelWidth: _labelWidth,
+      );
     });
 
     for (String prefecture in WeatherJapanPrefectures.list) {

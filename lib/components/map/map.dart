@@ -28,24 +28,22 @@ class _Map extends State<Map> {
       options: widget.mapOptions,
       children: [
         TileLayer(
-            urlTemplate: "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
-            userAgentPackageName: "com.yoneyo.tests.ydits-ssc",
+          urlTemplate: "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+          userAgentPackageName: "com.yoneyo.tests.ydits-ssc",
         ),
         RichAttributionWidget(
-            popupInitialDisplayDuration: const Duration(seconds: 5),
-            animationConfig: const ScaleRAWA(),
-            showFlutterMapAttribution: false,
-            attributions: [
-                TextSourceAttribution(
-                    'OpenStreetMap contributors',
-                    onTap: () async => {}
-                ),
-                const TextSourceAttribution(
-                    'This attribution is the same throughout this app, except '
-                    'where otherwise specified',
-                    prependCopyright: false,
-                ),
-            ],
+          popupInitialDisplayDuration: const Duration(seconds: 5),
+          animationConfig: const ScaleRAWA(),
+          showFlutterMapAttribution: false,
+          attributions: [
+            TextSourceAttribution('OpenStreetMap contributors',
+                onTap: () async => {}),
+            const TextSourceAttribution(
+              'This attribution is the same throughout this app, except '
+              'where otherwise specified',
+              prependCopyright: false,
+            ),
+          ],
         ),
       ],
     );

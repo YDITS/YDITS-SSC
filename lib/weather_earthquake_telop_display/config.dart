@@ -9,7 +9,8 @@
 import 'dart:ui';
 
 abstract final class Config {
-  static String windowTitle = 'YDITS for SSC - Weather Earthquake Telop Display';
+  static String windowTitle =
+      'YDITS for SSC - Weather Earthquake Telop Display';
   static Rect windowFrame = const Rect.fromLTWH(128, 128, 960, 128);
   static Size windowMinSize = const Size(640, 128);
   static Size windowMaxSize = const Size(1920, 128);

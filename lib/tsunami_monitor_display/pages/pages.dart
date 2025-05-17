@@ -6,6 +6,6 @@
 // https://github.com/YDITS/YDITS-SSC
 //
 
-export './pages/home.dart';
-export './pages/map.dart';
-export './pages/menu.dart';
+export 'home.dart';
+export 'map.dart';
+export 'menu.dart';
