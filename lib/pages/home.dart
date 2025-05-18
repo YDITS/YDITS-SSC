@@ -7,26 +7,25 @@
 //
 
 import 'package:flutter/material.dart';
+import 'package:desktop_multi_window/desktop_multi_window.dart';
+import 'package:ydits_ssc/core/sub_windows/sub_windows.dart';
+import 'package:ydits_ssc/core/sub_windows/sub_windows_title.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({
     super.key,
     required this.title,
+    required this.windows,
   });
 
   final String title;
+  final Map<SubWindows, WindowController> windows;
 
   @override
   State<HomePage> createState() => HomePageState();
 }
 
-class HomePageState extends State<HomePage> {
-  final Map<Screens, String> screensTitle = {
-    Screens.eewMonitorDisplay: "EEW Monitor Display",
-    Screens.tsunamiMonitorDisplay: "Tsunami Monitor Display",
-    Screens.weatherEarthquakeTelopDisplay: "Weather Earthquake Telop Display",
-  };
-  
+class HomePageState extends State<HomePage> {  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,7 +43,7 @@ class HomePageState extends State<HomePage> {
               itemCount: 3,
               itemBuilder: (context, index) {
                 return TextButton(
-                  onPressed: () => _onScreenRootingButtonPress(index),
+                  onPressed: () => _onSubWindowsRootingButtonPressed(index),
                   style: TextButton.styleFrom(
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(16),
@@ -54,7 +53,7 @@ class HomePageState extends State<HomePage> {
                   child: SizedBox(
                     height: 64,
                     child: Center(
-                      child: Text(screensTitle.values.toList()[index],
+                      child: Text(subWindowsTitle.values.toList()[index],
                           style: const TextStyle(color: Colors.white)),
                     ),
                   ),
@@ -68,15 +67,12 @@ class HomePageState extends State<HomePage> {
     );
   }
 
-  void _onScreenRootingButtonPress(index) {
-    final pressedScreen = Screens.values[index];
-    final pressedScreenTitle = screensTitle[pressedScreen];
-    print("Screen Rooting Button was clicked: Screen `$pressedScreen`, Screen Title `$pressedScreenTitle`");
-  }
-}
+  Future<void> _onSubWindowsRootingButtonPressed(index) async {
+    final pressedScreen = SubWindows.values[index];
+    print("Screen Rooting Button was clicked: Screen `$pressedScreen`.");
 
-enum Screens {
-  eewMonitorDisplay,
-  tsunamiMonitorDisplay,
-  weatherEarthquakeTelopDisplay,
+    if (widget.windows.containsKey(pressedScreen)) { return; }
+
+    await widget.windows[pressedScreen]?.show();
+  }
 }

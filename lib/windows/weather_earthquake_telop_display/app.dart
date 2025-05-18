@@ -10,10 +10,10 @@ import 'package:flutter/material.dart';
 import 'package:logging/logging.dart';
 import 'package:ydits_ssc/windows/weather_earthquake_telop_display/pages/pages.dart';
 
-class App extends StatelessWidget {
+class WeatherEarthquakeTelopDisplayApp extends StatelessWidget {
   final Logger logger;
 
-  const App({super.key, required this.logger});
+  const WeatherEarthquakeTelopDisplayApp({super.key, required this.logger});
 
   @override
   Widget build(BuildContext context) {

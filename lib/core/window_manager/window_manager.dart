@@ -11,13 +11,24 @@ import 'dart:ui';
 import 'package:desktop_multi_window/desktop_multi_window.dart';
 
 class WindowManager {
-  WindowManager({ required this.onFailedCloseWindow });
+  WindowManager({
+    required this.onFailedCloseWindow,
+  });
 
   final void Function(int) onFailedCloseWindow;
   final List<WindowController> _windowList = [];
 
   List<WindowController> get windowList {
     return _windowList;
+  }
+
+  Future<WindowController> active(int windowId) async {
+    for (final window in windowList) {
+      if (window.windowId == windowId) {
+        return window;
+      }
+    }
+    throw Exception('Window with id `$windowId` was not found');
   }
 
   Future<WindowController> createNewWindow({

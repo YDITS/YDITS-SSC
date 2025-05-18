@@ -8,11 +8,14 @@
 
 import 'dart:io' as dart_io;
 import 'dart:ui' as dart_ui;
+import 'package:desktop_multi_window/desktop_multi_window.dart';
 import 'package:logging/logging.dart' as logging;
 import 'package:window_size/window_size.dart' as window_size;
 import 'package:flutter/material.dart' as flutter;
 
 import 'package:ydits_ssc/core/window_manager/window_manager.dart';
+import 'package:ydits_ssc/core/sub_windows/sub_windows.dart';
+import 'package:ydits_ssc/core/sub_windows/sub_windows_title.dart';
 import 'package:ydits_ssc/app.dart';
 import 'package:ydits_ssc/config.dart';
 
@@ -23,6 +26,7 @@ class YditsSsc {
   late final dart_ui.Rect? mainWindowFrame;
   late final YditsSscApp mainApp;
   late final WindowManager windowManager;
+  late final Map<SubWindows, WindowController> windows;
 
   void runApp() async {
     config = YditsSscConfig();
@@ -32,12 +36,17 @@ class YditsSsc {
 
     await _initializeDesktopWindow(windowConfig);
 
-    mainApp = YditsSscApp(
-      config: config,
-    );
-
     windowManager = WindowManager(
       onFailedCloseWindow: (int windowId) => _onFailedCloseWindow(windowId)
+    );
+
+    windows[SubWindows.eewMonitorDisplay] = await windowManager.createNewWindow(title: subWindowsTitle[SubWindows.eewMonitorDisplay] ?? "");
+    windows[SubWindows.tsunamiMonitorDisplay] = await windowManager.createNewWindow(title: subWindowsTitle[SubWindows.tsunamiMonitorDisplay] ?? "");
+    windows[SubWindows.weatherEarthquakeTelopDisplay] = await windowManager.createNewWindow(title: subWindowsTitle[SubWindows.weatherEarthquakeTelopDisplay] ?? "");
+
+    mainApp = YditsSscApp(
+      config: config,
+      windows: windows,
     );
 
     flutter.runApp(mainApp);

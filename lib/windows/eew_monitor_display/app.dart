@@ -9,8 +9,8 @@
 import 'package:flutter/material.dart';
 import 'pages/pages.dart';
 
-class App extends StatelessWidget {
-  const App({super.key});
+class EewMonitorDisplayApp extends StatelessWidget {
+  const EewMonitorDisplayApp({super.key});
 
   @override
   Widget build(BuildContext context) {
