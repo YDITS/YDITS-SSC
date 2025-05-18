@@ -6,39 +6,39 @@
 // https://github.com/YDITS/YDITS-SSC
 //
 
-import 'package:flutter/material.dart';
-import 'package:flutter_map/flutter_map.dart';
+import 'package:flutter/material.dart' as flutter;
+import 'package:flutter_map/flutter_map.dart' as flutter_map;
 
-class Map extends StatefulWidget {
+class Map extends flutter.StatefulWidget {
   const Map({
     super.key,
     required this.mapOptions,
   });
 
-  final MapOptions mapOptions;
+  final flutter_map.MapOptions mapOptions;
 
   @override
-  State<Map> createState() => MapState();
+  flutter.State<Map> createState() => MapState();
 }
 
-class MapState extends State<Map> {
+class MapState extends flutter.State<Map> {
   @override
-  Widget build(BuildContext context) {
-    return FlutterMap(
+  flutter.Widget build(flutter.BuildContext context) {
+    return flutter_map.FlutterMap(
       options: widget.mapOptions,
       children: [
-        TileLayer(
+        flutter_map.TileLayer(
           urlTemplate: "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
           userAgentPackageName: "com.yoneyo.tests.ydits-ssc",
         ),
-        RichAttributionWidget(
+        flutter_map.RichAttributionWidget(
           popupInitialDisplayDuration: const Duration(seconds: 5),
-          animationConfig: const ScaleRAWA(),
+          animationConfig: const flutter_map.ScaleRAWA(),
           showFlutterMapAttribution: false,
           attributions: [
-            TextSourceAttribution('OpenStreetMap contributors',
+            flutter_map.TextSourceAttribution('OpenStreetMap contributors',
                 onTap: () async => {}),
-            const TextSourceAttribution(
+            const flutter_map.TextSourceAttribution(
               'This attribution is the same throughout this app, except '
               'where otherwise specified',
               prependCopyright: false,

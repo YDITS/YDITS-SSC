@@ -6,12 +6,12 @@
 // https://github.com/YDITS/YDITS-SSC
 //
 
-import 'package:flutter/material.dart';
-import 'package:desktop_multi_window/desktop_multi_window.dart';
+import 'package:flutter/material.dart' as flutter;
+import 'package:desktop_multi_window/desktop_multi_window.dart' as desktop_multi_window;
 import 'package:ydits_ssc/core/sub_windows/sub_windows.dart';
 import 'package:ydits_ssc/core/sub_windows/sub_windows_title.dart';
 
-class HomePage extends StatefulWidget {
+class HomePage extends flutter.StatefulWidget {
   const HomePage({
     super.key,
     required this.title,
@@ -19,47 +19,47 @@ class HomePage extends StatefulWidget {
   });
 
   final String title;
-  final Map<SubWindows, WindowController> windows;
+  final Map<SubWindows, desktop_multi_window.WindowController> windows;
 
   @override
-  State<HomePage> createState() => HomePageState();
+  flutter.State<HomePage> createState() => HomePageState();
 }
 
-class HomePageState extends State<HomePage> {
+class HomePageState extends flutter.State<HomePage> {
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
+  flutter.Widget build(flutter.BuildContext context) {
+    return flutter.Scaffold(
+      appBar: flutter.AppBar(
+        title: flutter.Text(widget.title),
       ),
-      body: Column(
+      body: flutter.Column(
         children: [
-          Text(widget.title, style: const TextStyle(fontSize: 24)),
-          const SizedBox(
+          flutter.Text(widget.title, style: const flutter.TextStyle(fontSize: 24)),
+          const flutter.SizedBox(
             height: 24,
           ),
-          Expanded(
-            child: ListView.separated(
+          flutter.Expanded(
+            child: flutter.ListView.separated(
               itemCount: 3,
               itemBuilder: (context, index) {
-                return TextButton(
+                return flutter.TextButton(
                   onPressed: () => _onSubWindowsRootingButtonPressed(index),
-                  style: TextButton.styleFrom(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(16),
+                  style: flutter.TextButton.styleFrom(
+                    shape: flutter.RoundedRectangleBorder(
+                      borderRadius: flutter.BorderRadius.circular(16),
                     ),
-                    backgroundColor: Colors.blueGrey[800],
+                    backgroundColor: flutter.Colors.blueGrey[800],
                   ),
-                  child: SizedBox(
+                  child: flutter.SizedBox(
                     height: 64,
-                    child: Center(
-                      child: Text(subWindowsTitle.values.toList()[index],
-                          style: const TextStyle(color: Colors.white)),
+                    child: flutter.Center(
+                      child: flutter.Text(subWindowsTitle.values.toList()[index],
+                          style: const flutter.TextStyle(color: flutter.Colors.white)),
                     ),
                   ),
                 );
               },
-              separatorBuilder: (context, index) => const SizedBox(height: 16),
+              separatorBuilder: (context, index) => const flutter.SizedBox(height: 16),
             ),
           ),
         ],

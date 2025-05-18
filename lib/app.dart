@@ -6,13 +6,13 @@
 // https://github.com/YDITS/YDITS-SSC
 //
 
-import 'package:flutter/material.dart';
-import 'package:desktop_multi_window/desktop_multi_window.dart';
+import 'package:flutter/material.dart' as flutter;
+import 'package:desktop_multi_window/desktop_multi_window.dart' as desktop_multi_window;
 import 'package:ydits_ssc/config.dart';
 import 'package:ydits_ssc/core/sub_windows/sub_windows.dart';
 import 'package:ydits_ssc/pages/pages.dart';
 
-class YditsSscApp extends StatelessWidget {
+class YditsSscApp extends flutter.StatelessWidget {
   const YditsSscApp({
     super.key,
     required this.config,
@@ -20,11 +20,11 @@ class YditsSscApp extends StatelessWidget {
   });
 
   final YditsSscConfig config;
-  final Map<SubWindows, WindowController> windows;
+  final Map<SubWindows, desktop_multi_window.WindowController> windows;
 
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
+  flutter.Widget build(flutter.BuildContext context) {
+    return flutter.MaterialApp(
       home: HomePage(
         title: config.title,
         windows: windows,

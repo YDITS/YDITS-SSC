@@ -6,26 +6,26 @@
 // https://github.com/YDITS/YDITS-SSC
 //
 
-import 'dart:convert';
-import 'dart:ui';
-import 'package:desktop_multi_window/desktop_multi_window.dart';
-import 'package:flutter/services.dart';
+import 'dart:convert' as dart_convert;
+import 'package:desktop_multi_window/desktop_multi_window.dart' as desktop_multi_window;
+import 'package:flutter/services.dart' as flutter_services;
+import 'package:ydits_ssc/core/sub_windows/sub_windows.dart';
 
 class WindowManager {
   WindowManager({
     required this.onFailedCloseWindow,
   }) {
-    DesktopMultiWindow.setMethodHandler((call, fromWindowId) async => await _windowMethodHandler(call, fromWindowId));
+    desktop_multi_window.DesktopMultiWindow.setMethodHandler((call, fromWindowId) async => await _windowMethodHandler(call, fromWindowId));
   }
 
   final void Function(int) onFailedCloseWindow;
-  final List<WindowController> _windowList = [];
+  final List<desktop_multi_window.WindowController> _windowList = [];
 
-  List<WindowController> get windowList {
+  List<desktop_multi_window.WindowController> get windowList {
     return _windowList;
   }
 
-  Future<WindowController> active(int windowId) async {
+  Future<desktop_multi_window.WindowController> active(int windowId) async {
     for (final window in windowList) {
       if (window.windowId == windowId) {
         return window;
@@ -34,12 +34,13 @@ class WindowManager {
     throw Exception('Window with id `$windowId` was not found');
   }
 
-  Future<WindowController> createNewWindow({
+  Future<desktop_multi_window.WindowController> createNewWindow({
     required String title,
-    Rect frame = const Rect.fromLTWH(128, 128, 960, 540),
+    required SubWindows window,
+    flutter_services.Rect frame = const flutter_services.Rect.fromLTWH(128, 128, 960, 540),
     bool create = false,
   }) async {
-    final newWindow = await DesktopMultiWindow.createWindow(jsonEncode({ }));
+    final newWindow = await desktop_multi_window.DesktopMultiWindow.createWindow(dart_convert.jsonEncode({ "window": window.toString() }));
 
     newWindow
       ..setFrame(frame)
@@ -67,7 +68,7 @@ class WindowManager {
     _windowList.add(newWindow);
   }
 
-  Future<void> _windowMethodHandler(MethodCall call, int fromWindowId) async {
+  Future<void> _windowMethodHandler(flutter_services.MethodCall call, int fromWindowId) async {
     print("Method called from window: `$fromWindowId`");
   }
 }

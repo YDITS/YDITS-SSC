@@ -6,7 +6,7 @@
 // https://github.com/YDITS/YDITS-SSC
 //
 
-import 'dart:ui';
+import 'dart:ui' as dart_ui;
 import "package:ydits_ssc/core/version/version.dart";
 
 final class YditsSscConfig {
@@ -20,7 +20,7 @@ final class YditsSscWindowConfig {
   YditsSscWindowConfig({required this.title});
 
   final String title;
-  final Rect windowFrame = const Rect.fromLTWH(128, 128, 960, 540);
-  final Size windowMinSize = const Size(640, 360);
-  final Size windowMaxSize = Size.infinite;
+  final dart_ui.Rect windowFrame = const dart_ui.Rect.fromLTWH(128, 128, 960, 540);
+  final dart_ui.Size windowMinSize = const dart_ui.Size(640, 360);
+  final dart_ui.Size windowMaxSize = dart_ui.Size.infinite;
 }
