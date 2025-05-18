@@ -15,12 +15,17 @@ import 'package:ydits_ssc/windows/eew_monitor_display/app.dart';
 import 'package:ydits_ssc/windows/eew_monitor_display/config.dart';
 
 class EewMonitorDisplay {
+  late final Logger logger;
+  late final Rect? frame;
+
   Future<void> main() async {
-    final log = Logger('Logger');
     initializeLogger();
 
-    final frame = await initializeDesktopWindow();
-    log.info(frame);
+    try {
+      await initializeDesktopWindow();
+    } catch (error) {
+      logger.warning(error);
+    }
 
     runApp(
       const EewMonitorDisplayApp(),
@@ -28,21 +33,20 @@ class EewMonitorDisplay {
   }
 
   void initializeLogger() {
+    logger = Logger('Logger');
     Logger.root.level = Level.ALL;
     Logger.root.onRecord.listen((record) {
       print('${record.level.name}: ${record.time}: ${record.message}');
     });
   }
 
-  initializeDesktopWindow() async {
+  Future<void> initializeDesktopWindow() async {
     WidgetsFlutterBinding.ensureInitialized();
     return await setWindowConfig();
   }
 
-  setWindowConfig() async {
-    if (!isPlatformDesktop()) {
-      return;
-    }
+  Future<void> setWindowConfig() async {
+    if (!isPlatformDesktop) { return; }
 
     setWindowTitle(Config.windowTitle);
     setWindowFrame(Config.windowFrame);
@@ -50,10 +54,11 @@ class EewMonitorDisplay {
     setWindowMaxSize(Config.windowMaxSize);
 
     final info = await getCurrentScreen();
-    return info?.frame;
+    frame = info?.frame;
+    logger.info(frame);
   }
 
-  bool isPlatformDesktop() {
+  bool get isPlatformDesktop {
     return Platform.isWindows || Platform.isLinux || Platform.isMacOS;
   }
 }
