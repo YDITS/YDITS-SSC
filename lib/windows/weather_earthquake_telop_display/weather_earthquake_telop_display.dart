@@ -10,20 +10,24 @@ import 'dart:io';
 import 'package:logging/logging.dart';
 import 'package:window_size/window_size.dart';
 import 'package:flutter/material.dart';
+
 import 'package:ydits_ssc/windows/weather_earthquake_telop_display/app.dart';
 import 'package:ydits_ssc/windows/weather_earthquake_telop_display/config.dart';
 
-
 class WeatherEarthquakeTelopDisplay {
   late final Logger logger;
+  late final Rect? frame;
 
   Future<void> main() async {
-    logger = Logger('Logger');
     WidgetsFlutterBinding.ensureInitialized();
 
     initializeLogger();
 
-    await initializeDesktopWindow();
+    try {
+      await initializeDesktopWindow();
+    } catch (error) {
+      logger.warning(error);
+    }
 
     runApp(
       WeatherEarthquakeTelopDisplayApp(logger: logger),
@@ -31,19 +35,19 @@ class WeatherEarthquakeTelopDisplay {
   }
 
   void initializeLogger() {
+    logger = Logger('Logger');
     Logger.root.level = Level.ALL;
     Logger.root.onRecord.listen((record) {
       print('${record.level.name}: ${record.time}: ${record.message}');
     });
   }
 
-  initializeDesktopWindow() async {
-    final frame = await setWindowConfig();
-    return frame;
+  Future<void> initializeDesktopWindow() async {
+    return await setWindowConfig();
   }
 
-  setWindowConfig() async {
-    if (!isPlatformDesktop()) {
+  Future<void> setWindowConfig() async {
+    if (!isPlatformDesktop) {
       return;
     }
 
@@ -53,13 +57,11 @@ class WeatherEarthquakeTelopDisplay {
     setWindowMaxSize(Config.windowMaxSize);
 
     final info = await getCurrentScreen();
-
-    logger.info(info?.frame);
-
-    return info?.frame;
+    frame = info?.frame;
+    logger.info(frame);
   }
 
-  bool isPlatformDesktop() {
+  bool get isPlatformDesktop {
     return Platform.isWindows || Platform.isLinux || Platform.isMacOS;
   }
 }
