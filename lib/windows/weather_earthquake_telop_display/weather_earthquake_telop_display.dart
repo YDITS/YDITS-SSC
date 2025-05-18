@@ -17,7 +17,7 @@ import 'package:ydits_ssc/windows/weather_earthquake_telop_display/config.dart';
 class WeatherEarthquakeTelopDisplay {
   late final Logger logger;
 
-  void main() async {
+  Future<void> main() async {
     logger = Logger('Logger');
     WidgetsFlutterBinding.ensureInitialized();
 

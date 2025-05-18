@@ -9,11 +9,14 @@
 import 'dart:convert';
 import 'dart:ui';
 import 'package:desktop_multi_window/desktop_multi_window.dart';
+import 'package:flutter/services.dart';
 
 class WindowManager {
   WindowManager({
     required this.onFailedCloseWindow,
-  });
+  }) {
+    DesktopMultiWindow.setMethodHandler((call, fromWindowId) async => await _windowMethodHandler(call, fromWindowId));
+  }
 
   final void Function(int) onFailedCloseWindow;
   final List<WindowController> _windowList = [];
@@ -34,7 +37,7 @@ class WindowManager {
   Future<WindowController> createNewWindow({
     required String title,
     Rect frame = const Rect.fromLTWH(128, 128, 960, 540),
-    bool create = true,
+    bool create = false,
   }) async {
     final newWindow = await DesktopMultiWindow.createWindow(jsonEncode({ }));
 
@@ -62,5 +65,9 @@ class WindowManager {
 
   void _addWindowToList(newWindow) {
     _windowList.add(newWindow);
+  }
+
+  Future<void> _windowMethodHandler(MethodCall call, int fromWindowId) async {
+    print("Method called from window: `$fromWindowId`");
   }
 }

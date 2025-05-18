@@ -15,7 +15,7 @@ import 'app.dart';
 import 'config.dart';
 
 class TsunamiMonitorDisplay {
-  void main() async {
+  Future<void> main() async {
     final log = Logger('Logger');
     initializeLogger();
 

@@ -11,11 +11,11 @@ import 'package:logging/logging.dart';
 import 'package:window_size/window_size.dart';
 import 'package:flutter/material.dart';
 
-import 'app.dart';
-import 'config.dart';
+import 'package:ydits_ssc/windows/eew_monitor_display/app.dart';
+import 'package:ydits_ssc/windows/eew_monitor_display/config.dart';
 
 class EewMonitorDisplay {
-  void main() async {
+  Future<void> main() async {
     final log = Logger('Logger');
     initializeLogger();
 

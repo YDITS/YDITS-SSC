@@ -11,13 +11,15 @@ import 'dart:ui' as dart_ui;
 import 'package:desktop_multi_window/desktop_multi_window.dart';
 import 'package:logging/logging.dart' as logging;
 import 'package:window_size/window_size.dart' as window_size;
-import 'package:flutter/material.dart' as flutter;
+import 'package:flutter/material.dart' as flutter_material;
 
 import 'package:ydits_ssc/core/window_manager/window_manager.dart';
 import 'package:ydits_ssc/core/sub_windows/sub_windows.dart';
 import 'package:ydits_ssc/core/sub_windows/sub_windows_title.dart';
 import 'package:ydits_ssc/app.dart';
 import 'package:ydits_ssc/config.dart';
+
+import 'package:ydits_ssc/windows/windows.dart';
 
 class YditsSsc {
   late final YditsSscConfig config;
@@ -28,28 +30,47 @@ class YditsSsc {
   late final WindowManager windowManager;
   final Map<SubWindows, WindowController> windows = {};
 
-  Future<void> runApp() async {
-    config = YditsSscConfig();
-    windowConfig = YditsSscWindowConfig(title: config.title);
+  Future<void> runApp(List<String> args) async {
+    print(args.firstOrNull);
 
-    _initializeLogger();
+    if (args.firstOrNull == "multi_window") {
+      print("Run app has called.");
+      print(args[1]);
+      print(args[2]);
+      
+    } else {
+      flutter_material.WidgetsFlutterBinding.ensureInitialized();
 
-    await _initializeDesktopWindow(windowConfig);
+      config = YditsSscConfig();
+      windowConfig = YditsSscWindowConfig(title: config.title);
 
-    windowManager = WindowManager(
-      onFailedCloseWindow: (int windowId) => _onFailedCloseWindow(windowId)
-    );
+      _initializeLogger();
 
-    windows[SubWindows.eewMonitorDisplay] = await windowManager.createNewWindow(title: subWindowsTitle[SubWindows.eewMonitorDisplay] ?? "", create: false);
-    windows[SubWindows.tsunamiMonitorDisplay] = await windowManager.createNewWindow(title: subWindowsTitle[SubWindows.tsunamiMonitorDisplay] ?? "", create: false);
-    windows[SubWindows.weatherEarthquakeTelopDisplay] = await windowManager.createNewWindow(title: subWindowsTitle[SubWindows.weatherEarthquakeTelopDisplay] ?? "", create: false);
+      await _initializeDesktopWindow(windowConfig);
 
-    mainApp = YditsSscApp(
-      config: config,
-      windows: windows,
-    );
+      windowManager = WindowManager(
+          onFailedCloseWindow: (int windowId) =>
+              _onFailedCloseWindow(windowId));
 
-    flutter.runApp(mainApp);
+      windows[SubWindows.eewMonitorDisplay] =
+          await windowManager.createNewWindow(
+              title: subWindowsTitle[SubWindows.eewMonitorDisplay] ?? "");
+      windows[SubWindows.tsunamiMonitorDisplay] =
+          await windowManager.createNewWindow(
+              title: subWindowsTitle[SubWindows.tsunamiMonitorDisplay] ?? "");
+      windows[SubWindows.weatherEarthquakeTelopDisplay] =
+          await windowManager.createNewWindow(
+              title:
+                  subWindowsTitle[SubWindows.weatherEarthquakeTelopDisplay] ??
+                      "");
+
+      mainApp = YditsSscApp(
+        config: config,
+        windows: windows,
+      );
+
+      flutter_material.runApp(mainApp);
+    }
   }
 
   void _initializeLogger() {
@@ -61,15 +82,12 @@ class YditsSsc {
   }
 
   Future<void> _initializeDesktopWindow(
-      YditsSscWindowConfig windowConfig
-  ) async {
-    flutter.WidgetsFlutterBinding.ensureInitialized();
+      YditsSscWindowConfig windowConfig) async {
+    flutter_material.WidgetsFlutterBinding.ensureInitialized();
     await _setWindowConfig(windowConfig);
   }
 
-  Future<void> _setWindowConfig(
-    YditsSscWindowConfig windowConfig
-  ) async {
+  Future<void> _setWindowConfig(YditsSscWindowConfig windowConfig) async {
     if (!_isPlatformDesktop) return;
 
     window_size.setWindowTitle(windowConfig.title);
