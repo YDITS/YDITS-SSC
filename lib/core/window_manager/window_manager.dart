@@ -1,5 +1,5 @@
 //
-// Window Manager
+// YDITS for SSC
 //
 // Copyright (C) よね/Yone
 //
@@ -13,7 +13,7 @@ import 'package:desktop_multi_window/desktop_multi_window.dart';
 class WindowManager {
   WindowManager({ required this.onFailedCloseWindow });
 
-  final Function onFailedCloseWindow;
+  final void Function(int) onFailedCloseWindow;
   final List<WindowController> _windowList = [];
 
   List<WindowController> get windowList {

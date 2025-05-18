@@ -1,5 +1,5 @@
 //
-// Weather Japan Prefectures
+// YDITS for SSC
 //
 // Copyright (C) よね/Yone
 //

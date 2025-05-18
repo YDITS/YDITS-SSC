@@ -7,8 +7,8 @@
 //
 
 import 'package:flutter/material.dart';
-import 'config.dart';
-import 'pages/pages.dart';
+import 'package:ydits_ssc/config.dart';
+import 'package:ydits_ssc/pages/pages.dart';
 
 class YditsSscApp extends StatelessWidget {
   const YditsSscApp({

@@ -18,10 +18,10 @@ class Map extends StatefulWidget {
   final MapOptions mapOptions;
 
   @override
-  State<Map> createState() => _Map();
+  State<Map> createState() => MapState();
 }
 
-class _Map extends State<Map> {
+class MapState extends State<Map> {
   @override
   Widget build(BuildContext context) {
     return FlutterMap(

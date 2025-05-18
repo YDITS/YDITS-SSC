@@ -10,8 +10,8 @@ import 'dart:io';
 import 'package:logging/logging.dart';
 import 'package:window_size/window_size.dart';
 import 'package:flutter/material.dart';
-import 'package:ydits_ssc/weather_earthquake_telop_display/app.dart';
-import 'package:ydits_ssc/weather_earthquake_telop_display/config.dart';
+import 'package:ydits_ssc/windows/weather_earthquake_telop_display/app.dart';
+import 'package:ydits_ssc/windows/weather_earthquake_telop_display/config.dart';
 
 final logger = Logger('Logger');
 

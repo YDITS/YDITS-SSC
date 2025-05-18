@@ -8,7 +8,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:logging/logging.dart';
-import 'package:ydits_ssc/weather_earthquake_telop_display/pages/pages.dart';
+import 'package:ydits_ssc/windows/weather_earthquake_telop_display/pages/pages.dart';
 
 class App extends StatelessWidget {
   final Logger logger;

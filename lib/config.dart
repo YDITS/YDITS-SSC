@@ -7,7 +7,7 @@
 //
 
 import 'dart:ui';
-import "packages/version/version.dart";
+import "package:ydits_ssc/core/version/version.dart";
 
 final class YditsSscConfig {
   final String title = "YDITS for SSC";

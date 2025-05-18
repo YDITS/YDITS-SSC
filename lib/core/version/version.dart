@@ -1,7 +1,9 @@
 //
-// Version
+// YDITS for SSC
 //
 // Copyright (C) よね/Yone
+//
+// https://github.com/YDITS/YDITS-SSC
 //
 
 class Version {

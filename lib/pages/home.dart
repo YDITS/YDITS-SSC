@@ -36,7 +36,7 @@ class HomePageState extends State<HomePage> {
       body: Column(
         children: [
           Text(widget.title, style: const TextStyle(fontSize: 24)),
-          SizedBox(
+          const SizedBox(
             height: 24,
           ),
           Expanded(
@@ -44,7 +44,7 @@ class HomePageState extends State<HomePage> {
               itemCount: 3,
               itemBuilder: (context, index) {
                 return TextButton(
-                  onPressed: () => onScreenRootingButtonPress(index),
+                  onPressed: () => _onScreenRootingButtonPress(index),
                   style: TextButton.styleFrom(
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(16),
@@ -68,7 +68,7 @@ class HomePageState extends State<HomePage> {
     );
   }
 
-  void onScreenRootingButtonPress(index) {
+  void _onScreenRootingButtonPress(index) {
     final pressedScreen = Screens.values[index];
     final pressedScreenTitle = screensTitle[pressedScreen];
     print("Screen Rooting Button was clicked: Screen `$pressedScreen`, Screen Title `$pressedScreenTitle`");
