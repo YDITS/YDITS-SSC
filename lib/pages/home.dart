@@ -25,7 +25,7 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => HomePageState();
 }
 
-class HomePageState extends State<HomePage> {  
+class HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -69,9 +69,10 @@ class HomePageState extends State<HomePage> {
 
   Future<void> _onSubWindowsRootingButtonPressed(index) async {
     final pressedScreen = SubWindows.values[index];
-    print("Screen Rooting Button was clicked: Screen `$pressedScreen`.");
+    print(widget.windows);
+    print("Sub windows rooting button has clicked: `$pressedScreen`.");
 
-    if (widget.windows.containsKey(pressedScreen)) { return; }
+    if (!widget.windows.containsKey(pressedScreen)) { return; }
 
     await widget.windows[pressedScreen]?.show();
   }

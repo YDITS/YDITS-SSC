@@ -43,7 +43,7 @@ class WindowManager {
       ..center()
       ..setTitle(title);
 
-    if (create) newWindow.show();
+    if (create) { newWindow.show(); }
 
     _addWindowToList(newWindow);
 

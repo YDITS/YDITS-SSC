@@ -9,5 +9,5 @@
 import 'package:ydits_ssc/ydits_ssc.dart';
 
 void main() async {
-  YditsSsc().runApp();
+  await YditsSsc().runApp();
 }

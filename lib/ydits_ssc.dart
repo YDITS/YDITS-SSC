@@ -26,9 +26,9 @@ class YditsSsc {
   late final dart_ui.Rect? mainWindowFrame;
   late final YditsSscApp mainApp;
   late final WindowManager windowManager;
-  late final Map<SubWindows, WindowController> windows;
+  final Map<SubWindows, WindowController> windows = {};
 
-  void runApp() async {
+  Future<void> runApp() async {
     config = YditsSscConfig();
     windowConfig = YditsSscWindowConfig(title: config.title);
 
@@ -40,9 +40,9 @@ class YditsSsc {
       onFailedCloseWindow: (int windowId) => _onFailedCloseWindow(windowId)
     );
 
-    windows[SubWindows.eewMonitorDisplay] = await windowManager.createNewWindow(title: subWindowsTitle[SubWindows.eewMonitorDisplay] ?? "");
-    windows[SubWindows.tsunamiMonitorDisplay] = await windowManager.createNewWindow(title: subWindowsTitle[SubWindows.tsunamiMonitorDisplay] ?? "");
-    windows[SubWindows.weatherEarthquakeTelopDisplay] = await windowManager.createNewWindow(title: subWindowsTitle[SubWindows.weatherEarthquakeTelopDisplay] ?? "");
+    windows[SubWindows.eewMonitorDisplay] = await windowManager.createNewWindow(title: subWindowsTitle[SubWindows.eewMonitorDisplay] ?? "", create: false);
+    windows[SubWindows.tsunamiMonitorDisplay] = await windowManager.createNewWindow(title: subWindowsTitle[SubWindows.tsunamiMonitorDisplay] ?? "", create: false);
+    windows[SubWindows.weatherEarthquakeTelopDisplay] = await windowManager.createNewWindow(title: subWindowsTitle[SubWindows.weatherEarthquakeTelopDisplay] ?? "", create: false);
 
     mainApp = YditsSscApp(
       config: config,
