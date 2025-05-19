@@ -13,6 +13,7 @@
     # pkgs.nodePackages.nodemon
     pkgs.sudo
     pkgs.apt
+    pkgs.cmake
   ];
 
   # Sets environment variables in the workspace
