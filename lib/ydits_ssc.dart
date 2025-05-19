@@ -21,8 +21,9 @@ import 'package:ydits_ssc/app.dart';
 import 'package:ydits_ssc/config.dart';
 import 'package:ydits_ssc/windows/windows.dart';
 
+late final logging.Logger logger;
+
 class YditsSsc {
-  late final logging.Logger logger;
   late final YditsSscConfig config;
   late final YditsSscWindowConfig windowConfig;
   late final dart_ui.Rect? mainWindowFrame;
