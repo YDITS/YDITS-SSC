@@ -8,6 +8,6 @@
 
 import 'package:ydits_ssc/ydits_ssc.dart';
 
-void main(List<String> args) async {
+Future<void> main(List<String> args) async {
   await YditsSsc().runApp(args);
 }
