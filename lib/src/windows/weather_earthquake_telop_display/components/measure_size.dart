@@ -15,10 +15,10 @@ class MeasureSize extends StatefulWidget {
   const MeasureSize({super.key, required this.child, required this.onChange});
 
   @override
-  _MeasureSizeState createState() => _MeasureSizeState();
+  MeasureSizeState createState() => MeasureSizeState();
 }
 
-class _MeasureSizeState extends State<MeasureSize> {
+class MeasureSizeState extends State<MeasureSize> {
   @override
   Widget build(BuildContext context) {
     WidgetsBinding.instance.addPostFrameCallback((_) {
