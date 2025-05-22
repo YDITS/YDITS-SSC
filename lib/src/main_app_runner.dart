@@ -54,8 +54,7 @@ class YditsSscMainAppRunner {
     WidgetsFlutterBinding.ensureInitialized();
 
     await _initializeDesktopWindow();
-
-    _initializeSubWindows();
+    await _initializeSubWindows();
 
     runApp(YditsSscApp(
       config: config,
@@ -98,20 +97,23 @@ class YditsSscMainAppRunner {
     subWindowManager = WindowManager(
         onFailedCloseWindow: (int windowId) => _onFailedCloseWindow(windowId));
 
+    final WindowController eewMonitorDisplayWindow = await subWindowManager.createNewWindow(
+      title: subWindowsTitle[SubWindows.eewMonitorDisplay] ?? "",
+      window: SubWindows.eewMonitorDisplay,
+    );
+    final WindowController tsunamiMonitorDisplayWindow = await subWindowManager.createNewWindow(
+      title: subWindowsTitle[SubWindows.tsunamiMonitorDisplay] ?? "",
+      window: SubWindows.tsunamiMonitorDisplay,
+    );
+    final WindowController weatherEarthquakeTelopDisplayWindow = await subWindowManager.createNewWindow(
+      title: subWindowsTitle[SubWindows.weatherEarthquakeTelopDisplay] ?? "",
+      window: SubWindows.weatherEarthquakeTelopDisplay,
+    );
+
     subWindows = {
-      SubWindows.eewMonitorDisplay: await subWindowManager.createNewWindow(
-        title: subWindowsTitle[SubWindows.eewMonitorDisplay] ?? "",
-        window: SubWindows.eewMonitorDisplay,
-      ),
-      SubWindows.tsunamiMonitorDisplay: await subWindowManager.createNewWindow(
-        title: subWindowsTitle[SubWindows.tsunamiMonitorDisplay] ?? "",
-        window: SubWindows.tsunamiMonitorDisplay,
-      ),
-      SubWindows.weatherEarthquakeTelopDisplay:
-          await subWindowManager.createNewWindow(
-        title: subWindowsTitle[SubWindows.weatherEarthquakeTelopDisplay] ?? "",
-        window: SubWindows.weatherEarthquakeTelopDisplay,
-      ),
+      SubWindows.eewMonitorDisplay: eewMonitorDisplayWindow,
+      SubWindows.tsunamiMonitorDisplay: tsunamiMonitorDisplayWindow,
+      SubWindows.weatherEarthquakeTelopDisplay: weatherEarthquakeTelopDisplayWindow,
     };
   }
 
