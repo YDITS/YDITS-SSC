@@ -12,7 +12,9 @@ import 'package:flutter/material.dart';
 import 'package:logging/logging.dart';
 import 'package:http/http.dart' as http;
 import 'package:weather/weather.dart';
-import '../../../../core/weather/weather_japan_prefectures.dart';
+
+import 'package:ydits_ssc/core/weather/weather_japan_prefectures.dart';
+
 import 'package:ydits_ssc/src/windows/weather_earthquake_telop_display/config.dart';
 import 'package:ydits_ssc/src/windows/weather_earthquake_telop_display/components/telop_label.dart';
 import 'package:ydits_ssc/src/windows/weather_earthquake_telop_display/components/telop_content_eqinfo.dart';
@@ -20,27 +22,49 @@ import 'package:ydits_ssc/src/windows/weather_earthquake_telop_display/component
 
 class HomePage extends StatefulWidget {
   final Logger logger;
+  final WeatherEarthquakeTelopDisplayConfig config;
+  final WeatherEarthquakeTelopDisplayAppConfig appConfig;
+  final WeatherEarthquakeTelopDisplayWindowConfig windowConfig;
 
-  const HomePage({super.key, required this.logger});
+  const HomePage({
+    super.key,
+    required this.logger,
+    required this.config,
+    required this.appConfig,
+    required this.windowConfig,
+  });
 
   @override
   State<HomePage> createState() => _HomePage();
 }
 
 class _HomePage extends State<HomePage> {
-  final double _labelWidth = Config.labelWidth;
-  final double _labelFontSize = Config.fontSize;
-  final String _labelFontFamily = Config.fontFamily;
-  final double _contentFontSize = Config.fontSize;
-  final String _contentFontFamily = Config.fontFamily;
   final Color _labelBgColor = const Color.fromARGB(255, 31, 31, 31);
   final Color _labelFontColor = const Color.fromARGB(255, 223, 223, 223);
-  final double _telopSpeed = Config.telopSpeed;
-  String _labelText = Config.initialLabelText;
-  String _contentText = Config.initialContentText;
+  late final double _labelWidth;
+  late final double _labelFontSize;
+  late final String _labelFontFamily;
+  late final double _contentFontSize;
+  late final String _contentFontFamily;
+  late final double _telopSpeed;
+
+  late WeatherFactory _weatherFactory;
+  late String _labelText;
+  late String _contentText;
+
   StatefulWidget _telopContent =
       const TelopContentEqinfo(text: "", fontSize: 0, speed: 0);
-  late WeatherFactory _weatherFactory;
+
+  _HomePage() {
+    _labelWidth = widget.config.labelWidth;
+    _labelFontSize = widget.config.fontSize;
+    _labelFontFamily = widget.config.fontFamily;
+    _contentFontSize = widget.config.fontSize;
+    _contentFontFamily = widget.config.fontFamily;
+    _telopSpeed = widget.config.telopSpeed;
+    _labelText = widget.config.initialLabelText;
+    _contentText = widget.config.initialContentText;
+  }
 
   @override
   void initState() {
@@ -51,7 +75,7 @@ class _HomePage extends State<HomePage> {
   }
 
   Future<void> initWeatherFactory() async {
-    _weatherFactory = WeatherFactory(Config.openWeatherMapApiKey);
+    _weatherFactory = WeatherFactory(widget.config.openWeatherMapApiKey);
   }
 
   Future<void> updateWeather() async {

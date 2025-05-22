@@ -11,27 +11,27 @@ import 'package:ydits_ssc/core/version/version.dart';
 import 'package:ydits_ssc/core/configure/app_config.dart';
 import 'package:ydits_ssc/core/configure/window_config.dart';
 
-abstract final class WeatherEarthquakeTelopDisplayConfig {
+class WeatherEarthquakeTelopDisplayConfig {
   /// デフォルトのフォントサイズ
-  static double fontSize = 32;
+  final double fontSize = 32;
 
   /// フォント
-  static String fontFamily = "M PLUS 2";
+  final String fontFamily = "M PLUS 2";
 
   /// テロップのラベルの幅
-  static double labelWidth = 144;
+  final double labelWidth = 144;
 
   /// テロップのスライドアニメーション速度
-  static double telopSpeed = 100;
+  final double telopSpeed = 100;
 
   /// テロップのラベルの初期値
-  static String initialLabelText = "起動中…";
+  final String initialLabelText = "起動中…";
 
   /// テロップのコンテントの初期値
-  static String initialContentText = "情報を取得しています…";
+  final String initialContentText = "情報を取得しています…";
 
   /// Open Weather Map の API Key
-  static String openWeatherMapApiKey = "c1aa80da02ee7ace26f8a124c82b831d";
+  final String openWeatherMapApiKey = "c1aa80da02ee7ace26f8a124c82b831d";
 }
 
 /// Weather Earthquake Telop Display アプリケーションの設定
