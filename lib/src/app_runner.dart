@@ -41,6 +41,7 @@ class YditsSscAppRunner {
 
     if (args.firstOrNull == "multi_window") {
       await _runSubApp(args);
+      return;
     }
 
     await _runMainApp();
@@ -55,7 +56,7 @@ class YditsSscAppRunner {
 
   /// サブアプリケーションを実行する
   Future<void> _runSubApp(List<String> args) async {
-    final runner = YditsSscSubAppRunner();
+    final runner = YditsSscSubAppRunner(logger: logger);
     await runner.run(args);
   }
 }
