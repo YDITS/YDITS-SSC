@@ -55,7 +55,9 @@ class _HomePage extends State<HomePage> {
   StatefulWidget _telopContent =
       const TelopContentEqinfo(text: "", fontSize: 0, speed: 0);
 
-  _HomePage() {
+  @override
+  void initState() {
+    super.initState();
     _labelWidth = widget.config.labelWidth;
     _labelFontSize = widget.config.fontSize;
     _labelFontFamily = widget.config.fontFamily;
@@ -64,11 +66,6 @@ class _HomePage extends State<HomePage> {
     _telopSpeed = widget.config.telopSpeed;
     _labelText = widget.config.initialLabelText;
     _contentText = widget.config.initialContentText;
-  }
-
-  @override
-  void initState() {
-    super.initState();
     initWeatherFactory();
     updateWeather();
     // updateEqinfo();
