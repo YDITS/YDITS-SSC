@@ -22,7 +22,9 @@
   ];
 
   # Sets environment variables in the workspace
-  env = {};
+  env = {
+    GTK_INCLUDE_DIR = "${pkgs.gtk3.dev}/include/gtk-3.0";
+  };
   idx = {
     # Search for the extensions you want on https://open-vsx.org/ and use "publisher.id"
     extensions = [
