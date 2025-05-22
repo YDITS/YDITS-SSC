@@ -40,22 +40,22 @@ class YditsSscAppRunner {
     logger?.info("Running new application... | Args: ${args.toString()}");
 
     if (args.firstOrNull == "multi_window") {
-      _runSubApp(args);
+      await _runSubApp(args);
     }
 
-    _runMainApp();
+    await _runMainApp();
   }
 
   /// サブアプリケーションを実行する
   Future<void> _runMainApp() async {
     final runner = YditsSscMainAppRunner(
             config: mainAppConfig, windowConfig: mainAppWindowConfig);
-    runner.run();
+    await runner.run();
   }
 
   /// サブアプリケーションを実行する
   Future<void> _runSubApp(List<String> args) async {
     final runner = YditsSscSubAppRunner();
-    runner.run(args);
+    await runner.run(args);
   }
 }
