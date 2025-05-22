@@ -46,7 +46,9 @@ class TsunamiMonitorDisplay {
   }
 
   Future<void> setWindowConfig() async {
-    if (!isPlatformDesktop) { return; }
+    if (!isPlatformDesktop) {
+      return;
+    }
 
     setWindowTitle(Config.windowTitle);
     setWindowFrame(Config.windowFrame);

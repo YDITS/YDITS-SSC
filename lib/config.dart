@@ -20,7 +20,8 @@ final class YditsSscWindowConfig {
   YditsSscWindowConfig({required this.title});
 
   final String title;
-  final dart_ui.Rect windowFrame = const dart_ui.Rect.fromLTWH(128, 128, 960, 540);
+  final dart_ui.Rect windowFrame =
+      const dart_ui.Rect.fromLTWH(128, 128, 960, 540);
   final dart_ui.Size windowMinSize = const dart_ui.Size(640, 360);
   final dart_ui.Size windowMaxSize = dart_ui.Size.infinite;
 }

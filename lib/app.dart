@@ -7,7 +7,8 @@
 //
 
 import 'package:flutter/material.dart' as flutter;
-import 'package:desktop_multi_window/desktop_multi_window.dart' as desktop_multi_window;
+import 'package:desktop_multi_window/desktop_multi_window.dart'
+    as desktop_multi_window;
 import 'package:ydits_ssc/config.dart';
 import 'package:ydits_ssc/core/sub_windows/sub_windows.dart';
 import 'package:ydits_ssc/pages/pages.dart';

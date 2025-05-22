@@ -10,7 +10,8 @@ import 'dart:convert' as dart_convert;
 import 'dart:io' as dart_io;
 import 'dart:ui' as dart_ui;
 import 'package:logging/logging.dart' as logging;
-import 'package:desktop_multi_window/desktop_multi_window.dart' as desktop_multi_window;
+import 'package:desktop_multi_window/desktop_multi_window.dart'
+    as desktop_multi_window;
 import 'package:window_size/window_size.dart' as window_size;
 import 'package:flutter/material.dart' as flutter;
 

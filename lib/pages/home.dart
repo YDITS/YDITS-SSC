@@ -7,7 +7,8 @@
 //
 
 import 'package:flutter/material.dart' as flutter;
-import 'package:desktop_multi_window/desktop_multi_window.dart' as desktop_multi_window;
+import 'package:desktop_multi_window/desktop_multi_window.dart'
+    as desktop_multi_window;
 import 'package:ydits_ssc/core/sub_windows/sub_windows.dart';
 import 'package:ydits_ssc/core/sub_windows/sub_windows_title.dart';
 
@@ -34,7 +35,8 @@ class HomePageState extends flutter.State<HomePage> {
       ),
       body: flutter.Column(
         children: [
-          flutter.Text(widget.title, style: const flutter.TextStyle(fontSize: 24)),
+          flutter.Text(widget.title,
+              style: const flutter.TextStyle(fontSize: 24)),
           const flutter.SizedBox(
             height: 24,
           ),
@@ -53,13 +55,16 @@ class HomePageState extends flutter.State<HomePage> {
                   child: flutter.SizedBox(
                     height: 64,
                     child: flutter.Center(
-                      child: flutter.Text(subWindowsTitle.values.toList()[index],
-                          style: const flutter.TextStyle(color: flutter.Colors.white)),
+                      child: flutter.Text(
+                          subWindowsTitle.values.toList()[index],
+                          style: const flutter.TextStyle(
+                              color: flutter.Colors.white)),
                     ),
                   ),
                 );
               },
-              separatorBuilder: (context, index) => const flutter.SizedBox(height: 16),
+              separatorBuilder: (context, index) =>
+                  const flutter.SizedBox(height: 16),
             ),
           ),
         ],
@@ -72,7 +77,9 @@ class HomePageState extends flutter.State<HomePage> {
     print(widget.windows);
     print("Sub windows rooting button has clicked: `$pressedScreen`.");
 
-    if (!widget.windows.containsKey(pressedScreen)) { return; }
+    if (!widget.windows.containsKey(pressedScreen)) {
+      return;
+    }
 
     await widget.windows[pressedScreen]?.show();
   }
