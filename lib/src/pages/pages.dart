@@ -6,4 +6,4 @@
 // https://github.com/YDITS/YDITS-SSC
 //
 
-export 'package:ydits_ssc/windows/eew_monitor_display/pages/home.dart';
+export 'package:ydits_ssc/src/pages/home.dart';

@@ -12,11 +12,11 @@ import 'package:flutter/material.dart';
 import 'package:logging/logging.dart';
 import 'package:http/http.dart' as http;
 import 'package:weather/weather.dart';
-import '../../../core/weather/weatherJapanPrefectures.dart';
-import 'package:ydits_ssc/windows/weather_earthquake_telop_display/config.dart';
-import 'package:ydits_ssc/windows/weather_earthquake_telop_display/components/telop_label.dart';
-import 'package:ydits_ssc/windows/weather_earthquake_telop_display/components/telop_content_eqinfo.dart';
-import 'package:ydits_ssc/windows/weather_earthquake_telop_display/components/telop_content_weather.dart';
+import '../../../../core/weather/weatherJapanPrefectures.dart';
+import 'package:ydits_ssc/src/windows/weather_earthquake_telop_display/config.dart';
+import 'package:ydits_ssc/src/windows/weather_earthquake_telop_display/components/telop_label.dart';
+import 'package:ydits_ssc/src/windows/weather_earthquake_telop_display/components/telop_content_eqinfo.dart';
+import 'package:ydits_ssc/src/windows/weather_earthquake_telop_display/components/telop_content_weather.dart';
 
 class HomePage extends StatefulWidget {
   final Logger logger;

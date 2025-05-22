@@ -6,22 +6,21 @@
 // https://github.com/YDITS/YDITS-SSC
 //
 
-import 'dart:ui' as dart_ui;
 import "package:ydits_ssc/core/version/version.dart";
+import 'package:ydits_ssc/core/configure/app_config.dart';
 
-final class YditsSscConfig {
+/// YDITS for SSC メインアプリケーションの設定
+class YditsSscAppConfig implements AppConfig {
+  /// アプリケーションのタイトル
+  @override
   final String title = "YDITS for SSC";
+
+  /// アプリケーションの説明
+  @override
   final String description = "Saitama Sora Cam 用に制作された防災情報アプリケーション。";
+
+  /// アプリケーションのバージョン
+  @override
   final Version version =
       Version(major: 1, minor: 0, patch: 0, level: VersionLevels.develop);
-}
-
-final class YditsSscWindowConfig {
-  YditsSscWindowConfig({required this.title});
-
-  final String title;
-  final dart_ui.Rect windowFrame =
-      const dart_ui.Rect.fromLTWH(128, 128, 960, 540);
-  final dart_ui.Size windowMinSize = const dart_ui.Size(640, 360);
-  final dart_ui.Size windowMaxSize = dart_ui.Size.infinite;
 }

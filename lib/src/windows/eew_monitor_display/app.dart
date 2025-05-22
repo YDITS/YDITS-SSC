@@ -7,7 +7,7 @@
 //
 
 import 'package:flutter/material.dart';
-import 'package:ydits_ssc/windows/eew_monitor_display/pages/pages.dart';
+import 'package:ydits_ssc/src/windows/eew_monitor_display/pages/pages.dart';
 
 class EewMonitorDisplayApp extends StatelessWidget {
   const EewMonitorDisplayApp({super.key});
