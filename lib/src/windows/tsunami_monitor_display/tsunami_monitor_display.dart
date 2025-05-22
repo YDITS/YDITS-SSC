@@ -11,15 +11,20 @@ import 'package:logging/logging.dart';
 import 'package:window_size/window_size.dart';
 import 'package:flutter/material.dart';
 
-import 'app.dart';
-import 'config.dart';
+import 'package:ydits_ssc/src/windows/tsunami_monitor_display/app.dart';
+import 'package:ydits_ssc/src/windows/tsunami_monitor_display/config.dart';
 
 class TsunamiMonitorDisplay {
   late final Logger logger;
   late final Rect? frame;
+  late final TsunamiMonitorDisplayAppConfig config;
+  late final TsunamiMonitorDisplayWindowConfig windowConfig;
 
   Future<void> main() async {
     initializeLogger();
+
+    config = TsunamiMonitorDisplayAppConfig();
+    windowConfig = TsunamiMonitorDisplayWindowConfig();
 
     try {
       await initializeDesktopWindow();
@@ -50,10 +55,10 @@ class TsunamiMonitorDisplay {
       return;
     }
 
-    setWindowTitle(Config.windowTitle);
-    setWindowFrame(Config.windowFrame);
-    setWindowMinSize(Config.windowMinSize);
-    setWindowMaxSize(Config.windowMaxSize);
+    setWindowTitle(windowConfig.title);
+    setWindowFrame(windowConfig.windowFrame);
+    setWindowMinSize(windowConfig.windowMinSize);
+    setWindowMaxSize(windowConfig.windowMaxSize);
 
     final info = await getCurrentScreen();
     frame = info?.frame;

@@ -17,11 +17,16 @@ import 'package:ydits_ssc/src/windows/weather_earthquake_telop_display/config.da
 class WeatherEarthquakeTelopDisplay {
   late final Logger logger;
   late final Rect? frame;
+  late final WeatherEarthquakeTelopDisplayAppConfig config;
+  late final WeatherEarthquakeTelopDisplayWindowConfig windowConfig;
 
   Future<void> main() async {
     WidgetsFlutterBinding.ensureInitialized();
 
     initializeLogger();
+
+    config = WeatherEarthquakeTelopDisplayAppConfig();
+    windowConfig = WeatherEarthquakeTelopDisplayWindowConfig();
 
     try {
       await initializeDesktopWindow();
@@ -51,10 +56,10 @@ class WeatherEarthquakeTelopDisplay {
       return;
     }
 
-    setWindowTitle(Config.windowTitle);
-    setWindowFrame(Config.windowFrame);
-    setWindowMinSize(Config.windowMinSize);
-    setWindowMaxSize(Config.windowMaxSize);
+    setWindowTitle(windowConfig.title);
+    setWindowFrame(windowConfig.windowFrame);
+    setWindowMinSize(windowConfig.windowMinSize);
+    setWindowMaxSize(windowConfig.windowMaxSize);
 
     final info = await getCurrentScreen();
     frame = info?.frame;

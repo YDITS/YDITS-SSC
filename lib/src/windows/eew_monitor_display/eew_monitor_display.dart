@@ -17,9 +17,14 @@ import 'package:ydits_ssc/src/windows/eew_monitor_display/config.dart';
 class EewMonitorDisplay {
   late final Logger logger;
   late final Rect? frame;
+  late final EEWMonitorDisplayAppConfig config;
+  late final EEWMonitorDisplayWindowConfig windowConfig;
 
   Future<void> main() async {
     initializeLogger();
+
+    config = EEWMonitorDisplayAppConfig();
+    windowConfig = EEWMonitorDisplayWindowConfig();
 
     try {
       await initializeDesktopWindow();
@@ -50,10 +55,10 @@ class EewMonitorDisplay {
       return;
     }
 
-    setWindowTitle(Config.windowTitle);
-    setWindowFrame(Config.windowFrame);
-    setWindowMinSize(Config.windowMinSize);
-    setWindowMaxSize(Config.windowMaxSize);
+    setWindowTitle(windowConfig.title);
+    setWindowFrame(windowConfig.windowFrame);
+    setWindowMinSize(windowConfig.windowMinSize);
+    setWindowMaxSize(windowConfig.windowMaxSize);
 
     final info = await getCurrentScreen();
     frame = info?.frame;
