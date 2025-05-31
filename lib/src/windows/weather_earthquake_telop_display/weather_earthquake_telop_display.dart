@@ -7,6 +7,7 @@
 //
 
 import 'dart:io';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:logging/logging.dart';
 import 'package:window_size/window_size.dart';
 import 'package:flutter/material.dart';
@@ -37,12 +38,14 @@ class WeatherEarthquakeTelopDisplay {
     }
 
     runApp(
-      WeatherEarthquakeTelopDisplayApp(
-        logger: logger,
-        config: config,
-        appConfig: appConfig,
-        windowConfig: windowConfig,
-      ),
+      ProviderScope(
+        child: WeatherEarthquakeTelopDisplayApp(
+          logger: logger,
+          config: config,
+          appConfig: appConfig,
+          windowConfig: windowConfig,
+        ),
+      )
     );
   }
 

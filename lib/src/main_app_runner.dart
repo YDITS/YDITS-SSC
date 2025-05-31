@@ -10,8 +10,9 @@ import 'dart:io';
 
 import 'package:logging/logging.dart';
 import 'package:desktop_multi_window/desktop_multi_window.dart';
-import 'package:window_size/window_size.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:window_size/window_size.dart';
 
 import 'package:ydits_ssc/core/configure/app_config.dart';
 import 'package:ydits_ssc/core/configure/window_config.dart';
@@ -56,10 +57,14 @@ class YditsSscMainAppRunner {
     await _initializeDesktopWindow();
     await _initializeSubWindows();
 
-    runApp(YditsSscApp(
-      config: config,
-      windows: subWindows,
-    ));
+    runApp(
+      ProviderScope(
+        child: YditsSscApp(
+          config: config,
+          windows: subWindows,
+        ),
+      )
+    );
   }
 
   /// メインアプリケーションのウィンドウをイニシャライズする
@@ -97,15 +102,18 @@ class YditsSscMainAppRunner {
     subWindowManager = WindowManager(
         onFailedCloseWindow: (int windowId) => _onFailedCloseWindow(windowId));
 
-    final WindowController eewMonitorDisplayWindow = await subWindowManager.createNewWindow(
+    final WindowController eewMonitorDisplayWindow =
+        await subWindowManager.createNewWindow(
       title: subWindowsTitle[SubWindows.eewMonitorDisplay] ?? "",
       window: SubWindows.eewMonitorDisplay,
     );
-    final WindowController tsunamiMonitorDisplayWindow = await subWindowManager.createNewWindow(
+    final WindowController tsunamiMonitorDisplayWindow =
+        await subWindowManager.createNewWindow(
       title: subWindowsTitle[SubWindows.tsunamiMonitorDisplay] ?? "",
       window: SubWindows.tsunamiMonitorDisplay,
     );
-    final WindowController weatherEarthquakeTelopDisplayWindow = await subWindowManager.createNewWindow(
+    final WindowController weatherEarthquakeTelopDisplayWindow =
+        await subWindowManager.createNewWindow(
       title: subWindowsTitle[SubWindows.weatherEarthquakeTelopDisplay] ?? "",
       window: SubWindows.weatherEarthquakeTelopDisplay,
     );
@@ -113,7 +121,8 @@ class YditsSscMainAppRunner {
     subWindows = {
       SubWindows.eewMonitorDisplay: eewMonitorDisplayWindow,
       SubWindows.tsunamiMonitorDisplay: tsunamiMonitorDisplayWindow,
-      SubWindows.weatherEarthquakeTelopDisplay: weatherEarthquakeTelopDisplayWindow,
+      SubWindows.weatherEarthquakeTelopDisplay:
+          weatherEarthquakeTelopDisplayWindow,
     };
   }
 

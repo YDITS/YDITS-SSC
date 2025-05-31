@@ -7,6 +7,7 @@
 //
 
 import 'dart:io';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:logging/logging.dart';
 import 'package:window_size/window_size.dart';
 import 'package:flutter/material.dart';
@@ -33,7 +34,9 @@ class TsunamiMonitorDisplay {
     }
 
     runApp(
-      const TsunamiMonitorDisplayApp(),
+      const ProviderScope(
+        child: TsunamiMonitorDisplayApp(),
+      )
     );
   }
 
