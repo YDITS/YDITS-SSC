@@ -398,10 +398,12 @@ packages:
   version:
     dependency: "direct main"
     description:
-      path: "../version"
-      relative: true
-    source: path
-    version: "1.0.0"
+      path: "packages/version"
+      ref: master
+      resolved-ref: e5ae06b8dd47a8a71532302a32dac0f4335cd0a2
+      url: "https://github.com/YDITS/YDITS-SSC.git"
+    source: git
+    version: "0.1.0"
   vm_service:
     dependency: transitive
     description:
