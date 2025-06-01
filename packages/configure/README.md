@@ -16,10 +16,11 @@ dart pub add configure --git https://github.com/YDITS/YDITS-SSC.git --path packa
 @/pubspec.yaml:
 ```yaml
 dependencies:
-    configure:
-        git: https://github.com/YDITS/YDITS-SSC.git
-        path: packages/configure
-        ref: master
+  configure:
+    git:
+      url: https://github.com/YDITS/YDITS-SSC.git
+      path: packages/configure
+      ref: master
 ```
 
 ### Get the Dependencies
