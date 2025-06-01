@@ -12,17 +12,22 @@ import 'dart:ui';
 
 /// Window configuration settings.
 class WindowConfig {
-  const WindowConfig({required this.title});
+  const WindowConfig({
+    required this.title,
+    this.frame = const Rect.fromLTWH(128, 128, 960, 540),
+    this.minSize = const Size(640, 360),
+    this.maxSize = Size.infinite,
+  });
 
-  /// ウィンドウのタイトル
+  /// Window's title
   final String title;
 
-  /// ウィンドウのフレームデータ
-  final Rect windowFrame = const Rect.fromLTWH(128, 128, 960, 540);
+  /// Window's frame data
+  final Rect frame;
 
-  /// ウィンドウの初期サイズ
-  final Size windowMinSize = const Size(640, 360);
+  /// Window's initial size
+  final Size minSize;
 
-  /// ウィンドウの最大サイズの制限値
-  final Size windowMaxSize = Size.infinite;
+  /// Window's maximum size
+  final Size maxSize;
 }
