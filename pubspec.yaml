@@ -36,7 +36,7 @@ flutter:
   fonts:
     - family: M PLUS 2
       fonts:
-        - asset: fonts/MPLUS2-Medium.ttf
+        - asset: ./fonts/MPLUS2-Medium.ttf
           weight: 500
-        - asset: fonts/MPLUS2-Bold.ttf
+        - asset: ./fonts/MPLUS2-Bold.ttf
           weight: 700
