@@ -57,13 +57,13 @@ class WeatherEarthquakeTelopDisplayWindowConfig implements WindowConfig {
 
   /// ウィンドウのフレームデータ
   @override
-  final Rect windowFrame = const Rect.fromLTWH(128, 128, 960, 128);
+  final Rect frame = const Rect.fromLTWH(128, 128, 960, 128);
 
   /// ウィンドウの初期サイズ
   @override
-  final Size windowMinSize = const Size(640, 128);
+  final Size minSize = const Size(640, 128);
 
   /// ウィンドウの最大サイズの制限値
   @override
-  final Size windowMaxSize = const Size(1920, 128);
+  final Size maxSize = const Size(1920, 128);
 }

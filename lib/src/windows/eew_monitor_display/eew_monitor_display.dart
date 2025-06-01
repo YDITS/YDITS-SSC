@@ -57,9 +57,9 @@ final class EewMonitorDisplay {
     }
 
     setWindowTitle(windowConfig.title);
-    setWindowFrame(windowConfig.windowFrame);
-    setWindowMinSize(windowConfig.windowMinSize);
-    setWindowMaxSize(windowConfig.windowMaxSize);
+    setWindowFrame(windowConfig.frame);
+    setWindowMinSize(windowConfig.minSize);
+    setWindowMaxSize(windowConfig.maxSize);
 
     final info = await getCurrentScreen();
     frame = info?.frame;

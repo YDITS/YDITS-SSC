@@ -17,13 +17,13 @@ final class YditsSscWindowConfig implements WindowConfig {
 
   /// ウィンドウのフレームデータ
   @override
-  final Rect windowFrame = const Rect.fromLTWH(128, 128, 960, 540);
+  final Rect frame = const Rect.fromLTWH(128, 128, 960, 540);
 
   /// ウィンドウの初期サイズ
   @override
-  final Size windowMinSize = const Size(640, 360);
+  final Size minSize = const Size(640, 360);
 
   /// ウィンドウの最大サイズの制限値
   @override
-  final Size windowMaxSize = Size.infinite;
+  final Size maxSize = Size.infinite;
 }
