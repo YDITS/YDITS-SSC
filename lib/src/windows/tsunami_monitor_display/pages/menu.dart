@@ -8,7 +8,7 @@
 
 import 'package:flutter/material.dart';
 
-class MenuPage extends StatelessWidget {
+final class MenuPage extends StatelessWidget {
   const MenuPage({super.key});
 
   @override

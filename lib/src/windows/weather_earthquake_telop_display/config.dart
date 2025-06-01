@@ -7,9 +7,8 @@
 //
 
 import 'dart:ui';
-import 'package:ydits_ssc/core/version/version.dart';
-import 'package:ydits_ssc/core/configure/app_config.dart';
-import 'package:ydits_ssc/core/configure/window_config.dart';
+import 'package:version/version.dart';
+import "package:configure/configure.dart";
 
 class WeatherEarthquakeTelopDisplayConfig {
   /// デフォルトのフォントサイズ

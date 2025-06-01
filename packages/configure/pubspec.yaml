@@ -1,0 +1,17 @@
+name: configure
+description: A config management library.
+version: 0.1.0
+publish_to: 'none'
+
+environment:
+  sdk: ^3.7.2
+
+dependencies:
+  flutter:
+    sdk: flutter
+  version:
+    path: ../version
+
+dev_dependencies:
+  lints: ^5.0.0
+  test: ^1.24.0

@@ -41,6 +41,13 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.19.1"
+  configure:
+    dependency: "direct main"
+    description:
+      path: "packages/configure"
+      relative: true
+    source: path
+    version: "0.1.0"
   dart_earcut:
     dependency: transitive
     description:
@@ -336,6 +343,13 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.4"
+  version:
+    dependency: "direct main"
+    description:
+      path: "packages/version"
+      relative: true
+    source: path
+    version: "0.1.0"
   vm_service:
     dependency: transitive
     description:
@@ -378,5 +392,5 @@ packages:
     source: hosted
     version: "2.0.0"
 sdks:
-  dart: ">=3.7.0-0 <4.0.0"
+  dart: ">=3.7.2 <4.0.0"
   flutter: ">=3.18.0-18.0.pre.54"

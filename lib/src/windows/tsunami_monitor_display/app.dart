@@ -7,9 +7,9 @@
 //
 
 import 'package:flutter/material.dart';
-import 'pages/pages.dart';
+import 'package:ydits_ssc/src/windows/tsunami_monitor_display/pages/pages.dart';
 
-class TsunamiMonitorDisplayApp extends StatelessWidget {
+final class TsunamiMonitorDisplayApp extends StatelessWidget {
   const TsunamiMonitorDisplayApp({super.key});
 
   @override

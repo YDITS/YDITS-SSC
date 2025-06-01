@@ -1,6 +1,16 @@
+//
+// Configure
+//
+// Copyright (C) よね/Yone
+//
+// Licensed under the MIT License.
+//
+// https://github.com/YDITS/YDITS-SSC/blob/master/packages/configure
+//
+
 import 'dart:ui';
 
-/// ウィンドウの構成設定
+/// Window configuration settings.
 class WindowConfig {
   const WindowConfig({required this.title});
 

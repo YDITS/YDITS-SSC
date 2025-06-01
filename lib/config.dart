@@ -6,11 +6,11 @@
 // https://github.com/YDITS/YDITS-SSC
 //
 
-import "package:ydits_ssc/core/version/version.dart";
-import 'package:ydits_ssc/core/configure/app_config.dart';
+import "package:version/version.dart";
+import "package:configure/configure.dart";
 
 /// YDITS for SSC メインアプリケーションの設定
-class YditsSscAppConfig implements AppConfig {
+final class YditsSscAppConfig implements AppConfig {
   /// アプリケーションのタイトル
   @override
   final String title = "YDITS for SSC";

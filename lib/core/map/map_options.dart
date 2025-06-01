@@ -10,7 +10,7 @@ import 'package:flutter_map/flutter_map.dart' as flutter_map;
 import 'package:latlong2/latlong.dart' as latlong;
 
 abstract final class OriginMapOptions {
-  static flutter_map.MapOptions normal = flutter_map.MapOptions(
+  static final flutter_map.MapOptions normal = flutter_map.MapOptions(
     initialCenter: const latlong.LatLng(51.5, -0.09),
     initialZoom: 5,
     cameraConstraint: flutter_map.CameraConstraint.contain(
@@ -21,7 +21,7 @@ abstract final class OriginMapOptions {
     ),
   );
 
-  static flutter_map.MapOptions eew = flutter_map.MapOptions(
+  static final flutter_map.MapOptions eew = flutter_map.MapOptions(
     initialCenter: const latlong.LatLng(51.5, -0.09),
     initialZoom: 5,
     cameraConstraint: flutter_map.CameraConstraint.contain(
@@ -32,7 +32,7 @@ abstract final class OriginMapOptions {
     ),
   );
 
-  static flutter_map.MapOptions tsunami = flutter_map.MapOptions(
+  static final flutter_map.MapOptions tsunami = flutter_map.MapOptions(
     initialCenter: const latlong.LatLng(51.5, -0.09),
     initialZoom: 5,
     cameraConstraint: flutter_map.CameraConstraint.contain(

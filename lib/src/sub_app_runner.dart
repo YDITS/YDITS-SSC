@@ -13,7 +13,7 @@ import 'package:ydits_ssc/core/sub_windows/sub_windows_from_string.dart';
 import 'package:ydits_ssc/src/windows/windows.dart';
 
 /// YDITS for SSC サブアプリケーションの実行管理
-class YditsSscSubAppRunner {
+final class YditsSscSubAppRunner {
   YditsSscSubAppRunner({
     this.logger,
   });

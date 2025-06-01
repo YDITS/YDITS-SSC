@@ -13,9 +13,8 @@ import 'package:desktop_multi_window/desktop_multi_window.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:window_size/window_size.dart';
+import "package:configure/configure.dart";
 
-import 'package:ydits_ssc/core/configure/app_config.dart';
-import 'package:ydits_ssc/core/configure/window_config.dart';
 import 'package:ydits_ssc/core/window_manager/window_manager.dart';
 import 'package:ydits_ssc/core/sub_windows/sub_windows.dart';
 import 'package:ydits_ssc/core/sub_windows/sub_windows_title.dart';
@@ -23,7 +22,7 @@ import 'package:ydits_ssc/core/sub_windows/sub_windows_title.dart';
 import 'package:ydits_ssc/src/app.dart';
 
 /// YDITS for SSC メインアプリケーションの実行管理
-class YditsSscMainAppRunner {
+final class YditsSscMainAppRunner {
   /// メインアプリケーションの構成設定
   final AppConfig config;
 

@@ -1,7 +1,7 @@
 name: ydits_ssc
 description: "Saitama Sora Cam 用に制作された防災情報アプリケーション。"
-publish_to: 'none'
 version: 0.1.0
+publish_to: 'none'
 
 environment:
   sdk: ^3.5.3
@@ -21,6 +21,10 @@ dependencies:
   flutter_map: ^7.0.2
   latlong2: ^0.9.1
   flutter_riverpod: ^2.6.1
+  configure:
+    path: ./packages/configure
+  version:
+    path: ./packages/version
 
 dev_dependencies:
   flutter_test:

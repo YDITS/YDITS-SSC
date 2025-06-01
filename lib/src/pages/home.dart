@@ -11,7 +11,7 @@ import 'package:desktop_multi_window/desktop_multi_window.dart';
 import 'package:ydits_ssc/core/sub_windows/sub_windows.dart';
 import 'package:ydits_ssc/core/sub_windows/sub_windows_title.dart';
 
-class HomePage extends StatefulWidget {
+final class HomePage extends StatefulWidget {
   const HomePage({
     super.key,
     required this.title,
@@ -25,7 +25,7 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => HomePageState();
 }
 
-class HomePageState extends State<HomePage> {
+final class HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

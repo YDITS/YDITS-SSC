@@ -7,16 +7,16 @@
 //
 
 import 'package:flutter/material.dart';
-import 'pages.dart';
+import 'package:ydits_ssc/src/windows/tsunami_monitor_display/pages/pages.dart';
 
-class HomePage extends StatefulWidget {
+final class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
   @override
   State<HomePage> createState() => _HomePage();
 }
 
-class _HomePage extends State<HomePage> {
+final class _HomePage extends State<HomePage> {
   int selectedIndex = 0;
 
   @override

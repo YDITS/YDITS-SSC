@@ -6,6 +6,6 @@
 // https://github.com/YDITS/YDITS-SSC
 //
 
-export 'home.dart';
-export 'map.dart';
-export 'menu.dart';
+export 'package:ydits_ssc/src/windows/tsunami_monitor_display/pages/home.dart';
+export 'package:ydits_ssc/src/windows/tsunami_monitor_display/pages/map.dart';
+export 'package:ydits_ssc/src/windows/tsunami_monitor_display/pages/menu.dart';

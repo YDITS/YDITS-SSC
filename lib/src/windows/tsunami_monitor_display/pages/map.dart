@@ -7,17 +7,17 @@
 //
 
 import 'package:flutter/material.dart';
-import '../../../../core/map/map.dart';
-import '../../../../core/map/map_options.dart';
+import 'package:ydits_ssc/core/map/map.dart';
+import 'package:ydits_ssc/core/map/map_options.dart';
 
-class MapPage extends StatefulWidget {
+final class MapPage extends StatefulWidget {
   const MapPage({super.key});
 
   @override
   State<MapPage> createState() => _MapPage();
 }
 
-class _MapPage extends State<MapPage> {
+final class _MapPage extends State<MapPage> {
   @override
   Widget build(BuildContext context) {
     return Map(

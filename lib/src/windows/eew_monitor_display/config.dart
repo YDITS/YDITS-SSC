@@ -7,12 +7,11 @@
 //
 
 import 'dart:ui';
-import 'package:ydits_ssc/core/version/version.dart';
-import 'package:ydits_ssc/core/configure/app_config.dart';
-import 'package:ydits_ssc/core/configure/window_config.dart';
+import 'package:version/version.dart';
+import "package:configure/configure.dart";
 
 /// EEW Monitor Display アプリケーションの設定
-class EEWMonitorDisplayAppConfig implements AppConfig {
+final class EEWMonitorDisplayAppConfig implements AppConfig {
   /// アプリケーションのタイトル
   @override
   final String title = "YDITS for SSC - EEW Monitor Display";
@@ -28,7 +27,7 @@ class EEWMonitorDisplayAppConfig implements AppConfig {
 }
 
 /// EEW Monitor Display ウィンドウの設定
-class EEWMonitorDisplayWindowConfig implements WindowConfig {
+final class EEWMonitorDisplayWindowConfig implements WindowConfig {
   /// ウィンドウのタイトル
   @override
   final String title = "YDITS for SSC - EEW Monitor Display";

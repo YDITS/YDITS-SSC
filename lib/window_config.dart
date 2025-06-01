@@ -7,7 +7,7 @@
 //
 
 import 'dart:ui';
-import 'package:ydits_ssc/core/configure/window_config.dart';
+import "package:configure/configure.dart";
 
 /// YDITS for SSC メインウィンドウの構成設定
 final class YditsSscWindowConfig implements WindowConfig {

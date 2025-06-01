@@ -1,9 +1,11 @@
 //
-// YDITS for SSC
+// Version
 //
 // Copyright (C) よね/Yone
 //
-// https://github.com/YDITS/YDITS-SSC
+// Licensed under the MIT License.
+//
+// https://github.com/YDITS/YDITS-SSC/blob/master/packages/version
 //
 
 class Version {
@@ -25,7 +27,7 @@ class Version {
     VersionLevels.develop: "Develop"
   };
 
-  String get text {
+  String get string {
     String version = "$major.$minor.$patch";
     if (level == VersionLevels.stable) return version;
     String levelText = versionLevelTexts[level] ?? "";

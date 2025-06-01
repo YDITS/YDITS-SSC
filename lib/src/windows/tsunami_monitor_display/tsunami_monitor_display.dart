@@ -15,7 +15,7 @@ import 'package:flutter/material.dart';
 import 'package:ydits_ssc/src/windows/tsunami_monitor_display/app.dart';
 import 'package:ydits_ssc/src/windows/tsunami_monitor_display/config.dart';
 
-class TsunamiMonitorDisplay {
+final class TsunamiMonitorDisplay {
   late final Logger logger;
   late final Rect? frame;
   late final TsunamiMonitorDisplayAppConfig config;

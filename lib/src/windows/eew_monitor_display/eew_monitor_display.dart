@@ -15,7 +15,7 @@ import 'package:flutter/material.dart';
 import 'package:ydits_ssc/src/windows/eew_monitor_display/app.dart';
 import 'package:ydits_ssc/src/windows/eew_monitor_display/config.dart';
 
-class EewMonitorDisplay {
+final class EewMonitorDisplay {
   late final Logger logger;
   late final Rect? frame;
   late final EEWMonitorDisplayAppConfig config;

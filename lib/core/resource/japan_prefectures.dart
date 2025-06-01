@@ -6,8 +6,8 @@
 // https://github.com/YDITS/YDITS-SSC
 //
 
-abstract final class WeatherJapanPrefectures {
-  static List<String> list = [
+abstract final class JapanPrefectures {
+  static const List<String> list = [
     "北海道",
     "青森県",
     "岩手県",

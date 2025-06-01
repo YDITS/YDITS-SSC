@@ -12,7 +12,7 @@ import 'package:desktop_multi_window/desktop_multi_window.dart'
 import 'package:flutter/services.dart' as flutter_services;
 import 'package:ydits_ssc/core/sub_windows/sub_windows.dart';
 
-class WindowManager {
+final class WindowManager {
   WindowManager({
     required this.onFailedCloseWindow,
   }) {

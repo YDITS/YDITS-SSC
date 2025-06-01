@@ -7,13 +7,12 @@
 //
 
 import 'package:logging/logging.dart';
-import 'package:ydits_ssc/core/configure/app_config.dart';
-import 'package:ydits_ssc/core/configure/window_config.dart';
+import "package:configure/configure.dart";
 import 'package:ydits_ssc/src/main_app_runner.dart';
 import 'package:ydits_ssc/src/sub_app_runner.dart';
 
 /// YDITS for SSC アプリケーションの実行処理
-class YditsSscAppRunner {
+final class YditsSscAppRunner {
   /// Desktop Multi Window Caller Arguments
   final List<String> args;
 
