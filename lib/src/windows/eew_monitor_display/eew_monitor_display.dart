@@ -33,11 +33,9 @@ class EewMonitorDisplay {
       logger.warning(error);
     }
 
-    runApp(
-      const ProviderScope(
-        child: EewMonitorDisplayApp(),
-      )
-    );
+    runApp(const ProviderScope(
+      child: EewMonitorDisplayApp(),
+    ));
   }
 
   void initializeLogger() {

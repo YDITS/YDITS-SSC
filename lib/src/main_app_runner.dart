@@ -57,14 +57,12 @@ class YditsSscMainAppRunner {
     await _initializeDesktopWindow();
     await _initializeSubWindows();
 
-    runApp(
-      ProviderScope(
-        child: YditsSscApp(
-          config: config,
-          windows: subWindows,
-        ),
-      )
-    );
+    runApp(ProviderScope(
+      child: YditsSscApp(
+        config: config,
+        windows: subWindows,
+      ),
+    ));
   }
 
   /// メインアプリケーションのウィンドウをイニシャライズする

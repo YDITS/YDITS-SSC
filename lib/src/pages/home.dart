@@ -34,8 +34,7 @@ class HomePageState extends State<HomePage> {
       ),
       body: Column(
         children: [
-          Text(widget.title,
-              style: const TextStyle(fontSize: 24)),
+          Text(widget.title, style: const TextStyle(fontSize: 24)),
           const SizedBox(
             height: 24,
           ),
@@ -46,7 +45,8 @@ class HomePageState extends State<HomePage> {
                 final pressedScreen = SubWindows.values[index];
 
                 return TextButton(
-                  onPressed: () => _onSubWindowsRootingButtonPressed(pressedScreen),
+                  onPressed: () =>
+                      _onSubWindowsRootingButtonPressed(pressedScreen),
                   style: TextButton.styleFrom(
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(16),
@@ -56,16 +56,13 @@ class HomePageState extends State<HomePage> {
                   child: SizedBox(
                     height: 64,
                     child: Center(
-                      child: Text(
-                          subWindowsTitle.values.toList()[index],
-                          style: const TextStyle(
-                              color: Colors.white)),
+                      child: Text(subWindowsTitle.values.toList()[index],
+                          style: const TextStyle(color: Colors.white)),
                     ),
                   ),
                 );
               },
-              separatorBuilder: (context, index) =>
-                  const SizedBox(height: 16),
+              separatorBuilder: (context, index) => const SizedBox(height: 16),
             ),
           ),
         ],
@@ -73,7 +70,8 @@ class HomePageState extends State<HomePage> {
     );
   }
 
-  Future<void> _onSubWindowsRootingButtonPressed(SubWindows pressedScreen) async {
+  Future<void> _onSubWindowsRootingButtonPressed(
+      SubWindows pressedScreen) async {
     print(widget.windows);
     print("Sub windows rooting button has clicked: `$pressedScreen`.");
 

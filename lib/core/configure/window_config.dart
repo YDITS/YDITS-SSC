@@ -2,9 +2,7 @@ import 'dart:ui';
 
 /// ウィンドウの構成設定
 class WindowConfig {
-  const WindowConfig({
-    required this.title
-  });
+  const WindowConfig({required this.title});
 
   /// ウィンドウのタイトル
   final String title;

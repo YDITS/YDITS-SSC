@@ -11,5 +11,6 @@ import 'package:ydits_ssc/core/sub_windows/sub_windows.dart';
 final Map<String, SubWindows> subWindowsStringToEnum = {
   "SubWindows.eewMonitorDisplay": SubWindows.eewMonitorDisplay,
   "SubWindows.tsunamiMonitorDisplay": SubWindows.tsunamiMonitorDisplay,
-  "SubWindows.weatherEarthquakeTelopDisplay": SubWindows.weatherEarthquakeTelopDisplay,
+  "SubWindows.weatherEarthquakeTelopDisplay":
+      SubWindows.weatherEarthquakeTelopDisplay,
 };

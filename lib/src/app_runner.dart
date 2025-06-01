@@ -50,7 +50,7 @@ class YditsSscAppRunner {
   /// サブアプリケーションを実行する
   Future<void> _runMainApp() async {
     final runner = YditsSscMainAppRunner(
-            config: mainAppConfig, windowConfig: mainAppWindowConfig);
+        config: mainAppConfig, windowConfig: mainAppWindowConfig);
     await runner.run();
   }
 

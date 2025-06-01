@@ -32,8 +32,6 @@ class _TelopContentWeather extends State<TelopContentWeather>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double>? _animation;
-  final double _textWidth = 0;
-  double _widgetWidth = 0;
 
   @override
   void initState() {
@@ -62,8 +60,6 @@ class _TelopContentWeather extends State<TelopContentWeather>
     return ClipRect(
       child: LayoutBuilder(
         builder: (context, constraints) {
-          _widgetWidth = constraints.maxWidth;
-
           return AnimatedBuilder(
             animation: _controller,
             builder: (context, child) {
