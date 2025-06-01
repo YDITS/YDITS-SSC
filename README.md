@@ -1,5 +1,7 @@
 # YDITS for SSC
 
+[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/YDITS/YDITS-SSC)
+
 ## 概要
 
 Saitama Sora Cam 用に制作された防災情報アプリケーションです。
