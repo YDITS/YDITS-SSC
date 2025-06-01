@@ -29,7 +29,7 @@ dependencies:
 dart pub get
 ```
 
-### Use
+### Use App Configure
 
 A sample code:
 ```dart
@@ -61,6 +61,43 @@ class MyAppConfig implements AppConfig {
 }
 
 final AppConfig myAppConfig = MyAppConfig();
+```
+
+### Use Window Configure
+
+A sample code:
+```dart
+import "package:configure/configure.dart";
+import "package:version/version.dart";
+
+final WindowConfig myWindowConfig = WindowConfig(
+    title: "My Window",
+    frame: const Rect.fromLTWH(128, 128, 960, 540),
+    minSize: const Size(640, 360),
+    maxSize: Size.infinite,
+);
+```
+
+or as implements:
+```dart
+import "package:configure/configure.dart";
+import "package:version/version.dart";
+
+class MyWindowConfig implements WindowConfig {
+  @override
+  final String title = "My Window";
+
+  @override
+  final Rect frame = const Rect.fromLTWH(128, 128, 960, 540);
+
+  @override
+  final Size minSize = const Size(640, 360);
+
+  @override
+  final Size maxSize = Size.infinite;
+}
+
+final WindowConfig myWindowConfig = MyWindowConfig();
 ```
 
 ## Development
