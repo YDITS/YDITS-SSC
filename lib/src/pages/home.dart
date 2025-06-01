@@ -6,10 +6,14 @@
 // https://github.com/YDITS/YDITS-SSC
 //
 
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:desktop_multi_window/desktop_multi_window.dart';
+import 'package:ydits_ssc/core/components/icon_with_text_button/icon_with_text_button.dart';
 import 'package:ydits_ssc/core/sub_windows/sub_windows.dart';
 import 'package:ydits_ssc/core/sub_windows/sub_windows_title.dart';
+import 'package:ydits_ssc/core/components/copyright_footer/copyright_footer.dart';
 
 final class HomePage extends StatefulWidget {
   const HomePage({super.key, required this.title, required this.windows});
@@ -25,63 +29,75 @@ final class HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color.fromARGB(255, 16, 16, 16),
       appBar: AppBar(
-        title: Text(
-          widget.title,
-          style: const TextStyle(color: Colors.white70),
-        ),
+        title: Text(widget.title, style: const TextStyle(color: Colors.white)),
         backgroundColor: Colors.black87,
       ),
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          const SizedBox(width: null, height: 16 * 2),
-          Text(
-            widget.title,
-            style: const TextStyle(fontSize: 16 * 2, color: Colors.black87),
+          gap2f(),
+          Center(
+            child: Text(
+              widget.title,
+              style: const TextStyle(fontSize: 16 * 2, color: Colors.white),
+            ),
           ),
-          const SizedBox(width: null, height: 16 * 2),
+          gap2f(),
           Expanded(
             child: Padding(
               padding: const EdgeInsets.fromLTRB(32, 0, 32, 0),
               child: Center(
                 child: SizedBox(
-                  width: 769,
+                  width: 384,
                   height: null,
                   child: ListView.separated(
                     itemCount: 3,
                     itemBuilder:
                         (context, index) => windowsRootingButton(index),
                     separatorBuilder: (context, index) {
-                      return const SizedBox(width: null, height: 16 * 1.5);
+                      return const SizedBox(width: null, height: 32);
                     },
                   ),
                 ),
               ),
             ),
           ),
+          const CopyrightFooter(
+            name: "よね/Yone",
+          ),
         ],
       ),
     );
   }
 
-  TextButton windowsRootingButton(index) {
-    final pressedScreen = SubWindows.values[index];
+  SizedBox gap() => const SizedBox(width: null, height: 16);
+  SizedBox gap2f() => const SizedBox(width: null, height: 32);
 
-    return TextButton(
+  final Map<SubWindows, IconData> subWindowToIconData = {
+    SubWindows.eewMonitorDisplay: Icons.warning_amber_rounded,
+    SubWindows.tsunamiMonitorDisplay: Icons.tsunami,
+    SubWindows.weatherEarthquakeTelopDisplay: Icons.notifications_active,
+  };
+
+  IconWithTextButton windowsRootingButton(index) {
+    final SubWindows pressedScreen = SubWindows.values[index];
+    final IconData iconData =
+        subWindowToIconData[pressedScreen] ?? Icons.question_mark;
+
+    return IconWithTextButton(
       onPressed: () => _onSubWindowsRootingButtonPressed(pressedScreen),
-      style: TextButton.styleFrom(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-        backgroundColor: Colors.blueGrey[800],
-      ),
-      child: SizedBox(
-        height: 16 * 4,
-        child: Center(
+      children: [
+        Icon(iconData, size: 64),
+        gap(),
+        Center(
           child: Text(
             subWindowsTitle.values.toList()[index],
-            style: const TextStyle(fontSize: 16, color: Colors.white),
+            style: const TextStyle(fontSize: 20, color: Colors.white),
           ),
         ),
-      ),
+      ],
     );
   }
 
