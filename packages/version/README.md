@@ -16,8 +16,9 @@ dart pub add version --git https://github.com/YDITS/YDITS-SSC.git --path package
 @/pubspec.yaml:
 ```yaml
 dependencies:
-    version:
-        git: https://github.com/YDITS/YDITS-SSC.git
+  version:
+    git:
+      url: https://github.com/YDITS/YDITS-SSC.git
         path: packages/version
         ref: master
 ```
@@ -32,7 +33,7 @@ dart pub get
 
 A sample code:
 ```dart
-import "package:version/version";
+import "package:version/version.dart";
 
 final Version version = Version(
     major: 1,
