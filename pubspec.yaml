@@ -23,8 +23,6 @@ dependencies:
   flutter_riverpod: ^2.6.1
   configure:
     path: ./packages/configure
-  version:
-    path: ./packages/version
 
 dev_dependencies:
   flutter_test:
