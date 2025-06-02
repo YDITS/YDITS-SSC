@@ -6,8 +6,6 @@
 // https://github.com/YDITS/YDITS-SSC
 //
 
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:desktop_multi_window/desktop_multi_window.dart';
 import 'package:ydits_ssc/core/components/icon_with_text_button/icon_with_text_button.dart';
