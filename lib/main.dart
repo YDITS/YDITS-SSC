@@ -31,7 +31,7 @@ Future<void> main(List<String> args) async {
 
 /// Loggerをイニシャライズする
 void _initializeLogger() {
-  logger = Logger("logger");
+  logger = Logger("ydits_ssc_logger");
   Logger.root.level = Level.ALL;
   Logger.root.onRecord.listen((record) {
     print('${record.level.name}: ${record.time}: ${record.message}');
