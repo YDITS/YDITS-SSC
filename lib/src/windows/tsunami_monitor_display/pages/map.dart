@@ -7,8 +7,7 @@
 //
 
 import 'package:flutter/material.dart';
-import 'package:ydits_ssc/core/map/map.dart';
-import 'package:ydits_ssc/core/map/map_options.dart';
+import 'package:ydits_ssc/core/core.dart';
 
 final class MapPage extends StatefulWidget {
   const MapPage({super.key});
@@ -20,7 +19,7 @@ final class MapPage extends StatefulWidget {
 final class _MapPage extends State<MapPage> {
   @override
   Widget build(BuildContext context) {
-    return Map(
+    return FlutterMap(
       mapOptions: OriginMapOptions.tsunami,
     );
   }

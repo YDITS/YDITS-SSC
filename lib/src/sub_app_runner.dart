@@ -8,8 +8,7 @@
 
 import 'dart:convert';
 import 'package:logging/logging.dart';
-import 'package:ydits_ssc/core/sub_windows/sub_windows.dart';
-import 'package:ydits_ssc/core/sub_windows/sub_windows_from_string.dart';
+import 'package:ydits_ssc/core/core.dart';
 import 'package:ydits_ssc/src/windows/windows.dart';
 
 /// YDITS for SSC サブアプリケーションの実行管理

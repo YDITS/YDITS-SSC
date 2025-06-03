@@ -13,7 +13,7 @@ import 'package:logging/logging.dart';
 import 'package:http/http.dart' as http;
 import 'package:weather/weather.dart';
 
-import 'package:ydits_ssc/core/resource/japan_prefectures.dart';
+import 'package:ydits_ssc/core/core.dart';
 
 import 'package:ydits_ssc/src/windows/weather_earthquake_telop_display/config.dart';
 import 'package:ydits_ssc/src/windows/weather_earthquake_telop_display/components/telop_label.dart';
