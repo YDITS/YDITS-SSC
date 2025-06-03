@@ -6,39 +6,44 @@
 // https://github.com/YDITS/YDITS-SSC
 //
 
-import 'package:flutter/material.dart' as flutter;
-import 'package:flutter_map/flutter_map.dart' as flutter_map;
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_map/flutter_map.dart';
+import 'package:ydits_ssc/core/core.dart';
 
-final class FlutterMap extends flutter.StatefulWidget {
-  const FlutterMap({
+final class YditsSscFlutterMap extends ConsumerStatefulWidget {
+  const YditsSscFlutterMap({
     super.key,
     required this.mapOptions,
   });
 
-  final flutter_map.MapOptions mapOptions;
+  final MapOptions mapOptions;
 
   @override
-  flutter.State<FlutterMap> createState() => FlutterMapState();
+  ConsumerState<YditsSscFlutterMap> createState() => FlutterMapState();
 }
 
-final class FlutterMapState extends flutter.State<FlutterMap> {
+final class FlutterMapState extends ConsumerState<YditsSscFlutterMap> {
   @override
-  flutter.Widget build(flutter.BuildContext context) {
-    return flutter_map.FlutterMap(
+  Widget build(BuildContext context) {
+    final String userAgentPackageName = ref.watch(flutterMapUserAgentPackageNameProvider);
+    final String urlTemplate = ref.watch(flutterMapUrlTemplateProvider);
+
+    return FlutterMap(
       options: widget.mapOptions,
       children: [
-        flutter_map.TileLayer(
-          urlTemplate: "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
-          userAgentPackageName: "com.yoneyo.tests.ydits-ssc",
+        TileLayer(
+          urlTemplate: urlTemplate,
+          userAgentPackageName: userAgentPackageName,
         ),
-        flutter_map.RichAttributionWidget(
+        RichAttributionWidget(
           popupInitialDisplayDuration: const Duration(seconds: 5),
-          animationConfig: const flutter_map.ScaleRAWA(),
+          animationConfig: const ScaleRAWA(),
           showFlutterMapAttribution: false,
           attributions: [
-            flutter_map.TextSourceAttribution('OpenStreetMap contributors',
+            TextSourceAttribution('OpenStreetMap contributors',
                 onTap: () async => {}),
-            const flutter_map.TextSourceAttribution(
+            const TextSourceAttribution(
               'This attribution is the same throughout this app, except '
               'where otherwise specified',
               prependCopyright: false,
