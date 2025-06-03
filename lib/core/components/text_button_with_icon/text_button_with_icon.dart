@@ -8,8 +8,8 @@
 
 import 'package:flutter/material.dart';
 
-class IconWithTextButton extends StatelessWidget {
-  const IconWithTextButton({
+class TextButtonWithIcon extends StatelessWidget {
+  const TextButtonWithIcon({
     super.key,
     required this.children,
     required this.onPressed,

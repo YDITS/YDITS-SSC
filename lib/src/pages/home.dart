@@ -74,12 +74,12 @@ final class HomePageState extends State<HomePage> {
     SubWindows.weatherEarthquakeTelopDisplay: Icons.notifications_active,
   };
 
-  IconWithTextButton windowsRootingButton(index) {
+  TextButtonWithIcon windowsRootingButton(index) {
     final SubWindows pressedScreen = SubWindows.values[index];
     final IconData iconData =
         subWindowToIconData[pressedScreen] ?? Icons.question_mark;
 
-    return IconWithTextButton(
+    return TextButtonWithIcon(
       onPressed: () => _onSubWindowsRootingButtonPressed(pressedScreen),
       children: [
         Icon(iconData, size: 64),
