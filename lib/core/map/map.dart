@@ -9,8 +9,8 @@
 import 'package:flutter/material.dart' as flutter;
 import 'package:flutter_map/flutter_map.dart' as flutter_map;
 
-final class Map extends flutter.StatefulWidget {
-  const Map({
+final class FlutterMap extends flutter.StatefulWidget {
+  const FlutterMap({
     super.key,
     required this.mapOptions,
   });
@@ -18,10 +18,10 @@ final class Map extends flutter.StatefulWidget {
   final flutter_map.MapOptions mapOptions;
 
   @override
-  flutter.State<Map> createState() => MapState();
+  flutter.State<FlutterMap> createState() => FlutterMapState();
 }
 
-final class MapState extends flutter.State<Map> {
+final class FlutterMapState extends flutter.State<FlutterMap> {
   @override
   flutter.Widget build(flutter.BuildContext context) {
     return flutter_map.FlutterMap(
