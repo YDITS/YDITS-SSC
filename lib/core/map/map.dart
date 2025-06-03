@@ -11,6 +11,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:ydits_ssc/core/core.dart';
 
+export './map_options.dart';
+
 final class YditsSscFlutterMap extends ConsumerStatefulWidget {
   const YditsSscFlutterMap({
     super.key,
