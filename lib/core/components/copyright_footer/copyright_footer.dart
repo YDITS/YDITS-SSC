@@ -7,17 +7,20 @@
 //
 
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:ydits_ssc/core/core.dart';
 
-final class CopyrightFooter extends StatelessWidget {
-  const CopyrightFooter({
-    super.key,
-    required this.name,
-  });
+final Provider<CopyrightFooter> copyrightFooterProvider = Provider(
+  (ref) => const CopyrightFooter(),
+);
 
-  final String name;
+final class CopyrightFooter extends ConsumerWidget {
+  const CopyrightFooter({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final name = ref.watch(copyrightNameProvider);
+
     return Container(
       color: Colors.black87,
       child: Padding(
