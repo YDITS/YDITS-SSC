@@ -19,7 +19,7 @@ final class MapPage extends StatefulWidget {
 final class _MapPage extends State<MapPage> {
   @override
   Widget build(BuildContext context) {
-    return FlutterMap(
+    return YditsSscFlutterMap(
       mapOptions: OriginMapOptions.tsunami,
     );
   }
