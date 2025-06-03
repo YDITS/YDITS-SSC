@@ -59,9 +59,7 @@ final class HomePageState extends State<HomePage> {
               ),
             ),
           ),
-          const CopyrightFooter(
-            name: "よね/Yone",
-          ),
+          const CopyrightFooter(),
         ],
       ),
     );
