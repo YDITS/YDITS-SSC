@@ -10,10 +10,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ydits_ssc/core/core.dart';
 
-final Provider<CopyrightFooter> copyrightFooterProvider = Provider(
-  (ref) => const CopyrightFooter(),
-);
-
 final class CopyrightFooter extends ConsumerWidget {
   const CopyrightFooter({super.key});
 
