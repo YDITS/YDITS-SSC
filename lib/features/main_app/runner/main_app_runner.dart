@@ -6,48 +6,39 @@
 // https://github.com/YDITS/YDITS-SSC
 //
 
-
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ydits_ssc/core/core.dart';
+import 'package:ydits_ssc/features/features.dart';
 
 /// YDITS for SSC メインアプリケーションの実行管理
 final class YditsSscMainAppRunner extends MainAppRunner {
   YditsSscMainAppRunner({
-    required super.app,
     required super.windowConfig,
     super.logger,
   });
 
+  /// アプリケーションを実行する
+  @override
+  Future<void> run() async {
+    logger?.info("Starting Main application...");
+
+    WidgetsFlutterBinding.ensureInitialized();
+
+    final subWindows = await configureSubWindows();
+
+    await initializeDesktopWindow();
+
+    runApp(
+      ProviderScope(
+        child: YditsSscApp(
+          config: YditsSscAppConfig(),
+          subWindows: subWindows,
+        ),
+      ),
+    );
+  }
+
   /// WindowManagerインスタンス
   late final WindowManager subWindowManager;
-
-  /// サブウィンドウをイニシャライズする
-  /*
-  Future<void> _initializeSubWindows() async {
-    subWindowManager = WindowManager(
-        onFailedCloseWindow: (int windowId) => _onFailedCloseWindow(windowId));
-
-    final WindowController eewMonitorDisplayWindow =
-        await subWindowManager.createNewWindow(
-      title: subWindowsTitle[SubWindows.eewMonitorDisplay] ?? "",
-      window: SubWindows.eewMonitorDisplay,
-    );
-    final WindowController tsunamiMonitorDisplayWindow =
-        await subWindowManager.createNewWindow(
-      title: subWindowsTitle[SubWindows.tsunamiMonitorDisplay] ?? "",
-      window: SubWindows.tsunamiMonitorDisplay,
-    );
-    final WindowController weatherEarthquakeTelopDisplayWindow =
-        await subWindowManager.createNewWindow(
-      title: subWindowsTitle[SubWindows.weatherEarthquakeTelopDisplay] ?? "",
-      window: SubWindows.weatherEarthquakeTelopDisplay,
-    );
-
-    subWindows = {
-      SubWindows.eewMonitorDisplay: eewMonitorDisplayWindow,
-      SubWindows.tsunamiMonitorDisplay: tsunamiMonitorDisplayWindow,
-      SubWindows.weatherEarthquakeTelopDisplay:
-          weatherEarthquakeTelopDisplayWindow,
-    };
-  }
-  */
 }
