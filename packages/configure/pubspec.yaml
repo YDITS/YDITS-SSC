@@ -10,10 +10,7 @@ dependencies:
   flutter:
     sdk: flutter
   version:
-    git:
-      url: https://github.com/YDITS/YDITS-SSC.git
-      path: packages/version
-      ref: master
+    path: ../version
 
 dev_dependencies:
   lints: ^5.0.0
