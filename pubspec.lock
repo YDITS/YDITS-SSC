@@ -344,13 +344,11 @@ packages:
     source: hosted
     version: "2.1.4"
   version:
-    dependency: transitive
+    dependency: "direct main"
     description:
       path: "packages/version"
-      ref: master
-      resolved-ref: "34e48cf524f4a9b8ae251dd425f6dffdc3b69167"
-      url: "https://github.com/YDITS/YDITS-SSC.git"
-    source: git
+      relative: true
+    source: path
     version: "0.1.0"
   vm_service:
     dependency: transitive
