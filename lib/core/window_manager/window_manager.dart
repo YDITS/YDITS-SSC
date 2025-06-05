@@ -16,19 +16,17 @@ final class WindowManager {
     required this.onFailedCloseWindow,
   }) {
     DesktopMultiWindow.setMethodHandler(
-        (call, fromWindowId) async =>
-            await _windowMethodHandler(call, fromWindowId));
+      (call, fromWindowId) async => await _windowMethodHandler(call, fromWindowId),
+    );
   }
 
   final void Function(int) onFailedCloseWindow;
   final List<WindowController> _windowList = [];
 
-  List<WindowController> get windowList {
-    return _windowList;
-  }
+  List<WindowController> get windowList => List.unmodifiable(_windowList);
 
   Future<WindowController> active(int windowId) async {
-    for (final window in windowList) {
+    for (final window in _windowList) {
       if (window.windowId == windowId) {
         return window;
       }
@@ -39,20 +37,19 @@ final class WindowManager {
   Future<WindowController> createNewWindow({
     required String title,
     required SubWindows window,
-    Rect frame =
-        const Rect.fromLTWH(128, 128, 960, 540),
+    Rect frame = const Rect.fromLTWH(128, 128, 960, 540),
     bool create = false,
   }) async {
-    final newWindow =
-        await DesktopMultiWindow.createWindow(jsonEncode({"window": window.toString()}));
+    final newWindow = await DesktopMultiWindow.createWindow(
+      jsonEncode({"window": window.toString()}),
+    );
 
-    newWindow
-      ..setFrame(frame)
-      ..center()
-      ..setTitle(title);
+    await newWindow.setFrame(frame);
+    await newWindow.center();
+    await newWindow.setTitle(title);
 
     if (create) {
-      newWindow.show();
+      await newWindow.show();
     }
 
     _addWindowToList(newWindow);
@@ -61,16 +58,17 @@ final class WindowManager {
   }
 
   Future<void> closeAllWindow() async {
-    for (final window in windowList) {
+    for (final window in List<WindowController>.from(_windowList)) {
       try {
         await window.close();
       } catch (error) {
         onFailedCloseWindow(window.windowId);
       }
     }
+    _windowList.clear();
   }
 
-  void _addWindowToList(newWindow) {
+  void _addWindowToList(WindowController newWindow) {
     _windowList.add(newWindow);
   }
 
