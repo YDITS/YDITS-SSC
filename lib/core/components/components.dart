@@ -8,4 +8,5 @@
 
 export 'package:ydits_ssc/core/components/copyright_footer/copyright_footer.dart';
 export 'package:ydits_ssc/core/components/copyright_footer/copyright_footer_provider.dart';
+export 'package:ydits_ssc/core/components/flutter_map/flutter_map.dart';
 export 'package:ydits_ssc/core/components/text_button_with_icon/text_button_with_icon.dart';
