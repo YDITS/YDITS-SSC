@@ -89,8 +89,8 @@ BEGIN
     BEGIN
         BLOCK "040904e4"
         BEGIN
-            VALUE "CompanyName", "YDITS (よね/Yone)" "\0"
-            VALUE "FileDescription", "Saitama Sora Cam 用に制作された防災情報アプリケーション。" "\0"
+            VALUE "CompanyName", "よね/Yone" "\0"
+            VALUE "FileDescription", "YDITS for Web" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
             VALUE "InternalName", "ydits_ssc" "\0"
             VALUE "LegalCopyright", "Copyright (C) よね/Yone. All rights reserved." "\0"
