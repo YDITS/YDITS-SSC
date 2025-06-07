@@ -25,6 +25,7 @@ dependencies:
     path: ./packages/configure
   version:
     path: ./packages/version
+  window_manager: ^0.5.0
 
 dev_dependencies:
   flutter_test:
