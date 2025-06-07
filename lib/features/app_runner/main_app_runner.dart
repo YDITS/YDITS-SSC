@@ -27,9 +27,8 @@ final class YditsSscMainAppRunner extends MainAppRunner {
   @override
   Future<void> run() async {
     logger?.info("Starting Main application...");
-
     WidgetsFlutterBinding.ensureInitialized();
-
+  
     final subWindows = await configureSubWindows();
 
     await initializeDesktopWindow();
@@ -42,5 +41,5 @@ final class YditsSscMainAppRunner extends MainAppRunner {
   }
 
   /// WindowManagerインスタンス
-  late final WindowManager subWindowManager;
+  late final YditsSscWindowManager subWindowManager;
 }
