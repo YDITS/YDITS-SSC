@@ -21,13 +21,13 @@ import 'package:ydits_ssc/core/sub_windows/sub_windows_title.dart';
 
 /// メインアプリケーションの実行管理
 abstract class MainAppRunner {
-  MainAppRunner({required this.windowConfig, this.logger});
-
-  /// メインアプリケーションウィンドウの構成
-  final WindowConfig windowConfig;
+  MainAppRunner({this.logger});
 
   /// Loggerインスタンス
   final Logger? logger;
+
+  /// メインアプリケーションウィンドウの構成
+  abstract final WindowConfig windowConfig;
 
   /// アプリケーションウィジェット
   late final Widget app;
@@ -40,7 +40,7 @@ abstract class MainAppRunner {
 
   /// アプリケーションを実行する
   Future<void> run() async {
-    final subWindows = await configureSubWindows();
+    // final subWindows = await configureSubWindows();
 
     logger?.info("Starting Main application...");
 

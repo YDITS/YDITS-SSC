@@ -12,25 +12,19 @@ import 'package:ydits_ssc/core/app_runner/sub_app_runner.dart';
 
 /// アプリケーションの実行処理
 abstract class AppRunner {
-  AppRunner({
-    required this.args,
-    required this.mainAppRunner,
-    required this.subAppRunner,
-    this.logger,
-  });
+  AppRunner({required this.args, this.logger});
 
   /// Desktop Multi Window Caller Arguments
   final List<String> args;
 
   /// メインアプリケーションの実行処理クラス
-  final MainAppRunner mainAppRunner;
+  late final MainAppRunner mainAppRunner;
 
   /// サブアプリケーションの実行処理クラス
-  final SubAppRunner subAppRunner;
+  late final SubAppRunner subAppRunner;
 
   /// Loggerインスタンス
   final Logger? logger;
-
 
   /// アプリケーションを実行する
   /// ---

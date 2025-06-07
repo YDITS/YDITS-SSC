@@ -17,9 +17,7 @@ import 'package:ydits_ssc/features/sub_apps/weather_earthquake_telop_display/wea
 
 /// サブアプリケーションの実行管理
 abstract class SubAppRunner {
-  SubAppRunner({
-    this.logger,
-  });
+  SubAppRunner({this.logger});
 
   /// Loggerインスタンス
   final Logger? logger;
@@ -52,7 +50,7 @@ abstract class SubAppRunner {
       SubWindows.weatherEarthquakeTelopDisplay: () async {
         logger?.info("Starting Weather Earthquake Telop Display Window...");
         await WeatherEarthquakeTelopDisplay().main();
-      }
+      },
     };
 
     if (!subWindowsRoot.containsKey(window)) {
