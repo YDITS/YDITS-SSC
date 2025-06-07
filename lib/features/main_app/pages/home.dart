@@ -15,16 +15,22 @@ import 'package:ydits_ssc/core/components/copyright_footer/copyright_footer.dart
 import 'package:ydits_ssc/core/components/text_button_with_icon/text_button_with_icon.dart';
 
 final class YditsSscMainAppHomePage extends StatefulWidget {
-  const YditsSscMainAppHomePage({super.key, required this.title, required this.windows});
+  const YditsSscMainAppHomePage({
+    super.key,
+    required this.title,
+    required this.windows,
+  });
 
   final String title;
   final Map<SubWindows, WindowController> windows;
 
   @override
-  State<YditsSscMainAppHomePage> createState() => YditsSscMainAppHomePageState();
+  State<YditsSscMainAppHomePage> createState() =>
+      YditsSscMainAppHomePageState();
 }
 
-final class YditsSscMainAppHomePageState extends State<YditsSscMainAppHomePage> {
+final class YditsSscMainAppHomePageState
+    extends State<YditsSscMainAppHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,30 +42,35 @@ final class YditsSscMainAppHomePageState extends State<YditsSscMainAppHomePage> 
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          gap2f(),
-          Center(
+          const SizedBox(height: 16),
+          const Center(
             child: Text(
-              widget.title,
-              style: const TextStyle(fontSize: 16 * 2, color: Colors.white),
+              "Window Launcher",
+              style: TextStyle(fontSize: 24, color: Colors.white),
             ),
           ),
-          gap2f(),
+          const SizedBox(height: 16),
           Expanded(
             child: Padding(
               padding: const EdgeInsets.fromLTRB(32, 0, 32, 0),
-              child: Center(
-                child: SizedBox(
-                  width: 384,
-                  height: null,
-                  child: ListView.separated(
-                    itemCount: 3,
-                    itemBuilder:
-                        (context, index) => windowsRootingButton(index),
-                    separatorBuilder: (context, index) {
-                      return const SizedBox(width: null, height: 32);
-                    },
-                  ),
-                ),
+              child: ListView.separated(
+                itemCount: SubWindows.values.length + 1,
+                itemBuilder: (BuildContext context, int index) {
+                  // 最後の要素の後にはContainerを返し、separatorを適用させる
+                  if (index == SubWindows.values.length) {
+                    return Container();
+                  }
+
+                  return Center(
+                    child: SizedBox(
+                      width: 384,
+                      child: windowsRootingButton(index),
+                    ),
+                  );
+                },
+                separatorBuilder: (BuildContext context, int index) {
+                  return const SizedBox(height: 24);
+                },
               ),
             ),
           ),
@@ -68,9 +79,6 @@ final class YditsSscMainAppHomePageState extends State<YditsSscMainAppHomePage> 
       ),
     );
   }
-
-  SizedBox gap() => const SizedBox(width: null, height: 16);
-  SizedBox gap2f() => const SizedBox(width: null, height: 32);
 
   final Map<SubWindows, IconData> subWindowToIconData = {
     SubWindows.eewMonitorDisplay: Icons.warning_amber_rounded,
@@ -84,17 +92,12 @@ final class YditsSscMainAppHomePageState extends State<YditsSscMainAppHomePage> 
         subWindowToIconData[pressedScreen] ?? Icons.question_mark;
 
     return TextButtonWithIcon(
+      iconData: iconData,
       onPressed: () => _onSubWindowsRootingButtonPressed(pressedScreen),
-      children: [
-        Icon(iconData, size: 64),
-        gap(),
-        Center(
-          child: Text(
-            subWindowsTitle.values.toList()[index],
-            style: const TextStyle(fontSize: 20, color: Colors.white),
-          ),
-        ),
-      ],
+      child: Text(
+        subWindowsTitle.values.toList()[index],
+        style: const TextStyle(fontSize: 20, color: Colors.white),
+      ),
     );
   }
 
