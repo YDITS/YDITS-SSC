@@ -15,6 +15,7 @@ class WindowConfig {
   const WindowConfig({
     required this.title,
     this.frame = const Rect.fromLTWH(128, 128, 960, 540),
+    this.initialSize = const Size(960, 540),
     this.minSize = const Size(640, 360),
     this.maxSize = Size.infinite,
   });
@@ -26,6 +27,9 @@ class WindowConfig {
   final Rect frame;
 
   /// Window's initial size
+  final Size initialSize;
+
+  /// Window's minimum size
   final Size minSize;
 
   /// Window's maximum size
