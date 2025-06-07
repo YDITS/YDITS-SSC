@@ -33,20 +33,10 @@ abstract class AppRunner {
     logger?.info("Running new application... | Args: ${args.toString()}");
 
     if (args.firstOrNull == "multi_window") {
-      await _runSubApp(args);
+      await subAppRunner.run(args);
       return;
     }
 
-    await _runMainApp();
-  }
-
-  /// メインアプリケーションを実行する
-  Future<void> _runMainApp() async {
     await mainAppRunner.run();
-  }
-
-  /// サブアプリケーションを実行する
-  Future<void> _runSubApp(List<String> args) async {
-    await subAppRunner.run(args);
   }
 }
