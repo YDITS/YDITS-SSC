@@ -63,7 +63,7 @@ abstract class MainAppRunner {
     logger?.info("Setting Main app window config...");
 
     final isPlatformDesktop =
-        Platform.isLinux | Platform.isMacOS | Platform.isWindows;
+        Platform.isLinux || Platform.isMacOS || Platform.isWindows;
 
     logger?.info("Platform is desktop: ${isPlatformDesktop.toString()}");
 
