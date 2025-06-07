@@ -11,11 +11,13 @@ import 'package:flutter/material.dart';
 class TextButtonWithIcon extends StatelessWidget {
   const TextButtonWithIcon({
     super.key,
-    required this.children,
+    required this.iconData,
+    required this.child,
     required this.onPressed,
   });
 
-  final List<Widget> children;
+  final IconData iconData;
+  final Widget child;
   final void Function()? onPressed;
 
   @override
@@ -29,7 +31,11 @@ class TextButtonWithIcon extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
-          children: children,
+          children: [
+            Icon(iconData, size: 64),
+            const SizedBox(height: 16),
+            Center(child: child),
+          ],
         ),
       ),
     );
