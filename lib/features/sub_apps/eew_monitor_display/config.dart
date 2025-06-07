@@ -38,6 +38,10 @@ final class EEWMonitorDisplayWindowConfig implements WindowConfig {
 
   /// ウィンドウの初期サイズ
   @override
+  final Size initialSize = const Size(960, 540);
+
+  /// ウィンドウの最小サイズの制限値
+  @override
   final Size minSize = const Size(640, 360);
 
   /// ウィンドウの最大サイズの制限値

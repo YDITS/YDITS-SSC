@@ -61,6 +61,10 @@ class WeatherEarthquakeTelopDisplayWindowConfig implements WindowConfig {
 
   /// ウィンドウの初期サイズ
   @override
+  final Size initialSize = const Size(960, 128);
+
+  /// ウィンドウの最小サイズの制限値
+  @override
   final Size minSize = const Size(640, 128);
 
   /// ウィンドウの最大サイズの制限値
