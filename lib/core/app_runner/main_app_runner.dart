@@ -73,8 +73,8 @@ abstract class MainAppRunner {
       fullScreen: false,
       alwaysOnTop: false,
       skipTaskbar: false,
-      titleBarStyle: TitleBarStyle.hidden,
-      windowButtonVisibility: false,
+      titleBarStyle: TitleBarStyle.normal,
+      windowButtonVisibility: true,
     );
 
     logger?.info(windowOptions);
