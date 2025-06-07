@@ -6,30 +6,27 @@
 // https://github.com/YDITS/YDITS-SSC
 //
 
-import 'dart:convert' as dart_convert;
-import 'package:desktop_multi_window/desktop_multi_window.dart'
-    as desktop_multi_window;
-import 'package:flutter/services.dart' as flutter_services;
+import 'dart:convert';
+import 'package:flutter/services.dart';
+import 'package:desktop_multi_window/desktop_multi_window.dart';
 import 'package:ydits_ssc/core/sub_windows/sub_windows_enum.dart';
 
 final class WindowManager {
   WindowManager({
     required this.onFailedCloseWindow,
   }) {
-    desktop_multi_window.DesktopMultiWindow.setMethodHandler(
-        (call, fromWindowId) async =>
-            await _windowMethodHandler(call, fromWindowId));
+    DesktopMultiWindow.setMethodHandler(
+      (call, fromWindowId) async => await _windowMethodHandler(call, fromWindowId),
+    );
   }
 
   final void Function(int) onFailedCloseWindow;
-  final List<desktop_multi_window.WindowController> _windowList = [];
+  final List<WindowController> _windowList = [];
 
-  List<desktop_multi_window.WindowController> get windowList {
-    return _windowList;
-  }
+  List<WindowController> get windowList => List.unmodifiable(_windowList);
 
-  Future<desktop_multi_window.WindowController> active(int windowId) async {
-    for (final window in windowList) {
+  Future<WindowController> active(int windowId) async {
+    for (final window in _windowList) {
       if (window.windowId == windowId) {
         return window;
       }
@@ -37,24 +34,22 @@ final class WindowManager {
     throw Exception('Window with id `$windowId` was not found');
   }
 
-  Future<desktop_multi_window.WindowController> createNewWindow({
+  Future<WindowController> createNewWindow({
     required String title,
     required SubWindows window,
-    flutter_services.Rect frame =
-        const flutter_services.Rect.fromLTWH(128, 128, 960, 540),
+    Rect frame = const Rect.fromLTWH(128, 128, 960, 540),
     bool create = false,
   }) async {
-    final newWindow =
-        await desktop_multi_window.DesktopMultiWindow.createWindow(
-            dart_convert.jsonEncode({"window": window.toString()}));
+    final newWindow = await DesktopMultiWindow.createWindow(
+      jsonEncode({"window": window.toString()}),
+    );
 
-    newWindow
-      ..setFrame(frame)
-      ..center()
-      ..setTitle(title);
+    await newWindow.setFrame(frame);
+    await newWindow.center();
+    await newWindow.setTitle(title);
 
     if (create) {
-      newWindow.show();
+      await newWindow.show();
     }
 
     _addWindowToList(newWindow);
@@ -63,21 +58,21 @@ final class WindowManager {
   }
 
   Future<void> closeAllWindow() async {
-    for (final window in windowList) {
+    for (final window in List<WindowController>.from(_windowList)) {
       try {
         await window.close();
       } catch (error) {
         onFailedCloseWindow(window.windowId);
       }
     }
+    _windowList.clear();
   }
 
-  void _addWindowToList(newWindow) {
+  void _addWindowToList(WindowController newWindow) {
     _windowList.add(newWindow);
   }
 
-  Future<void> _windowMethodHandler(
-      flutter_services.MethodCall call, int fromWindowId) async {
-    print("Method called from window: `$fromWindowId`");
+  Future<void> _windowMethodHandler(MethodCall call, int fromWindowId) async {
+      print("Method called from window: `$fromWindowId`");
   }
 }

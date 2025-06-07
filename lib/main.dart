@@ -7,32 +7,21 @@
 //
 
 import 'package:logging/logging.dart';
-import 'package:ydits_ssc/config.dart';
-import 'package:ydits_ssc/window_config.dart';
-import 'package:ydits_ssc/src/app_runner.dart';
+import 'package:ydits_ssc/features/app_runner/app_runner.dart';
 
+const String loggerName = "ydits_ssc";
+const Level loggerRootLevel = Level.ALL;
 late final Logger logger;
 
 Future<void> main(List<String> args) async {
   _initializeLogger();
-
-  final appConfig = YditsSscAppConfig();
-  final windowConfig = YditsSscWindowConfig();
-
-  final appRunner = YditsSscAppRunner(
-    args: args,
-    mainAppConfig: appConfig,
-    mainAppWindowConfig: windowConfig,
-    logger: logger,
-  );
-
-  await appRunner.run();
+  await YditsSscAppRunner(args: args, logger: logger).runApp();
 }
 
 /// Loggerをイニシャライズする
 void _initializeLogger() {
-  logger = Logger("ydits_ssc_logger");
-  Logger.root.level = Level.ALL;
+  logger = Logger(loggerName);
+  Logger.root.level = loggerRootLevel;
   Logger.root.onRecord.listen((record) {
     print('${record.level.name}: ${record.time}: ${record.message}');
   });
