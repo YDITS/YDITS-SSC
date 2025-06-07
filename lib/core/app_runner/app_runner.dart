@@ -7,7 +7,8 @@
 //
 
 import 'package:logging/logging.dart';
-import "package:ydits_ssc/core/core.dart";
+import 'package:ydits_ssc/core/app_runner/main_app_runner.dart';
+import 'package:ydits_ssc/core/app_runner/sub_app_runner.dart';
 
 /// アプリケーションの実行処理
 abstract class AppRunner {

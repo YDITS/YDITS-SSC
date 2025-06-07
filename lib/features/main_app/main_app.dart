@@ -9,13 +9,8 @@
 import 'package:flutter/material.dart';
 import 'package:desktop_multi_window/desktop_multi_window.dart';
 import "package:configure/configure.dart";
-
-import 'package:ydits_ssc/core/core.dart';
+import 'package:ydits_ssc/core/sub_windows/sub_windows_enum.dart';
 import 'package:ydits_ssc/features/main_app/pages/pages.dart';
-
-export 'package:ydits_ssc/features/main_app/configure/configure.dart';
-export 'package:ydits_ssc/features/main_app/pages/pages.dart';
-export 'package:ydits_ssc/features/main_app/runner/main_app_runner.dart';
 
 /// YDITS for SSC メインアプリケーション
 final class YditsSscApp extends StatelessWidget {

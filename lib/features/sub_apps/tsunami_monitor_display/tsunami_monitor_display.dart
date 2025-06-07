@@ -15,10 +15,6 @@ import 'package:flutter/material.dart';
 import 'package:ydits_ssc/features/sub_apps/tsunami_monitor_display/app.dart';
 import 'package:ydits_ssc/features/sub_apps/tsunami_monitor_display/config.dart';
 
-export 'package:ydits_ssc/features/sub_apps/tsunami_monitor_display/app.dart';
-export 'package:ydits_ssc/features/sub_apps/tsunami_monitor_display/config.dart';
-export 'package:ydits_ssc/features/sub_apps/tsunami_monitor_display/pages/pages.dart';
-
 final class TsunamiMonitorDisplay {
   late final Logger logger;
   late final Rect? frame;

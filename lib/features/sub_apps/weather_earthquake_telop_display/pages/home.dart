@@ -10,11 +10,10 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:logging/logging.dart';
-import 'package:http/http.dart' as http;
+import 'package:http/http.dart';
 import 'package:weather/weather.dart';
 
-import 'package:ydits_ssc/core/core.dart';
-
+import 'package:ydits_ssc/core/resources/japan_prefectures.dart';
 import 'package:ydits_ssc/features/sub_apps/weather_earthquake_telop_display/config.dart';
 import 'package:ydits_ssc/features/sub_apps/weather_earthquake_telop_display/components/telop_label.dart';
 import 'package:ydits_ssc/features/sub_apps/weather_earthquake_telop_display/components/telop_content_eqinfo.dart';
@@ -113,7 +112,7 @@ class _HomePage extends State<WeatherEarthquakeTelopDisplayHomePage> {
     final url = Uri.parse("https://api2.ydits.net/eew.json");
 
     try {
-      final response = await http.get(url);
+      final response = await get(url);
 
       if (response.statusCode == 200) {
         onFetchEqinfoSuccess(response);
@@ -147,7 +146,7 @@ class _HomePage extends State<WeatherEarthquakeTelopDisplayHomePage> {
       _labelText = "エラー";
     });
 
-    if (stack is http.Response) {
+    if (stack is Response) {
       setState(() {
         _contentText = "Failed to fetch data: ${stack.statusCode}";
       });

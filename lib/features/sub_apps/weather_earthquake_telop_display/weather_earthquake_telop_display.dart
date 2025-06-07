@@ -15,11 +15,6 @@ import 'package:flutter/material.dart';
 import 'package:ydits_ssc/features/sub_apps/weather_earthquake_telop_display/app.dart';
 import 'package:ydits_ssc/features/sub_apps/weather_earthquake_telop_display/config.dart';
 
-export 'package:ydits_ssc/features/sub_apps/weather_earthquake_telop_display/components/components.dart';
-export 'package:ydits_ssc/features/sub_apps/weather_earthquake_telop_display/pages/pages.dart';
-export 'package:ydits_ssc/features/sub_apps/weather_earthquake_telop_display/app.dart';
-export 'package:ydits_ssc/features/sub_apps/weather_earthquake_telop_display/config.dart';
-
 class WeatherEarthquakeTelopDisplay {
   late final Logger logger;
   late final Rect? frame;

@@ -8,7 +8,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:ydits_ssc/core/core.dart';
+import 'package:ydits_ssc/core/consts/copyright_name/copyright_name_provider.dart';
 
 final class CopyrightFooter extends ConsumerWidget {
   const CopyrightFooter({super.key});

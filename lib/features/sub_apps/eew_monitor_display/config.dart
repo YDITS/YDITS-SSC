@@ -8,7 +8,7 @@
 
 import 'dart:ui';
 import 'package:version/version.dart';
-import "package:configure/configure.dart";
+import 'package:configure/configure.dart';
 
 /// EEW Monitor Display アプリケーションの設定
 final class EEWMonitorDisplayAppConfig implements AppConfig {

@@ -6,7 +6,7 @@
 // https://github.com/YDITS/YDITS-SSC
 //
 
-import 'package:ydits_ssc/core/core.dart';
+import 'package:ydits_ssc/core/sub_windows/sub_windows_enum.dart';
 
 const Map<String, SubWindows> subWindowsStringToEnum = {
   "SubWindows.eewMonitorDisplay": SubWindows.eewMonitorDisplay,

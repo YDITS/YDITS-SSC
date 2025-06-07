@@ -8,8 +8,12 @@
 
 import 'dart:convert';
 import 'package:logging/logging.dart';
-import 'package:ydits_ssc/core/core.dart';
-import 'package:ydits_ssc/features/features.dart';
+
+import 'package:ydits_ssc/core/sub_windows/sub_windows_enum.dart';
+import 'package:ydits_ssc/core/sub_windows/sub_windows_from_string.dart';
+import 'package:ydits_ssc/features/sub_apps/eew_monitor_display/eew_monitor_display.dart';
+import 'package:ydits_ssc/features/sub_apps/tsunami_monitor_display/tsunami_monitor_display.dart';
+import 'package:ydits_ssc/features/sub_apps/weather_earthquake_telop_display/weather_earthquake_telop_display.dart';
 
 /// サブアプリケーションの実行管理
 abstract class SubAppRunner {

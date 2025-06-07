@@ -15,7 +15,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:window_size/window_size.dart';
 import "package:configure/configure.dart";
 
-import 'package:ydits_ssc/core/core.dart';
+import 'package:ydits_ssc/core/window_manager/window_manager.dart';
+import 'package:ydits_ssc/core/sub_windows/sub_windows_enum.dart';
+import 'package:ydits_ssc/core/sub_windows/sub_windows_title.dart';
 
 /// メインアプリケーションの実行管理
 abstract class MainAppRunner {

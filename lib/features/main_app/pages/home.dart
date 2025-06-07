@@ -8,7 +8,11 @@
 
 import 'package:flutter/material.dart';
 import 'package:desktop_multi_window/desktop_multi_window.dart';
-import 'package:ydits_ssc/core/core.dart';
+
+import 'package:ydits_ssc/core/sub_windows/sub_windows_enum.dart';
+import 'package:ydits_ssc/core/sub_windows/sub_windows_title.dart';
+import 'package:ydits_ssc/core/components/copyright_footer/copyright_footer.dart';
+import 'package:ydits_ssc/core/components/text_button_with_icon/text_button_with_icon.dart';
 
 final class YditsSscMainAppHomePage extends StatefulWidget {
   const YditsSscMainAppHomePage({super.key, required this.title, required this.windows});
