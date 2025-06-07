@@ -11,8 +11,8 @@ import 'package:flutter/services.dart';
 import 'package:desktop_multi_window/desktop_multi_window.dart';
 import 'package:ydits_ssc/core/sub_windows/sub_windows_enum.dart';
 
-final class WindowManager {
-  WindowManager({
+final class YditsSscWindowManager {
+  YditsSscWindowManager({
     required this.onFailedCloseWindow,
   }) {
     DesktopMultiWindow.setMethodHandler(
