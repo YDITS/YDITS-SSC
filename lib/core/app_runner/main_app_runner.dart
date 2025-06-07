@@ -12,7 +12,7 @@ import 'package:logging/logging.dart';
 import 'package:desktop_multi_window/desktop_multi_window.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:window_size/window_size.dart';
+import 'package:window_manager/window_manager.dart';
 import "package:configure/configure.dart";
 
 import 'package:ydits_ssc/core/window_manager/window_manager.dart';
@@ -32,22 +32,14 @@ abstract class MainAppRunner {
   /// アプリケーションウィジェット
   late final Widget app;
 
-  /// メインウィンドウのフレームデータ
-  late final Rect? windowFrame;
-
   /// サブウィンドウを保持するMap
   late final Map<SubWindows, WindowController> subWindows;
 
   /// アプリケーションを実行する
   Future<void> run() async {
-    // final subWindows = await configureSubWindows();
-
     logger?.info("Starting Main application...");
-
-    WidgetsFlutterBinding.ensureInitialized();
-
+    subWindows = await configureSubWindows();
     await initializeDesktopWindow();
-
     runApp(ProviderScope(child: app));
   }
 
@@ -55,6 +47,7 @@ abstract class MainAppRunner {
   Future<void> initializeDesktopWindow() async {
     logger?.info("Initializing Main app desktop window...");
     WidgetsFlutterBinding.ensureInitialized();
+    await windowManager.ensureInitialized();
     await _setWindowConfig();
   }
 
@@ -71,19 +64,30 @@ abstract class MainAppRunner {
       return;
     }
 
-    setWindowTitle(windowConfig.title);
-    setWindowFrame(windowConfig.frame);
-    setWindowMinSize(windowConfig.minSize);
-    setWindowMaxSize(windowConfig.maxSize);
+    WindowOptions windowOptions = WindowOptions(
+      title: windowConfig.title,
+      size: windowConfig.initialSize,
+      minimumSize: windowConfig.minSize,
+      maximumSize: windowConfig.maxSize,
+      center: true,
+      fullScreen: false,
+      alwaysOnTop: false,
+      skipTaskbar: false,
+      titleBarStyle: TitleBarStyle.hidden,
+      windowButtonVisibility: false,
+    );
 
-    final info = await getCurrentScreen();
-    windowFrame = info?.frame;
-    logger?.info(windowFrame);
+    logger?.info(windowOptions);
+
+    windowManager.waitUntilReadyToShow(windowOptions, () async {
+      await windowManager.show();
+      await windowManager.focus();
+    });
   }
 
   /// サブウィンドウをイニシャライズする
   Future<Map<SubWindows, WindowController>> configureSubWindows() async {
-    final subWindowManager = WindowManager(
+    final subWindowManager = YditsSscWindowManager(
       onFailedCloseWindow: (int windowId) => onFailedCloseWindow(windowId),
     );
 
