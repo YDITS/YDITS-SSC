@@ -10,5 +10,5 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ydits_ssc/core/resources/japan_prefectures.dart';
 
 final Provider<Type> japanPrefecturesProvider = Provider(
-  (_) => JapanPrefectures,
+  (ref) => JapanPrefectures,
 );
