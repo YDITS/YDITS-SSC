@@ -85,9 +85,7 @@ class _TelopContentEqinfo extends State<TelopContentEqinfo>
         children: [
           Text(
             widget.text,
-            style: TextStyle(
-              fontSize: widget.fontSize,
-            ),
+            style: TextStyle(fontSize: widget.fontSize),
             softWrap: false,
             overflow: TextOverflow.visible,
           ),

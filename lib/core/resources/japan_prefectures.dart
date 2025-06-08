@@ -54,6 +54,6 @@ abstract final class JapanPrefectures {
     "大分県",
     "宮崎県",
     "鹿児島県",
-    "沖縄県"
+    "沖縄県",
   ];
 }

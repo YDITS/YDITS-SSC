@@ -24,12 +24,8 @@ final class _HomePage extends State<EEWMonitorDisplayHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('EEWMonitorDisplay'),
-      ),
-      body: const Center(
-        child: Text('EEWMonitorDisplay'),
-      ),
+      appBar: AppBar(title: const Text('EEWMonitorDisplay')),
+      body: const Center(child: Text('EEWMonitorDisplay')),
     );
   }
 }

@@ -37,7 +37,10 @@ class TelopLabel extends StatelessWidget {
         child: Text(
           text,
           style: TextStyle(
-              fontSize: fontSize, color: fontColor, fontFamily: fontFamily),
+            fontSize: fontSize,
+            color: fontColor,
+            fontFamily: fontFamily,
+          ),
         ),
       ),
     );

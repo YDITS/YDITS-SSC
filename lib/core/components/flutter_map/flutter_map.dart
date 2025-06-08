@@ -13,10 +13,7 @@ import 'package:ydits_ssc/core/consts/flutter_map/flutter_map_user_agent_package
 import 'package:ydits_ssc/core/consts/flutter_map/flutter_map_url_template_provider.dart';
 
 final class YditsSscFlutterMap extends ConsumerStatefulWidget {
-  const YditsSscFlutterMap({
-    super.key,
-    required this.mapOptions,
-  });
+  const YditsSscFlutterMap({super.key, required this.mapOptions});
 
   final MapOptions mapOptions;
 
@@ -27,7 +24,9 @@ final class YditsSscFlutterMap extends ConsumerStatefulWidget {
 final class FlutterMapState extends ConsumerState<YditsSscFlutterMap> {
   @override
   Widget build(BuildContext context) {
-    final String userAgentPackageName = ref.watch(flutterMapUserAgentPackageNameProvider);
+    final String userAgentPackageName = ref.watch(
+      flutterMapUserAgentPackageNameProvider,
+    );
     final String urlTemplate = ref.watch(flutterMapUrlTemplateProvider);
 
     return FlutterMap(
@@ -42,8 +41,10 @@ final class FlutterMapState extends ConsumerState<YditsSscFlutterMap> {
           animationConfig: const ScaleRAWA(),
           showFlutterMapAttribution: false,
           attributions: [
-            TextSourceAttribution('OpenStreetMap contributors',
-                onTap: () async => {}),
+            TextSourceAttribution(
+              'OpenStreetMap contributors',
+              onTap: () async => {},
+            ),
             const TextSourceAttribution(
               'This attribution is the same throughout this app, except '
               'where otherwise specified',

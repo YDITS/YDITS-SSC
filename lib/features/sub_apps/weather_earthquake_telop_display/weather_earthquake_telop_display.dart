@@ -37,14 +37,16 @@ class WeatherEarthquakeTelopDisplay {
       logger.warning(error);
     }
 
-    runApp(ProviderScope(
-      child: WeatherEarthquakeTelopDisplayApp(
-        logger: logger,
-        config: config,
-        appConfig: appConfig,
-        windowConfig: windowConfig,
+    runApp(
+      ProviderScope(
+        child: WeatherEarthquakeTelopDisplayApp(
+          logger: logger,
+          config: config,
+          appConfig: appConfig,
+          windowConfig: windowConfig,
+        ),
       ),
-    ));
+    );
   }
 
   void initializeLogger() {

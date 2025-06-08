@@ -26,10 +26,7 @@ final class YditsSscApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: YditsSscMainAppHomePage(
-        title: config.title,
-        windows: subWindows,
-      ),
+      home: YditsSscMainAppHomePage(title: config.title, windows: subWindows),
     );
   }
 }

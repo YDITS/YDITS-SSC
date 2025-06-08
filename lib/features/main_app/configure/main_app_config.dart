@@ -21,6 +21,10 @@ final class YditsSscAppConfig implements AppConfig {
 
   /// アプリケーションのバージョン
   @override
-  final Version version =
-      Version(major: 1, minor: 0, patch: 0, level: VersionLevels.develop);
+  final Version version = Version(
+    major: 1,
+    minor: 0,
+    patch: 0,
+    level: VersionLevels.develop,
+  );
 }

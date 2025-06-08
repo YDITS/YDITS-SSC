@@ -51,8 +51,11 @@ class _HomePage extends State<WeatherEarthquakeTelopDisplayHomePage> {
   late String _labelText;
   late String _contentText;
 
-  StatefulWidget _telopContent =
-      const TelopContentEqinfo(text: "", fontSize: 0, speed: 0);
+  StatefulWidget _telopContent = const TelopContentEqinfo(
+    text: "",
+    fontSize: 0,
+    speed: 0,
+  );
 
   @override
   void initState() {
@@ -99,8 +102,9 @@ class _HomePage extends State<WeatherEarthquakeTelopDisplayHomePage> {
     });
 
     for (String prefecture in JapanPrefectures.list) {
-      Weather weather =
-          await _weatherFactory.currentWeatherByCityName(prefecture);
+      Weather weather = await _weatherFactory.currentWeatherByCityName(
+        prefecture,
+      );
       setState(() {
         _contentText +=
             '$prefecture: ${weather.temperature?.celsius?.toStringAsFixed(1)}°C ${weather.weatherDescription} | ';

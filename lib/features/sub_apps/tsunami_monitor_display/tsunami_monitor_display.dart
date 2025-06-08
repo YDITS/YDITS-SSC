@@ -33,9 +33,7 @@ final class TsunamiMonitorDisplay {
       logger.warning(error);
     }
 
-    runApp(const ProviderScope(
-      child: TsunamiMonitorDisplayApp(),
-    ));
+    runApp(const ProviderScope(child: TsunamiMonitorDisplayApp()));
   }
 
   void initializeLogger() {
