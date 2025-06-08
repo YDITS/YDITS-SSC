@@ -12,14 +12,14 @@ import 'package:desktop_multi_window/desktop_multi_window.dart';
 import 'package:ydits_ssc/core/sub_windows/sub_windows_enum.dart';
 
 final class YditsSscWindowManager {
-  YditsSscWindowManager({required this.onFailedCloseWindow}) {
+  YditsSscWindowManager({required this.onFailedCloseWindowCallback}) {
     DesktopMultiWindow.setMethodHandler(
       (call, fromWindowId) async =>
           await _windowMethodHandler(call, fromWindowId),
     );
   }
 
-  final void Function(int) onFailedCloseWindow;
+  final void Function(int) onFailedCloseWindowCallback;
   final List<WindowController> _windowList = [];
 
   List<WindowController> get windowList => List.unmodifiable(_windowList);
@@ -73,5 +73,9 @@ final class YditsSscWindowManager {
 
   Future<void> _windowMethodHandler(MethodCall call, int fromWindowId) async {
     print("Method called from window: `$fromWindowId`");
+  }
+
+  void onFailedCloseWindow(int windowId) {
+    onFailedCloseWindowCallback(windowId);
   }
 }
