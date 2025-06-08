@@ -9,6 +9,7 @@
 import 'package:logging/logging.dart';
 import 'package:ydits_ssc/core/app_runner/main_app_runner.dart';
 import 'package:ydits_ssc/core/app_runner/sub_app_runner.dart';
+import 'package:ydits_ssc/core/exceptions/exceptions.dart';
 
 /// アプリケーションの実行処理
 abstract class AppRunner {
@@ -33,10 +34,18 @@ abstract class AppRunner {
     logger?.info("Running new application... | Args: ${args.toString()}");
 
     if (args.firstOrNull == "multi_window") {
-      await subAppRunner.run(args);
+      try {
+        await subAppRunner.run(args);
+      } catch (error) {
+        throw SubAppRunnerException(error);
+      }
       return;
     }
 
-    await mainAppRunner.run();
+    try {
+      await mainAppRunner.run();
+    } catch (error) {
+      throw MainAppRunnerException(error);
+    }
   }
 }
