@@ -8,25 +8,23 @@
 
 import 'package:flutter/material.dart';
 import 'package:desktop_multi_window/desktop_multi_window.dart';
-import "package:configure/configure.dart";
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ydits_ssc/core/sub_windows/sub_windows_enum.dart';
 import 'package:ydits_ssc/features/main_app/pages/pages.dart';
 
 /// YDITS for SSC メインアプリケーション
-final class YditsSscApp extends StatelessWidget {
+final class YditsSscApp extends ConsumerWidget {
   const YditsSscApp({
     super.key,
-    required this.config,
     required this.subWindows,
   });
 
-  final AppConfig config;
   final Map<SubWindows, WindowController> subWindows;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return MaterialApp(
-      home: YditsSscMainAppHomePage(title: config.title, windows: subWindows),
+      home: YditsSscMainAppHomePage(windows: subWindows),
     );
   }
 }
