@@ -8,4 +8,4 @@
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-final flutterMapUserAgentPackageNameProvider = Provider((_) => "com.yoneyo.tests.ydits-ssc");
+final flutterMapUserAgentPackageNameProvider = Provider((ref) => "com.yoneyo.tests.ydits-ssc");

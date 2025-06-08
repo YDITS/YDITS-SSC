@@ -8,4 +8,4 @@
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-final copyrightNameProvider = Provider((_) => "よね/Yone");
+final copyrightNameProvider = Provider((ref) => "よね/Yone");

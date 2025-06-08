@@ -9,5 +9,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final flutterMapUrlTemplateProvider = Provider(
-  (_) => "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+  (ref) => "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
 );
