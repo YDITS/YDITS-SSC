@@ -101,7 +101,7 @@ class _HomePage extends State<WeatherEarthquakeTelopDisplayHomePage> {
       );
     });
 
-    for (String prefecture in JapanPrefectures.list) {
+    for (String prefecture in JapanPrefectures.stringList) {
       Weather weather = await _weatherFactory.currentWeatherByCityName(
         prefecture,
       );
