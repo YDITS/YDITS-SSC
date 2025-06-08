@@ -8,35 +8,37 @@
 
 import 'package:flutter/material.dart';
 import 'package:desktop_multi_window/desktop_multi_window.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:ydits_ssc/core/sub_windows/sub_windows_enum.dart';
 import 'package:ydits_ssc/core/sub_windows/sub_windows_title.dart';
 import 'package:ydits_ssc/core/components/copyright_footer/copyright_footer.dart';
 import 'package:ydits_ssc/core/components/text_button_with_icon/text_button_with_icon.dart';
+import 'package:ydits_ssc/features/main_app/configure/main_app_config.dart';
+import 'package:ydits_ssc/features/main_app/configure/main_app_config_provider.dart';
 
-final class YditsSscMainAppHomePage extends StatefulWidget {
+final class YditsSscMainAppHomePage extends ConsumerStatefulWidget {
   const YditsSscMainAppHomePage({
     super.key,
-    required this.title,
     required this.windows,
   });
 
-  final String title;
   final Map<SubWindows, WindowController> windows;
 
   @override
-  State<YditsSscMainAppHomePage> createState() =>
+  ConsumerState<YditsSscMainAppHomePage> createState() =>
       YditsSscMainAppHomePageState();
 }
 
-final class YditsSscMainAppHomePageState
-    extends State<YditsSscMainAppHomePage> {
+final class YditsSscMainAppHomePageState extends ConsumerState<YditsSscMainAppHomePage> {
   @override
   Widget build(BuildContext context) {
+    YditsSscAppConfig config = ref.watch(yditsSscMainAppConfigProvider);
+
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 16, 16, 16),
       appBar: AppBar(
-        title: Text(widget.title, style: const TextStyle(color: Colors.white)),
+        title: Text(config.title, style: const TextStyle(color: Colors.white)),
         backgroundColor: Colors.black87,
       ),
       body: Column(
