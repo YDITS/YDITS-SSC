@@ -6,16 +6,17 @@
 // https://github.com/YDITS/YDITS-SSC
 //
 
-import 'dart:io';
-
 import 'package:logging/logging.dart';
 import 'package:desktop_multi_window/desktop_multi_window.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:window_manager/window_manager.dart';
 import "package:configure/configure.dart";
+import 'package:ydits_ssc/core/exceptions/exceptions.dart';
 
+import 'package:ydits_ssc/core/utils/is_platform_desktop.dart';
 import 'package:ydits_ssc/core/window_manager/window_manager.dart';
+import 'package:ydits_ssc/core/window_manager/window_manager_exceptions.dart';
 import 'package:ydits_ssc/core/sub_windows/sub_windows_enum.dart';
 import 'package:ydits_ssc/core/sub_windows/sub_windows_title.dart';
 
@@ -37,27 +38,39 @@ abstract class MainAppRunner {
 
   /// アプリケーションを実行する
   Future<void> run() async {
-    logger?.info("Starting Main application...");
-    subWindows = await configureSubWindows();
-    await initializeDesktopWindow();
+    logger?.info("Running main application...");
+
+    try {
+      subWindows = await configureSubWindows();
+    } catch (error) {
+      logger?.warning(error);
+    }
+
+    try {
+      await initializeDesktopWindow();
+    } catch (error) {
+      logger?.warning(error);
+    }
+
     runApp(ProviderScope(child: app));
   }
 
   /// メインアプリケーションのウィンドウをイニシャライズする
   Future<void> initializeDesktopWindow() async {
-    logger?.info("Initializing Main app desktop window...");
-    WidgetsFlutterBinding.ensureInitialized();
-    await windowManager.ensureInitialized();
-    await _setWindowConfig();
+    logger?.info("Initializing main application window...");
+    
+    try {
+      WidgetsFlutterBinding.ensureInitialized();
+      await windowManager.ensureInitialized();
+      await _setWindowConfig();
+    } catch (error) {
+      throw MainWindowInitializationFailed(error);
+    }
   }
 
   /// メインアプリケーションのウィンドウ構成を設定する
   Future<void> _setWindowConfig() async {
-    logger?.info("Setting Main app window config...");
-
-    final isPlatformDesktop =
-        Platform.isLinux || Platform.isMacOS || Platform.isWindows;
-
+    logger?.info("Setting main application window configs...");
     logger?.info("Platform is desktop: ${isPlatformDesktop.toString()}");
 
     if (!isPlatformDesktop) {
@@ -77,7 +90,9 @@ abstract class MainAppRunner {
       windowButtonVisibility: true,
     );
 
-    logger?.info(windowOptions);
+    logger?.info(
+      "Main application window options: ${windowOptions.toString()}",
+    );
 
     windowManager.waitUntilReadyToShow(windowOptions, () async {
       await windowManager.show();
@@ -87,37 +102,48 @@ abstract class MainAppRunner {
 
   /// サブウィンドウをイニシャライズする
   Future<Map<SubWindows, WindowController>> configureSubWindows() async {
-    final subWindowManager = YditsSscWindowManager(
-      onFailedCloseWindow: (int windowId) => onFailedCloseWindow(windowId),
-    );
+    logger?.info("Configuration sub application windows...");
 
-    final WindowController eewMonitorDisplayWindow = await subWindowManager
-        .createNewWindow(
-          title: subWindowsTitle[SubWindows.eewMonitorDisplay] ?? "",
-          window: SubWindows.eewMonitorDisplay,
-        );
-    final WindowController tsunamiMonitorDisplayWindow = await subWindowManager
-        .createNewWindow(
-          title: subWindowsTitle[SubWindows.tsunamiMonitorDisplay] ?? "",
-          window: SubWindows.tsunamiMonitorDisplay,
-        );
-    final WindowController weatherEarthquakeTelopDisplayWindow =
-        await subWindowManager.createNewWindow(
-          title:
-              subWindowsTitle[SubWindows.weatherEarthquakeTelopDisplay] ?? "",
-          window: SubWindows.weatherEarthquakeTelopDisplay,
-        );
+    try {
+      final subWindowManager = YditsSscWindowManager(
+        onFailedCloseWindowCallback:
+            (int windowId) => onFailedCloseWindow(windowId),
+      );
 
-    return {
-      SubWindows.eewMonitorDisplay: eewMonitorDisplayWindow,
-      SubWindows.tsunamiMonitorDisplay: tsunamiMonitorDisplayWindow,
-      SubWindows.weatherEarthquakeTelopDisplay:
-          weatherEarthquakeTelopDisplayWindow,
-    };
+      final WindowController eewMonitorDisplayWindow = await subWindowManager
+          .createNewWindow(
+            title: subWindowsTitle[SubWindows.eewMonitorDisplay] ?? "",
+            window: SubWindows.eewMonitorDisplay,
+          );
+      final WindowController tsunamiMonitorDisplayWindow =
+          await subWindowManager.createNewWindow(
+            title: subWindowsTitle[SubWindows.tsunamiMonitorDisplay] ?? "",
+            window: SubWindows.tsunamiMonitorDisplay,
+          );
+      final WindowController weatherEarthquakeTelopDisplayWindow =
+          await subWindowManager.createNewWindow(
+            title:
+                subWindowsTitle[SubWindows.weatherEarthquakeTelopDisplay] ?? "",
+            window: SubWindows.weatherEarthquakeTelopDisplay,
+          );
+
+      return {
+        SubWindows.eewMonitorDisplay: eewMonitorDisplayWindow,
+        SubWindows.tsunamiMonitorDisplay: tsunamiMonitorDisplayWindow,
+        SubWindows.weatherEarthquakeTelopDisplay:
+            weatherEarthquakeTelopDisplayWindow,
+      };
+    } catch (error) {
+      throw SubWindowsInitializationFailed(error);
+    }
   }
 
   /// ウィンドウのクローズに失敗したときの処理
   void onFailedCloseWindow(int windowId) {
-    logger?.warning("Failed to close the sub window | windowId: `$windowId`");
+    logger?.warning(
+      WindowCloseFailed(
+        "Failed to close the sub window | Window ID: `${windowId.toString()}`",
+      ),
+    );
   }
 }
