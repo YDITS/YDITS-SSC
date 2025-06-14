@@ -441,7 +441,7 @@ packages:
   window_size:
     dependency: "direct main"
     description:
-      path: "packages/flutter-desktop-embedding/plugins/window_size"
+      path: "packages/window_size"
       relative: true
     source: path
     version: "0.1.0"

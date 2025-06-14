@@ -13,7 +13,7 @@ dependencies:
   desktop_multi_window: ^0.2.1
   window_manager: ^0.5.0
   window_size:
-    path: ./packages/flutter-desktop-embedding/plugins/window_size
+    path: ./packages/window_size
   flutter_riverpod: ^2.6.1
   configure:
     path: ./packages/configure
