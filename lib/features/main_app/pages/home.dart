@@ -12,6 +12,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:ydits_ssc/core/sub_windows/sub_windows_enum.dart';
 import 'package:ydits_ssc/core/sub_windows/sub_windows_title.dart';
+import 'package:ydits_ssc/core/sub_windows/sub_windows_icon.dart';
 import 'package:ydits_ssc/core/components/copyright_footer/copyright_footer.dart';
 import 'package:ydits_ssc/core/components/text_button_with_icon/text_button_with_icon.dart';
 import 'package:ydits_ssc/features/main_app/configure/main_app_config.dart';
@@ -82,16 +83,10 @@ final class YditsSscMainAppHomePageState extends ConsumerState<YditsSscMainAppHo
     );
   }
 
-  final Map<SubWindows, IconData> subWindowToIconData = {
-    SubWindows.eewMonitorDisplay: Icons.warning_amber_rounded,
-    SubWindows.tsunamiMonitorDisplay: Icons.tsunami,
-    SubWindows.weatherEarthquakeTelopDisplay: Icons.notifications_active,
-  };
-
   TextButtonWithIcon windowsRootingButton(index) {
     final SubWindows pressedScreen = SubWindows.values[index];
     final IconData iconData =
-        subWindowToIconData[pressedScreen] ?? Icons.question_mark;
+        subWindowIconData[pressedScreen] ?? Icons.question_mark;
 
     return TextButtonWithIcon(
       iconData: iconData,
