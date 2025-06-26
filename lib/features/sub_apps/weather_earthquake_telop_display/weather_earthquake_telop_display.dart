@@ -6,12 +6,12 @@
 // https://github.com/YDITS/YDITS-SSC
 //
 
-import 'dart:io';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:logging/logging.dart';
-import 'package:window_size/window_size.dart';
+import 'package:window_manager/window_manager.dart';
 import 'package:flutter/material.dart';
 
+import 'package:ydits_ssc/core/utils/is_platform_desktop.dart';
 import 'package:ydits_ssc/features/sub_apps/weather_earthquake_telop_display/app.dart';
 import 'package:ydits_ssc/features/sub_apps/weather_earthquake_telop_display/config.dart';
 
@@ -62,21 +62,33 @@ class WeatherEarthquakeTelopDisplay {
   }
 
   Future<void> setWindowConfig() async {
+    logger.info("Setting WeatherEarthquakeTelopDisplay application window configs...");
+    logger.info("Platform is desktop: ${isPlatformDesktop.toString()}");
+
     if (!isPlatformDesktop) {
       return;
     }
 
-    setWindowTitle(windowConfig.title);
-    setWindowFrame(windowConfig.frame);
-    setWindowMinSize(windowConfig.minSize);
-    setWindowMaxSize(windowConfig.maxSize);
+    WindowOptions windowOptions = WindowOptions(
+      title: windowConfig.title,
+      size: windowConfig.initialSize,
+      minimumSize: windowConfig.minSize,
+      maximumSize: windowConfig.maxSize,
+      center: true,
+      fullScreen: false,
+      alwaysOnTop: false,
+      skipTaskbar: false,
+      titleBarStyle: TitleBarStyle.normal,
+      windowButtonVisibility: true,
+    );
 
-    final info = await getCurrentScreen();
-    frame = info?.frame;
-    logger.info(frame);
-  }
+    logger.info(
+      "WeatherEarthquakeTelopDisplay application window options: ${windowOptions.toString()}",
+    );
 
-  bool get isPlatformDesktop {
-    return Platform.isWindows || Platform.isLinux || Platform.isMacOS;
+    windowManager.waitUntilReadyToShow(windowOptions, () async {
+      await windowManager.show();
+      await windowManager.focus();
+    });
   }
 }
