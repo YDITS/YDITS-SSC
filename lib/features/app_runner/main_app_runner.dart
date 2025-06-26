@@ -31,11 +31,9 @@ final class YditsSscMainAppRunner extends MainAppRunner {
     final subWindows = await configureSubWindows();
     await initializeDesktopWindow();
 
-    app = YditsSscApp(subWindows: subWindows);
-
     runApp(
       ProviderScope(
-        child: app,
+        child: YditsSscApp(subWindows: subWindows),
       ),
     );
   }
