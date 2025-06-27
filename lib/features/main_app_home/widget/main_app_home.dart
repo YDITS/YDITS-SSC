@@ -19,10 +19,7 @@ import 'package:ydits_ssc/apps/main_app/configure/main_app_config.dart';
 import 'package:ydits_ssc/apps/main_app/configure/main_app_config_provider.dart';
 
 final class YditsSscMainAppHomePage extends ConsumerStatefulWidget {
-  const YditsSscMainAppHomePage({
-    super.key,
-    required this.windows,
-  });
+  const YditsSscMainAppHomePage({super.key, required this.windows});
 
   final Map<SubWindows, WindowController> windows;
 
@@ -31,7 +28,10 @@ final class YditsSscMainAppHomePage extends ConsumerStatefulWidget {
       YditsSscMainAppHomePageState();
 }
 
-final class YditsSscMainAppHomePageState extends ConsumerState<YditsSscMainAppHomePage> {
+final class YditsSscMainAppHomePageState
+    extends ConsumerState<YditsSscMainAppHomePage> {
+  final ScrollController _scrollController = ScrollController();
+
   @override
   Widget build(BuildContext context) {
     YditsSscAppConfig config = ref.watch(yditsSscAppConfigProvider);
@@ -56,24 +56,36 @@ final class YditsSscMainAppHomePageState extends ConsumerState<YditsSscMainAppHo
           Expanded(
             child: Padding(
               padding: const EdgeInsets.fromLTRB(32, 0, 32, 0),
-              child: ListView.separated(
-                itemCount: SubWindows.values.length + 1,
-                itemBuilder: (BuildContext context, int index) {
-                  // 最後の要素の後にはContainerを返し、separatorを適用させる
-                  if (index == SubWindows.values.length) {
-                    return Container();
-                  }
+              child: ScrollbarTheme(
+                data: const ScrollbarThemeData(
+                  thumbColor: WidgetStatePropertyAll(
+                    Color.fromARGB(255, 127, 127, 127),
+                  ),
+                ),
+                child: Scrollbar(
+                  thumbVisibility: true,
+                  controller: _scrollController,
+                  child: ListView.separated(
+                    controller: _scrollController,
+                    itemCount: SubWindows.values.length + 1,
+                    itemBuilder: (BuildContext context, int index) {
+                      // 最後の要素の後にはContainerを返し、separatorを適用させる
+                      if (index == SubWindows.values.length) {
+                        return Container();
+                      }
 
-                  return Center(
-                    child: SizedBox(
-                      width: 384,
-                      child: windowsRootingButton(index),
-                    ),
-                  );
-                },
-                separatorBuilder: (BuildContext context, int index) {
-                  return const SizedBox(height: 24);
-                },
+                      return Center(
+                        child: SizedBox(
+                          width: 384,
+                          child: windowsRootingButton(index),
+                        ),
+                      );
+                    },
+                    separatorBuilder: (BuildContext context, int index) {
+                      return const SizedBox(height: 24);
+                    },
+                  ),
+                ),
               ),
             ),
           ),
