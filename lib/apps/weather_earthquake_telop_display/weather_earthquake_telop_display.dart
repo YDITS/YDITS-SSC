@@ -12,8 +12,8 @@ import 'package:window_manager/window_manager.dart';
 import 'package:flutter/material.dart';
 
 import 'package:ydits_ssc/core/utils/is_platform_desktop.dart';
-import 'package:ydits_ssc/sub_apps/weather_earthquake_telop_display/weather_earthquake_telop_display_app.dart';
-import 'package:ydits_ssc/sub_apps/weather_earthquake_telop_display/weather_earthquake_telop_display_config.dart';
+import 'package:ydits_ssc/apps/weather_earthquake_telop_display/weather_earthquake_telop_display_app.dart';
+import 'package:ydits_ssc/apps/weather_earthquake_telop_display/weather_earthquake_telop_display_config.dart';
 
 class WeatherEarthquakeTelopDisplay {
   late final Logger logger;

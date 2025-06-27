@@ -8,7 +8,7 @@
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:ydits_ssc/main_app/configure/main_app_config.dart';
+import 'package:ydits_ssc/apps/main_app/configure/main_app_config.dart';
 
 part 'main_app_config_provider.g.dart';
 

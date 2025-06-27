@@ -19,7 +19,7 @@ import 'package:ydits_ssc/features/telop/telop_label/notifier/telop_label_state_
 import 'package:ydits_ssc/core/resources/japan_prefectures.dart';
 // import 'package:ydits_ssc/core/components/telop/telop_content_eqinfo/telop_content_eqinfo_state_provider.dart';
 import 'package:ydits_ssc/features/telop/telop_label/widget/telop_label.dart';
-import 'package:ydits_ssc/sub_apps/weather_earthquake_telop_display/weather_earthquake_telop_display_config.dart';
+import 'package:ydits_ssc/apps/weather_earthquake_telop_display/weather_earthquake_telop_display_config.dart';
 import 'package:ydits_ssc/features/telop/telop_content_eqinfo/widget/telop_content_eqinfo.dart';
 import 'package:ydits_ssc/features/telop/telop_content_weather/widget/telop_content_weather.dart';
 

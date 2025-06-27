@@ -15,8 +15,8 @@ import 'package:ydits_ssc/core/sub_windows/sub_windows_title.dart';
 import 'package:ydits_ssc/core/sub_windows/sub_windows_icon.dart';
 import 'package:ydits_ssc/core/widgets/copyright_footer/copyright_footer.dart';
 import 'package:ydits_ssc/core/widgets/text_button_with_icon/text_button_with_icon.dart';
-import 'package:ydits_ssc/main_app/configure/main_app_config.dart';
-import 'package:ydits_ssc/main_app/configure/main_app_config_provider.dart';
+import 'package:ydits_ssc/apps/main_app/configure/main_app_config.dart';
+import 'package:ydits_ssc/apps/main_app/configure/main_app_config_provider.dart';
 
 final class YditsSscMainAppHomePage extends ConsumerStatefulWidget {
   const YditsSscMainAppHomePage({

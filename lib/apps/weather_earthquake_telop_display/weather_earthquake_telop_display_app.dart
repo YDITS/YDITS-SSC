@@ -8,7 +8,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:logging/logging.dart';
-import 'package:ydits_ssc/sub_apps/weather_earthquake_telop_display/weather_earthquake_telop_display_config.dart';
+import 'package:ydits_ssc/apps/weather_earthquake_telop_display/weather_earthquake_telop_display_config.dart';
 import 'package:ydits_ssc/features/weather_earthquake_telop_display_home/widget/home.dart';
 
 class WeatherEarthquakeTelopDisplayApp extends StatelessWidget {
