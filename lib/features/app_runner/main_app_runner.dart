@@ -11,8 +11,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import "package:configure/configure.dart";
 
 import 'package:ydits_ssc/core/app_runner/main_app_runner.dart';
-import 'package:ydits_ssc/features/main_app/main_app.dart';
-import 'package:ydits_ssc/features/main_app/configure/main_app_window_config.dart';
+import 'package:ydits_ssc/main_app/main_app.dart';
+import 'package:ydits_ssc/main_app/configure/main_app_window_config.dart';
 
 /// YDITS for SSC メインアプリケーションの実行管理
 final class YditsSscMainAppRunner extends MainAppRunner {
@@ -33,7 +33,7 @@ final class YditsSscMainAppRunner extends MainAppRunner {
 
     runApp(
       ProviderScope(
-        child: YditsSscApp(subWindows: subWindows),
+        child: YditsSscMainApp(subWindows: subWindows),
       ),
     );
   }
