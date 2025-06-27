@@ -9,8 +9,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_map/flutter_map.dart';
-import 'package:ydits_ssc/core/providers/constants/flutter_map/flutter_map_user_agent_package_name_provider.dart';
-import 'package:ydits_ssc/core/providers/constants/flutter_map/flutter_map_url_template_provider.dart';
+import 'package:ydits_ssc/features/flutter_map/provider/flutter_map_user_agent_package_name_provider.dart';
+import 'package:ydits_ssc/features/flutter_map/provider/flutter_map_url_template_provider.dart';
 
 final class YditsSscFlutterMap extends ConsumerStatefulWidget {
   const YditsSscFlutterMap({super.key, required this.mapOptions});
