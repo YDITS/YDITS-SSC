@@ -12,20 +12,24 @@ import 'package:window_manager/window_manager.dart';
 import 'package:flutter/material.dart';
 
 import 'package:ydits_ssc/core/utils/is_platform_desktop.dart';
-import 'package:ydits_ssc/features/sub_apps/eew_monitor_display/app.dart';
-import 'package:ydits_ssc/features/sub_apps/eew_monitor_display/config.dart';
+import 'package:ydits_ssc/sub_apps/weather_earthquake_telop_display/weather_earthquake_telop_display_app.dart';
+import 'package:ydits_ssc/sub_apps/weather_earthquake_telop_display/weather_earthquake_telop_display_config.dart';
 
-final class EewMonitorDisplay {
+class WeatherEarthquakeTelopDisplay {
   late final Logger logger;
   late final Rect? frame;
-  late final EEWMonitorDisplayAppConfig config;
-  late final EEWMonitorDisplayWindowConfig windowConfig;
+  late final WeatherEarthquakeTelopDisplayConfig config;
+  late final WeatherEarthquakeTelopDisplayAppConfig appConfig;
+  late final WeatherEarthquakeTelopDisplayWindowConfig windowConfig;
 
   Future<void> main() async {
+    WidgetsFlutterBinding.ensureInitialized();
+
     initializeLogger();
 
-    config = EEWMonitorDisplayAppConfig();
-    windowConfig = EEWMonitorDisplayWindowConfig();
+    config = WeatherEarthquakeTelopDisplayConfig();
+    appConfig = WeatherEarthquakeTelopDisplayAppConfig();
+    windowConfig = WeatherEarthquakeTelopDisplayWindowConfig();
 
     try {
       await initializeDesktopWindow();
@@ -33,7 +37,16 @@ final class EewMonitorDisplay {
       logger.warning(error);
     }
 
-    runApp(const ProviderScope(child: EewMonitorDisplayApp()));
+    runApp(
+      ProviderScope(
+        child: WeatherEarthquakeTelopDisplayApp(
+          logger: logger,
+          config: config,
+          appConfig: appConfig,
+          windowConfig: windowConfig,
+        ),
+      ),
+    );
   }
 
   void initializeLogger() {
@@ -45,12 +58,13 @@ final class EewMonitorDisplay {
   }
 
   Future<void> initializeDesktopWindow() async {
-    WidgetsFlutterBinding.ensureInitialized();
     return await setWindowConfig();
   }
 
   Future<void> setWindowConfig() async {
-    logger.info("Setting EewMonitorDisplay application window configs...");
+    logger.info(
+      "Setting WeatherEarthquakeTelopDisplay application window configs...",
+    );
     logger.info("Platform is desktop: ${isPlatformDesktop.toString()}");
 
     if (!isPlatformDesktop) {
@@ -71,7 +85,7 @@ final class EewMonitorDisplay {
     );
 
     logger.info(
-      "EewMonitorDisplay application window options: ${windowOptions.toString()}",
+      "WeatherEarthquakeTelopDisplay application window options: ${windowOptions.toString()}",
     );
 
     windowManager.waitUntilReadyToShow(windowOptions, () async {

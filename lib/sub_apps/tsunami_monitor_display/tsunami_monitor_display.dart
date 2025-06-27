@@ -12,8 +12,8 @@ import 'package:window_manager/window_manager.dart';
 import 'package:flutter/material.dart';
 
 import 'package:ydits_ssc/core/utils/is_platform_desktop.dart';
-import 'package:ydits_ssc/features/sub_apps/tsunami_monitor_display/app.dart';
-import 'package:ydits_ssc/features/sub_apps/tsunami_monitor_display/config.dart';
+import 'package:ydits_ssc/sub_apps/tsunami_monitor_display/tsunami_monitor_display_app.dart';
+import 'package:ydits_ssc/sub_apps/tsunami_monitor_display/tsunami_monitor_display_config.dart';
 
 final class TsunamiMonitorDisplay {
   late final Logger logger;

@@ -10,11 +10,11 @@ import 'package:flutter/material.dart';
 import 'package:desktop_multi_window/desktop_multi_window.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ydits_ssc/core/sub_windows/sub_windows_enum.dart';
-import 'package:ydits_ssc/features/main_app/pages/pages.dart';
+import 'package:ydits_ssc/features/main_app_home/widget/main_app_home.dart';
 
 /// YDITS for SSC メインアプリケーション
-final class YditsSscApp extends ConsumerWidget {
-  const YditsSscApp({
+final class YditsSscMainApp extends ConsumerWidget {
+  const YditsSscMainApp({
     super.key,
     required this.subWindows,
   });

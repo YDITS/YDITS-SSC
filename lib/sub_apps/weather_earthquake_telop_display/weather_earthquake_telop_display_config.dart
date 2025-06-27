@@ -7,10 +7,11 @@
 //
 
 import 'dart:ui';
+import 'package:flutter/material.dart';
 import 'package:version/version.dart';
 import "package:configure/configure.dart";
 
-class WeatherEarthquakeTelopDisplayConfig {
+final class WeatherEarthquakeTelopDisplayConfig {
   /// デフォルトのフォントサイズ
   final double fontSize = 32;
 
@@ -19,6 +20,12 @@ class WeatherEarthquakeTelopDisplayConfig {
 
   /// テロップのラベルの幅
   final double labelWidth = 144;
+
+  /// テロップのラベルの背景色
+  final Color labelBgColor = const Color.fromARGB(255, 31, 31, 31);
+
+  /// テロップのラベルの文字色
+  final Color labelFontColor = const Color.fromARGB(255, 223, 223, 223);
 
   /// テロップのスライドアニメーション速度
   final double telopSpeed = 100;
@@ -34,7 +41,7 @@ class WeatherEarthquakeTelopDisplayConfig {
 }
 
 /// Weather Earthquake Telop Display アプリケーションの設定
-class WeatherEarthquakeTelopDisplayAppConfig implements AppConfig {
+final class WeatherEarthquakeTelopDisplayAppConfig implements AppConfig {
   /// アプリケーションのタイトル
   @override
   final String title = "YDITS for SSC - Weather Earthquake Telop Display";
@@ -54,7 +61,7 @@ class WeatherEarthquakeTelopDisplayAppConfig implements AppConfig {
 }
 
 /// Tsunami Monitor Display ウィンドウの設定
-class WeatherEarthquakeTelopDisplayWindowConfig implements WindowConfig {
+final class WeatherEarthquakeTelopDisplayWindowConfig implements WindowConfig {
   /// ウィンドウのタイトル
   @override
   final String title = "YDITS for SSC - Weather Earthquake Telop Display";
