@@ -7,5 +7,9 @@
 //
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-final copyrightNameProvider = Provider((ref) => "よね/Yone");
+part 'copyright_name_provider.g.dart';
+
+@riverpod
+String copyrightName(Ref ref) => "よね/Yone";
