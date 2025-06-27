@@ -148,7 +148,7 @@ class _HomePage extends ConsumerState<WeatherEarthquakeTelopDisplayHomePage> {
         child: Row(
           children: [
             const TelopLabel(),
-            _telopContent,
+            Expanded(child: _telopContent),
           ],
         ),
       ),
