@@ -23,8 +23,6 @@ class WeatherEarthquakeTelopDisplay {
   late final WeatherEarthquakeTelopDisplayWindowConfig windowConfig;
 
   Future<void> main() async {
-    WidgetsFlutterBinding.ensureInitialized();
-
     initializeLogger();
 
     config = WeatherEarthquakeTelopDisplayConfig();
@@ -58,6 +56,8 @@ class WeatherEarthquakeTelopDisplay {
   }
 
   Future<void> initializeDesktopWindow() async {
+    WidgetsFlutterBinding.ensureInitialized();
+    windowManager.ensureInitialized();
     return await setWindowConfig();
   }
 

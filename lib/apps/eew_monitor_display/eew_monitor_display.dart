@@ -46,6 +46,7 @@ final class EewMonitorDisplay {
 
   Future<void> initializeDesktopWindow() async {
     WidgetsFlutterBinding.ensureInitialized();
+    windowManager.ensureInitialized();
     return await setWindowConfig();
   }
 

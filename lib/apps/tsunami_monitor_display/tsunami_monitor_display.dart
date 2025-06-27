@@ -46,6 +46,7 @@ final class TsunamiMonitorDisplay {
 
   Future<void> initializeDesktopWindow() async {
     WidgetsFlutterBinding.ensureInitialized();
+    windowManager.ensureInitialized();
     return await setWindowConfig();
   }
 
