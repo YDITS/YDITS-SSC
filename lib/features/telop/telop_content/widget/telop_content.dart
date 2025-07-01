@@ -35,7 +35,7 @@ class _TelopContent extends ConsumerState<TelopContent>
     );
 
     // アニメーションの範囲を設定
-    _animation = Tween<double>(begin: 1.0, end: -2.0).animate(
+    _animation = Tween<double>(begin: 1.0, end: -1.0).animate(
       CurvedAnimation(
         parent: _controller,
         curve: Curves.linear, // 直線的に移動
