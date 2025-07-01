@@ -23,6 +23,12 @@
             "type": "dart",
             "flutterMode": "release",
             "program": "lib/main.dart"
+        },
+                {
+            "name": "YDITS-SSC (tests/weather_earthquake_telop_display)",
+            "request": "launch",
+            "type": "dart",
+            "program": "tests/weather_earthquake_telop_display.dart"
         }
     ]
 }
