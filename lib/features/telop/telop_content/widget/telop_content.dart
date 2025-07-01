@@ -30,7 +30,7 @@ class _TelopContent extends ConsumerState<TelopContent>
 
     // Initialize animation controler
     _controller = AnimationController(
-      duration: Duration(seconds: 15), // スライド時間
+      duration: const Duration(seconds: 15), // スライド時間
       vsync: this,
     );
 
