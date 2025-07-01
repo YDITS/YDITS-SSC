@@ -9,25 +9,29 @@
 import 'package:flutter/material.dart';
 
 @immutable
-class TelopContentEqinfoStateModel {
-  const TelopContentEqinfoStateModel({
+class TelopContentStateModel {
+  const TelopContentStateModel({
     required this.text,
     required this.fontSize,
+    required this.fontFamily,
     required this.speed,
   });
 
   final String text;
   final double fontSize;
-  final double speed;
+  final String fontFamily;
+  final int speed;
 
-  TelopContentEqinfoStateModel copyWith({
+  TelopContentStateModel copyWith({
     required newText,
     required newFontSize,
+    required newFontFamily,
     required newSpeed,
   }) {
-    return TelopContentEqinfoStateModel(
+    return TelopContentStateModel(
       text: newText,
       fontSize: newFontSize,
+      fontFamily: newFontFamily,
       speed: newSpeed,
     );
   }

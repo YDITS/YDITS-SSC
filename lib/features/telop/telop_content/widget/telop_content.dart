@@ -8,26 +8,18 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:ydits_ssc/features/telop/telop_content/notifier/telop_content_state_notifier.dart';
 
-class TelopContentWeather extends ConsumerStatefulWidget {
-  final String text;
-  final double fontSize;
-  final String fontFamily;
-  final double speed;
-
-  const TelopContentWeather({
+class TelopContent extends ConsumerStatefulWidget {
+  const TelopContent({
     super.key,
-    required this.text,
-    required this.fontSize,
-    required this.fontFamily,
-    required this.speed,
   });
 
   @override
-  ConsumerState<TelopContentWeather> createState() => _TelopContentWeather();
+  ConsumerState<TelopContent> createState() => _TelopContent();
 }
 
-class _TelopContentWeather extends ConsumerState<TelopContentWeather>
+class _TelopContent extends ConsumerState<TelopContent>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double>? _animation;
@@ -38,7 +30,7 @@ class _TelopContentWeather extends ConsumerState<TelopContentWeather>
 
     // Initialize animation controler
     _controller = AnimationController(
-      duration: const Duration(seconds: 15), // スライド時間
+      duration: Duration(seconds: 15), // スライド時間
       vsync: this,
     );
 
@@ -56,6 +48,8 @@ class _TelopContentWeather extends ConsumerState<TelopContentWeather>
 
   @override
   Widget build(BuildContext context) {
+    final state = ref.watch(telopContentStateProvider());
+
     return ClipRect(
       child: LayoutBuilder(
         builder: (context, constraints) {
@@ -69,10 +63,10 @@ class _TelopContentWeather extends ConsumerState<TelopContentWeather>
                 child: Transform.translate(
                   offset: Offset(screenWidth * _animation!.value, 0),
                   child: Text(
-                    widget.text,
+                    state.text,
                     style: TextStyle(
-                      fontSize: widget.fontSize,
-                      fontFamily: widget.fontFamily,
+                      fontSize: state.fontSize,
+                      fontFamily: state.fontFamily,
                     ),
                     softWrap: false,
                     overflow: TextOverflow.visible,

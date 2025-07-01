@@ -1,13 +1,12 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'telop_content_eqinfo_state_notifier.dart';
+part of 'telop_content_state_notifier.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$telopContentEqinfoStateHash() =>
-    r'c24e16c3aa23d40709df399a0512784552b80b35';
+String _$telopContentStateHash() => r'7a37959cf0e830d396c17f94e527714abf4aa611';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -30,49 +29,53 @@ class _SystemHash {
   }
 }
 
-abstract class _$TelopContentEqinfoState
-    extends BuildlessAutoDisposeNotifier<TelopContentEqinfoStateModel> {
+abstract class _$TelopContentState
+    extends BuildlessAutoDisposeNotifier<TelopContentStateModel> {
   late final dynamic text;
   late final dynamic fontSize;
+  late final dynamic fontFamily;
   late final dynamic speed;
 
-  TelopContentEqinfoStateModel build({
-    dynamic text = TelopContentEqinfoState.defaultInitialText,
-    dynamic fontSize = TelopContentEqinfoState.defaultFontSize,
-    dynamic speed = TelopContentEqinfoState.defaultSpeed,
+  TelopContentStateModel build({
+    dynamic text = TelopContentState.defaultInitialText,
+    dynamic fontSize = TelopContentState.defaultFontSize,
+    dynamic fontFamily = TelopContentState.defaultFontFamily,
+    dynamic speed = TelopContentState.defaultSpeed,
   });
 }
 
-/// See also [TelopContentEqinfoState].
-@ProviderFor(TelopContentEqinfoState)
-const telopContentEqinfoStateProvider = TelopContentEqinfoStateFamily();
+/// See also [TelopContentState].
+@ProviderFor(TelopContentState)
+const telopContentStateProvider = TelopContentStateFamily();
 
-/// See also [TelopContentEqinfoState].
-class TelopContentEqinfoStateFamily
-    extends Family<TelopContentEqinfoStateModel> {
-  /// See also [TelopContentEqinfoState].
-  const TelopContentEqinfoStateFamily();
+/// See also [TelopContentState].
+class TelopContentStateFamily extends Family<TelopContentStateModel> {
+  /// See also [TelopContentState].
+  const TelopContentStateFamily();
 
-  /// See also [TelopContentEqinfoState].
-  TelopContentEqinfoStateProvider call({
-    dynamic text = TelopContentEqinfoState.defaultInitialText,
-    dynamic fontSize = TelopContentEqinfoState.defaultFontSize,
-    dynamic speed = TelopContentEqinfoState.defaultSpeed,
+  /// See also [TelopContentState].
+  TelopContentStateProvider call({
+    dynamic text = TelopContentState.defaultInitialText,
+    dynamic fontSize = TelopContentState.defaultFontSize,
+    dynamic fontFamily = TelopContentState.defaultFontFamily,
+    dynamic speed = TelopContentState.defaultSpeed,
   }) {
-    return TelopContentEqinfoStateProvider(
+    return TelopContentStateProvider(
       text: text,
       fontSize: fontSize,
+      fontFamily: fontFamily,
       speed: speed,
     );
   }
 
   @override
-  TelopContentEqinfoStateProvider getProviderOverride(
-    covariant TelopContentEqinfoStateProvider provider,
+  TelopContentStateProvider getProviderOverride(
+    covariant TelopContentStateProvider provider,
   ) {
     return call(
       text: provider.text,
       fontSize: provider.fontSize,
+      fontFamily: provider.fontFamily,
       speed: provider.speed,
     );
   }
@@ -89,42 +92,45 @@ class TelopContentEqinfoStateFamily
       _allTransitiveDependencies;
 
   @override
-  String? get name => r'telopContentEqinfoStateProvider';
+  String? get name => r'telopContentStateProvider';
 }
 
-/// See also [TelopContentEqinfoState].
-class TelopContentEqinfoStateProvider
+/// See also [TelopContentState].
+class TelopContentStateProvider
     extends
         AutoDisposeNotifierProviderImpl<
-          TelopContentEqinfoState,
-          TelopContentEqinfoStateModel
+          TelopContentState,
+          TelopContentStateModel
         > {
-  /// See also [TelopContentEqinfoState].
-  TelopContentEqinfoStateProvider({
-    dynamic text = TelopContentEqinfoState.defaultInitialText,
-    dynamic fontSize = TelopContentEqinfoState.defaultFontSize,
-    dynamic speed = TelopContentEqinfoState.defaultSpeed,
+  /// See also [TelopContentState].
+  TelopContentStateProvider({
+    dynamic text = TelopContentState.defaultInitialText,
+    dynamic fontSize = TelopContentState.defaultFontSize,
+    dynamic fontFamily = TelopContentState.defaultFontFamily,
+    dynamic speed = TelopContentState.defaultSpeed,
   }) : this._internal(
          () =>
-             TelopContentEqinfoState()
+             TelopContentState()
                ..text = text
                ..fontSize = fontSize
+               ..fontFamily = fontFamily
                ..speed = speed,
-         from: telopContentEqinfoStateProvider,
-         name: r'telopContentEqinfoStateProvider',
+         from: telopContentStateProvider,
+         name: r'telopContentStateProvider',
          debugGetCreateSourceHash:
              const bool.fromEnvironment('dart.vm.product')
                  ? null
-                 : _$telopContentEqinfoStateHash,
-         dependencies: TelopContentEqinfoStateFamily._dependencies,
+                 : _$telopContentStateHash,
+         dependencies: TelopContentStateFamily._dependencies,
          allTransitiveDependencies:
-             TelopContentEqinfoStateFamily._allTransitiveDependencies,
+             TelopContentStateFamily._allTransitiveDependencies,
          text: text,
          fontSize: fontSize,
+         fontFamily: fontFamily,
          speed: speed,
        );
 
-  TelopContentEqinfoStateProvider._internal(
+  TelopContentStateProvider._internal(
     super._createNotifier, {
     required super.name,
     required super.dependencies,
@@ -133,29 +139,37 @@ class TelopContentEqinfoStateProvider
     required super.from,
     required this.text,
     required this.fontSize,
+    required this.fontFamily,
     required this.speed,
   }) : super.internal();
 
   final dynamic text;
   final dynamic fontSize;
+  final dynamic fontFamily;
   final dynamic speed;
 
   @override
-  TelopContentEqinfoStateModel runNotifierBuild(
-    covariant TelopContentEqinfoState notifier,
+  TelopContentStateModel runNotifierBuild(
+    covariant TelopContentState notifier,
   ) {
-    return notifier.build(text: text, fontSize: fontSize, speed: speed);
+    return notifier.build(
+      text: text,
+      fontSize: fontSize,
+      fontFamily: fontFamily,
+      speed: speed,
+    );
   }
 
   @override
-  Override overrideWith(TelopContentEqinfoState Function() create) {
+  Override overrideWith(TelopContentState Function() create) {
     return ProviderOverride(
       origin: this,
-      override: TelopContentEqinfoStateProvider._internal(
+      override: TelopContentStateProvider._internal(
         () =>
             create()
               ..text = text
               ..fontSize = fontSize
+              ..fontFamily = fontFamily
               ..speed = speed,
         from: from,
         name: null,
@@ -164,25 +178,24 @@ class TelopContentEqinfoStateProvider
         debugGetCreateSourceHash: null,
         text: text,
         fontSize: fontSize,
+        fontFamily: fontFamily,
         speed: speed,
       ),
     );
   }
 
   @override
-  AutoDisposeNotifierProviderElement<
-    TelopContentEqinfoState,
-    TelopContentEqinfoStateModel
-  >
+  AutoDisposeNotifierProviderElement<TelopContentState, TelopContentStateModel>
   createElement() {
-    return _TelopContentEqinfoStateProviderElement(this);
+    return _TelopContentStateProviderElement(this);
   }
 
   @override
   bool operator ==(Object other) {
-    return other is TelopContentEqinfoStateProvider &&
+    return other is TelopContentStateProvider &&
         other.text == text &&
         other.fontSize == fontSize &&
+        other.fontFamily == fontFamily &&
         other.speed == speed;
   }
 
@@ -191,6 +204,7 @@ class TelopContentEqinfoStateProvider
     var hash = _SystemHash.combine(0, runtimeType.hashCode);
     hash = _SystemHash.combine(hash, text.hashCode);
     hash = _SystemHash.combine(hash, fontSize.hashCode);
+    hash = _SystemHash.combine(hash, fontFamily.hashCode);
     hash = _SystemHash.combine(hash, speed.hashCode);
 
     return _SystemHash.finish(hash);
@@ -199,33 +213,38 @@ class TelopContentEqinfoStateProvider
 
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
-mixin TelopContentEqinfoStateRef
-    on AutoDisposeNotifierProviderRef<TelopContentEqinfoStateModel> {
+mixin TelopContentStateRef
+    on AutoDisposeNotifierProviderRef<TelopContentStateModel> {
   /// The parameter `text` of this provider.
   dynamic get text;
 
   /// The parameter `fontSize` of this provider.
   dynamic get fontSize;
 
+  /// The parameter `fontFamily` of this provider.
+  dynamic get fontFamily;
+
   /// The parameter `speed` of this provider.
   dynamic get speed;
 }
 
-class _TelopContentEqinfoStateProviderElement
+class _TelopContentStateProviderElement
     extends
         AutoDisposeNotifierProviderElement<
-          TelopContentEqinfoState,
-          TelopContentEqinfoStateModel
+          TelopContentState,
+          TelopContentStateModel
         >
-    with TelopContentEqinfoStateRef {
-  _TelopContentEqinfoStateProviderElement(super.provider);
+    with TelopContentStateRef {
+  _TelopContentStateProviderElement(super.provider);
 
   @override
-  dynamic get text => (origin as TelopContentEqinfoStateProvider).text;
+  dynamic get text => (origin as TelopContentStateProvider).text;
   @override
-  dynamic get fontSize => (origin as TelopContentEqinfoStateProvider).fontSize;
+  dynamic get fontSize => (origin as TelopContentStateProvider).fontSize;
   @override
-  dynamic get speed => (origin as TelopContentEqinfoStateProvider).speed;
+  dynamic get fontFamily => (origin as TelopContentStateProvider).fontFamily;
+  @override
+  dynamic get speed => (origin as TelopContentStateProvider).speed;
 }
 
 // ignore_for_file: type=lint

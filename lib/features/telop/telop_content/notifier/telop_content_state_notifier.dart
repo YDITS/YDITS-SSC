@@ -7,12 +7,12 @@
 //
 
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:ydits_ssc/features/telop/telop_content_weather/model/telop_content_weather_state_model.dart';
+import 'package:ydits_ssc/features/telop/telop_content/model/telop_content_state_model.dart';
 
-part 'telop_content_weather_state_notifier.g.dart';
+part 'telop_content_state_notifier.g.dart';
 
 @riverpod
-class TelopContentWeatherState extends _$TelopContentWeatherState {
+class TelopContentState extends _$TelopContentState {
   /// デフォルトのテロップコンテントの初期値
   static const String defaultInitialText = "情報を取得しています…";
 
@@ -23,16 +23,16 @@ class TelopContentWeatherState extends _$TelopContentWeatherState {
   static const String defaultFontFamily = "M PLUS 2";
 
   /// デフォルトのテロップのスライドアニメーション速度
-  static const double defaultSpeed = 100;
+  static const int defaultSpeed = 15;
 
   @override
-  TelopContentWeatherStateModel build({
-    text = TelopContentWeatherState.defaultInitialText,
-    fontSize = TelopContentWeatherState.defaultFontSize,
-    fontFamily = TelopContentWeatherState.defaultFontFamily,
-    speed = TelopContentWeatherState.defaultSpeed,
+  TelopContentStateModel build({
+    text = TelopContentState.defaultInitialText,
+    fontSize = TelopContentState.defaultFontSize,
+    fontFamily = TelopContentState.defaultFontFamily,
+    speed = TelopContentState.defaultSpeed,
   }) {
-    return TelopContentWeatherStateModel(
+    return TelopContentStateModel(
       text: text,
       fontSize: fontSize,
       fontFamily: fontFamily,
