@@ -18,6 +18,8 @@ dependencies:
     path: ./packages/configure
   version:
     path: ./packages/version
+  api_localhost_proxy:
+    path: ./packages/api_localhost_proxy
   http: ^1.2.2
   weather: ^3.1.1
   flutter_map: ^7.0.2
