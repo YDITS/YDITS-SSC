@@ -40,6 +40,5 @@ class WeatherTimerNotifier extends _$WeatherTimerNotifier {
     state = state.copyWith(isRunning: false);
   }
 
-  @override
   void loop(Timer self) {}
 }
