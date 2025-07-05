@@ -9,7 +9,7 @@
 import 'dart:convert';
 import 'package:flutter/services.dart';
 import 'package:desktop_multi_window/desktop_multi_window.dart';
-import 'package:ydits_ssc/core/sub_windows/sub_windows_enum.dart';
+import 'package:ydits_ssc/core/sub_windows/sub_windows.dart';
 
 final class YditsSscWindowManager {
   YditsSscWindowManager({required this.onFailedCloseWindowCallback}) {

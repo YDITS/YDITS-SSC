@@ -6,8 +6,8 @@
 // https://github.com/YDITS/YDITS-SSC
 //
 
-enum SubWindows {
-  eewMonitorDisplay,
-  tsunamiMonitorDisplay,
-  weatherEarthquakeTelopDisplay,
+enum MapTypes {
+  normal,
+  eew,
+  tsunami,
 }

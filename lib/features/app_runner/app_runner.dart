@@ -12,8 +12,8 @@ import 'package:ydits_ssc/features/app_runner/sub_app_runner.dart';
 
 /// YDITS for SSC アプリケーションの実行処理
 final class YditsSscAppRunner extends AppRunner {
-  YditsSscAppRunner({required super.args, super.logger}) {
-    mainAppRunner = YditsSscMainAppRunner(logger: logger);
-    subAppRunner = YditsSscSubAppRunner(logger: logger);
+  YditsSscAppRunner({required super.args, required super.container}) {
+    mainAppRunner = YditsSscMainAppRunner(container: container);
+    subAppRunner = YditsSscSubAppRunner(container: container);
   }
 }

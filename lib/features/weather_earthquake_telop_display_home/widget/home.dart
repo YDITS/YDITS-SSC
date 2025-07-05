@@ -13,46 +13,40 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:logging/logging.dart';
 import 'package:http/http.dart';
 import 'package:weather/weather.dart';
+import 'package:ydits_ssc/apps/weather_earthquake_telop_display/provider/weather_earthquake_telop_display_config_provider.dart';
+import 'package:ydits_ssc/core/providers/logger/notifier/logger_notifier.dart';
 import 'package:ydits_ssc/features/telop/telop_content/notifier/telop_content_state_notifier.dart';
 import 'package:ydits_ssc/features/telop/telop_label/notifier/telop_label_state_notifier.dart';
 
 import 'package:ydits_ssc/core/resources/japan_prefectures.dart';
 // import 'package:ydits_ssc/core/components/telop/telop_content_eqinfo/telop_content_eqinfo_state_provider.dart';
 import 'package:ydits_ssc/features/telop/telop_label/widget/telop_label.dart';
-import 'package:ydits_ssc/apps/weather_earthquake_telop_display/weather_earthquake_telop_display_config.dart';
 import 'package:ydits_ssc/features/telop/telop_content/widget/telop_content.dart';
 
 class WeatherEarthquakeTelopDisplayHomePage extends ConsumerStatefulWidget {
-  final Logger logger;
-  final WeatherEarthquakeTelopDisplayConfig config;
-  final WeatherEarthquakeTelopDisplayAppConfig appConfig;
-  final WeatherEarthquakeTelopDisplayWindowConfig windowConfig;
-
-  const WeatherEarthquakeTelopDisplayHomePage({
-    super.key,
-    required this.logger,
-    required this.config,
-    required this.appConfig,
-    required this.windowConfig,
-  });
+  const WeatherEarthquakeTelopDisplayHomePage({super.key});
 
   @override
   ConsumerState<WeatherEarthquakeTelopDisplayHomePage> createState() => _HomePage();
 }
 
 class _HomePage extends ConsumerState<WeatherEarthquakeTelopDisplayHomePage> {
+  late Logger? _logger;
   late WeatherFactory _weatherFactory;
 
   @override
   void initState() {
     super.initState();
+    _logger = ref.read(loggerNotifierProvider);
+
     initWeatherFactory();
     updateWeather();
     // updateEqinfo();
   }
 
   Future<void> initWeatherFactory() async {
-    _weatherFactory = WeatherFactory(widget.config.openWeatherMapApiKey);
+    final config = ref.read(weatherEarthquakeTelopDisplayConfigProvider);
+    _weatherFactory = WeatherFactory(config.openWeatherMapApiKey);
   }
 
   Future<void> updateWeather() async {
@@ -64,7 +58,7 @@ class _HomePage extends ConsumerState<WeatherEarthquakeTelopDisplayHomePage> {
   }
 
   Future<void> fetchWeatherData() async {
-    widget.logger.info("fetchWeatherData");
+    _logger?.info("fetchWeatherData");
     ref.read(telopLabelStateProvider().notifier).setText("現在の天気");
     ref.read(telopContentStateProvider().notifier).setText("");
 

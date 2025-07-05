@@ -8,6 +8,7 @@
 
 import 'package:flutter/material.dart';
 
+/// EEW Monitor Display Home Page ウィジェット
 final class EEWMonitorDisplayHomePage extends StatefulWidget {
   const EEWMonitorDisplayHomePage({super.key});
 

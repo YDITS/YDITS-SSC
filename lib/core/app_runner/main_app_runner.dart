@@ -12,32 +12,40 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:window_manager/window_manager.dart';
 import "package:configure/configure.dart";
+import 'package:ydits_ssc/apps/main_app/provider/main_app_config_provider.dart';
 import 'package:ydits_ssc/core/exceptions/exceptions.dart';
+import 'package:ydits_ssc/core/providers/logger/notifier/logger_notifier.dart';
 
 import 'package:ydits_ssc/core/utils/is_platform_desktop.dart';
 import 'package:ydits_ssc/core/window_manager/window_manager.dart';
 import 'package:ydits_ssc/core/window_manager/window_manager_exceptions.dart';
-import 'package:ydits_ssc/core/sub_windows/sub_windows_enum.dart';
-import 'package:ydits_ssc/core/sub_windows/sub_windows_title.dart';
+import 'package:ydits_ssc/core/sub_windows/sub_windows.dart';
 
 /// メインアプリケーションの実行管理
 abstract class MainAppRunner {
-  MainAppRunner({this.logger});
+  MainAppRunner({required this.container}) {
+    logger = container.read(loggerNotifierProvider);
+    windowConfig = container.read(yditsSscWindowConfigProvider);
+  }
 
   /// Loggerインスタンス
-  final Logger? logger;
-
-  /// メインアプリケーションウィンドウの構成
-  abstract final WindowConfig windowConfig;
+  final ProviderContainer container;
 
   /// アプリケーションウィジェット
   late final Widget app;
 
+  /// メインアプリケーションウィンドウの構成
+  late final WindowConfig windowConfig;
+
   /// サブウィンドウを保持するMap
   late final Map<SubWindows, WindowController> subWindows;
 
+  /// Loggerインスタンス
+  late final Logger? logger;
+
   /// アプリケーションを実行する
   Future<void> run() async {
+
     logger?.info("Running main application...");
 
     try {
@@ -52,7 +60,7 @@ abstract class MainAppRunner {
       logger?.warning(error);
     }
 
-    runApp(ProviderScope(child: app));
+    runApp(UncontrolledProviderScope(container: container, child: app));
   }
 
   /// メインアプリケーションのウィンドウをイニシャライズする
@@ -60,7 +68,6 @@ abstract class MainAppRunner {
     logger?.info("Initializing main application window...");
     
     try {
-      WidgetsFlutterBinding.ensureInitialized();
       await windowManager.ensureInitialized();
       await _setWindowConfig();
     } catch (error) {

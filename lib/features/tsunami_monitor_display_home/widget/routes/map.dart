@@ -8,18 +8,12 @@
 
 import 'package:flutter/material.dart';
 import 'package:ydits_ssc/features/flutter_map/widget/flutter_map.dart';
-import 'package:ydits_ssc/core/map/map_options.dart';
 
-final class MapPage extends StatefulWidget {
+final class MapPage extends StatelessWidget {
   const MapPage({super.key});
 
   @override
-  State<MapPage> createState() => _MapPage();
-}
-
-final class _MapPage extends State<MapPage> {
-  @override
   Widget build(BuildContext context) {
-    return YditsSscFlutterMap(mapOptions: OriginMapOptions.tsunami);
+    return const YditsSscFlutterMap();
   }
 }

@@ -23,10 +23,10 @@ class TelopContentStateModel {
   final int speed;
 
   TelopContentStateModel copyWith({
-    required newText,
-    required newFontSize,
-    required newFontFamily,
-    required newSpeed,
+    required String newText,
+    required double newFontSize,
+    required String newFontFamily,
+    required int newSpeed,
   }) {
     return TelopContentStateModel(
       text: newText,

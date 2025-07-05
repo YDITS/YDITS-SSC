@@ -10,7 +10,7 @@
 class BaseException implements Exception {
   BaseException(this.message);
 
-  static String name = "Error";
+  static String name = "Exception";
   Object? message;
 
   @override
@@ -32,27 +32,27 @@ class UnhandledException extends BaseException {
 /// Exception thrown when failed to initialize Logger
 class LoggerInitializationFailed extends BaseException {
   LoggerInitializationFailed(super.key);
-  static String name = "LoggerInitializationError";
+  static String name = "LoggerInitializationFailed";
 }
 
 /// Exception thrown when failed to run applications
 class AppRunnerException extends BaseException {
   AppRunnerException(super.key);
-  static String name = "AppRunnerError";
+  static String name = "AppRunnerException";
 }
 
 /// Exception thrown when failed to run main application
 class MainAppRunnerException extends AppRunnerException {
   @override
   MainAppRunnerException(super.key);
-  static String name = "MainAppRunnerError";
+  static String name = "MainAppRunnerException";
 }
 
 /// Exception thrown when failed to run sub applications
 class SubAppRunnerException extends AppRunnerException {
   @override
   SubAppRunnerException(super.key);
-  static String name = "SubAppRunnerError";
+  static String name = "SubAppRunnerException";
 }
 
 /// Exception thrown when faild to initialize main window

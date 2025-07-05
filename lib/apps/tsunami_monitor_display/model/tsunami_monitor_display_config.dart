@@ -8,13 +8,13 @@
 
 import 'dart:ui';
 import 'package:version/version.dart';
-import 'package:configure/configure.dart';
+import "package:configure/configure.dart";
 
-/// EEW Monitor Display アプリケーションの設定
-final class EEWMonitorDisplayAppConfig implements AppConfig {
+/// Tsunami Monitor Display アプリケーションの設定
+final class TsunamiMonitorDisplayAppConfig implements AppConfig {
   /// アプリケーションのタイトル
   @override
-  final String title = "YDITS for SSC - EEW Monitor Display";
+  final String title = "YDITS for SSC - Tsunami Monitor Display";
 
   /// アプリケーションの説明
   @override
@@ -30,11 +30,11 @@ final class EEWMonitorDisplayAppConfig implements AppConfig {
   );
 }
 
-/// EEW Monitor Display ウィンドウの設定
-final class EEWMonitorDisplayWindowConfig implements WindowConfig {
+/// Tsunami Monitor Display ウィンドウの設定
+final class TsunamiMonitorDisplayWindowConfig implements WindowConfig {
   /// ウィンドウのタイトル
   @override
-  final String title = "YDITS for SSC - EEW Monitor Display";
+  final String title = "Tsunami Monitor Display";
 
   /// ウィンドウのフレームデータ
   @override

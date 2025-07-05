@@ -10,49 +10,65 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:logging/logging.dart';
 import 'package:window_manager/window_manager.dart';
 import 'package:flutter/material.dart';
+import 'package:ydits_ssc/apps/eew_monitor_display/provider/eew_monitor_display_config_provider.dart';
+import 'package:ydits_ssc/core/providers/logger/notifier/logger_notifier.dart';
 
 import 'package:ydits_ssc/core/utils/is_platform_desktop.dart';
-import 'package:ydits_ssc/apps/eew_monitor_display/eew_monitor_display_app.dart';
-import 'package:ydits_ssc/apps/eew_monitor_display/eew_monitor_display_config.dart';
+import 'package:ydits_ssc/apps/eew_monitor_display/widget/eew_monitor_display_app.dart';
+import 'package:ydits_ssc/apps/eew_monitor_display/model/eew_monitor_display_config.dart';
 
+/// EEW Monitor Display
 final class EewMonitorDisplay {
-  late final Logger logger;
-  late final Rect? frame;
+  EewMonitorDisplay({required this.container}) {
+    logger = container.read(loggerNotifierProvider);
+    config = container.read(eewMonitorDisplayAppConfigProvider);
+    windowConfig = container.read(eewMonitorDisplayWindowConfigProvider);
+  }
+
+  /// ProviderContainer インスタンス
+  final ProviderContainer container;
+
+  /// Logger インスタンス
+  late final Logger? logger;
+
+  // EEWMonitorDisplayAppConfig インスタンス
   late final EEWMonitorDisplayAppConfig config;
+
+  /// EEWMonitorDisplayWindowConfig インスタンス
   late final EEWMonitorDisplayWindowConfig windowConfig;
 
+  /// アプリケーションを実行する
   Future<void> main() async {
-    initializeLogger();
-
-    config = EEWMonitorDisplayAppConfig();
-    windowConfig = EEWMonitorDisplayWindowConfig();
-
     try {
       await initializeDesktopWindow();
     } catch (error) {
-      logger.warning(error);
+      logger?.warning(error);
     }
 
-    runApp(const ProviderScope(child: EewMonitorDisplayApp()));
+    runApp(
+      UncontrolledProviderScope(
+        container: container,
+        child: const EewMonitorDisplayApp(),
+      ),
+    );
   }
 
-  void initializeLogger() {
-    logger = Logger('Logger');
-    Logger.root.level = Level.ALL;
-    Logger.root.onRecord.listen((record) {
-      print('${record.level.name}: ${record.time}: ${record.message}');
-    });
-  }
-
+  /// デスクトップウィンドウをイニシャライズする
   Future<void> initializeDesktopWindow() async {
     WidgetsFlutterBinding.ensureInitialized();
     windowManager.ensureInitialized();
     return await setWindowConfig();
   }
 
+  /// ウィンドウの構成を設定する
   Future<void> setWindowConfig() async {
-    logger.info("Setting EewMonitorDisplay application window configs...");
-    logger.info("Platform is desktop: ${isPlatformDesktop.toString()}");
+    logger?.info("Setting EewMonitorDisplay application window configs...");
+
+    logger?.info(
+      isPlatformDesktop
+          ? "Desktop platform detected."
+          : "Non-desktop platform detected. Window configuration will be skipped.",
+    );
 
     if (!isPlatformDesktop) {
       return;
@@ -71,13 +87,19 @@ final class EewMonitorDisplay {
       windowButtonVisibility: true,
     );
 
-    logger.info(
+    logger?.info(
       "EewMonitorDisplay application window options: ${windowOptions.toString()}",
     );
 
-    windowManager.waitUntilReadyToShow(windowOptions, () async {
-      await windowManager.show();
-      await windowManager.focus();
-    });
+    windowManager.waitUntilReadyToShow(
+      windowOptions,
+      () async => await onReadyToShowWindow(),
+    );
+  }
+
+  /// ウィンドウの表示が可能になったときの処
+  Future<void> onReadyToShowWindow() async {
+    await windowManager.show();
+    await windowManager.focus();
   }
 }

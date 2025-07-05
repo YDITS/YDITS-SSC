@@ -10,6 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:ydits_ssc/features/tsunami_monitor_display_home/widget/routes/map.dart';
 import 'package:ydits_ssc/features/tsunami_monitor_display_home/widget/routes/menu.dart';
 
+/// Tsunami Monitor Display Home Page ウィジェット
 final class TsunamiMonitorDisplayHomePage extends StatefulWidget {
   const TsunamiMonitorDisplayHomePage({super.key});
 

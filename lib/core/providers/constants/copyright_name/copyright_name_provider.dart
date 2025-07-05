@@ -13,3 +13,5 @@ part 'copyright_name_provider.g.dart';
 
 @riverpod
 String copyrightName(Ref ref) => "よね/Yone";
+
+

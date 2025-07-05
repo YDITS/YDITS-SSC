@@ -6,6 +6,7 @@
 // https://github.com/YDITS/YDITS-SSC
 //
 
+/// 日本の都道府県の列挙
 enum JapanPrefecturesEnum {
   hokkaido,
   aomori,
@@ -56,6 +57,7 @@ enum JapanPrefecturesEnum {
   okinawa,
 }
 
+/// 日本の都道府県
 abstract final class JapanPrefectures {
   /// 日本の都道府県Enumから都道府県文字列（末尾に都道府県を付与したもの）に変換するMap
   static final Map<JapanPrefecturesEnum, String> enumToString = {

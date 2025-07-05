@@ -9,6 +9,7 @@
 import 'package:flutter/material.dart';
 import 'package:ydits_ssc/features/eew_monitor_display_home/widget/home.dart';
 
+/// EEW Monitor Display アプリケーションウィジェット
 final class EewMonitorDisplayApp extends StatelessWidget {
   const EewMonitorDisplayApp({super.key});
 

@@ -16,10 +16,10 @@ class TelopContent extends ConsumerStatefulWidget {
   });
 
   @override
-  ConsumerState<TelopContent> createState() => _TelopContent();
+  ConsumerState<TelopContent> createState() => _TelopContentState();
 }
 
-class _TelopContent extends ConsumerState<TelopContent>
+class _TelopContentState extends ConsumerState<TelopContent>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double>? _animation;

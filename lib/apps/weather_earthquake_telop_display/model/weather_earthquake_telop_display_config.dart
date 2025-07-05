@@ -11,6 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:version/version.dart';
 import "package:configure/configure.dart";
 
+/// Weather Earthquake Telop Display の構成設定
 final class WeatherEarthquakeTelopDisplayConfig {
   /// デフォルトのフォントサイズ
   final double fontSize = 32;

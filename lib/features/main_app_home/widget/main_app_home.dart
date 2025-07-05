@@ -10,13 +10,10 @@ import 'package:flutter/material.dart';
 import 'package:desktop_multi_window/desktop_multi_window.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'package:ydits_ssc/core/sub_windows/sub_windows_enum.dart';
-import 'package:ydits_ssc/core/sub_windows/sub_windows_title.dart';
-import 'package:ydits_ssc/core/sub_windows/sub_windows_icon.dart';
+import 'package:ydits_ssc/core/sub_windows/sub_windows.dart';
 import 'package:ydits_ssc/core/widgets/copyright_footer/copyright_footer.dart';
 import 'package:ydits_ssc/core/widgets/text_button_with_icon/text_button_with_icon.dart';
-import 'package:ydits_ssc/apps/main_app/configure/main_app_config.dart';
-import 'package:ydits_ssc/apps/main_app/configure/main_app_config_provider.dart';
+import 'package:ydits_ssc/apps/main_app/model/main_app_config.dart';
 
 final class YditsSscMainAppHomePage extends ConsumerStatefulWidget {
   const YditsSscMainAppHomePage({super.key, required this.windows});
@@ -25,21 +22,20 @@ final class YditsSscMainAppHomePage extends ConsumerStatefulWidget {
 
   @override
   ConsumerState<YditsSscMainAppHomePage> createState() =>
-      YditsSscMainAppHomePageState();
+      _YditsSscMainAppHomePageState();
 }
 
-final class YditsSscMainAppHomePageState
+final class _YditsSscMainAppHomePageState
     extends ConsumerState<YditsSscMainAppHomePage> {
+  final YditsSscAppConfig _config = YditsSscAppConfig();
   final ScrollController _scrollController = ScrollController();
 
   @override
   Widget build(BuildContext context) {
-    YditsSscAppConfig config = ref.watch(yditsSscAppConfigProvider);
-
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 16, 16, 16),
       appBar: AppBar(
-        title: Text(config.title, style: const TextStyle(color: Colors.white)),
+        title: Text(_config.title, style: const TextStyle(color: Colors.white)),
         backgroundColor: Colors.black87,
       ),
       body: Column(

@@ -23,7 +23,7 @@ class TextButtonWithIcon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextButton(
-      onPressed: () => onPressed!(),
+      onPressed: onPressed,
       style: IconButton.styleFrom(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
         backgroundColor: Colors.blueGrey[900],
