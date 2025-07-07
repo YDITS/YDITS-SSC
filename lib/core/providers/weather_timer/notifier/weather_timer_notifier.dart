@@ -27,7 +27,7 @@ class WeatherTimerNotifier extends _$WeatherTimerNotifier {
   }
 
   void start() {
-    if (_timer!.isActive) {
+    if (_timer != null && _timer?.isActive) {
       return;
     }
 
