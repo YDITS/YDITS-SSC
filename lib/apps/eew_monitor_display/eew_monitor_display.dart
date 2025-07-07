@@ -10,8 +10,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:logging/logging.dart';
 import 'package:window_manager/window_manager.dart';
 import 'package:flutter/material.dart';
-import 'package:ydits_ssc/apps/eew_monitor_display/provider/eew_monitor_display_config_provider.dart';
-import 'package:ydits_ssc/core/providers/logger/notifier/logger_notifier.dart';
 
 import 'package:ydits_ssc/core/utils/is_platform_desktop.dart';
 import 'package:ydits_ssc/apps/eew_monitor_display/widget/eew_monitor_display_app.dart';
@@ -19,23 +17,17 @@ import 'package:ydits_ssc/apps/eew_monitor_display/model/eew_monitor_display_con
 
 /// EEW Monitor Display
 final class EewMonitorDisplay {
-  EewMonitorDisplay({required this.container}) {
-    logger = container.read(loggerNotifierProvider);
-    config = container.read(eewMonitorDisplayAppConfigProvider);
-    windowConfig = container.read(eewMonitorDisplayWindowConfigProvider);
-  }
-
-  /// ProviderContainer インスタンス
-  final ProviderContainer container;
+  EewMonitorDisplay({this.logger});
 
   /// Logger インスタンス
-  late final Logger? logger;
+  final Logger? logger;
 
   // EEWMonitorDisplayAppConfig インスタンス
-  late final EEWMonitorDisplayAppConfig config;
+  final EEWMonitorDisplayAppConfig config = EEWMonitorDisplayAppConfig();
 
   /// EEWMonitorDisplayWindowConfig インスタンス
-  late final EEWMonitorDisplayWindowConfig windowConfig;
+  final EEWMonitorDisplayWindowConfig windowConfig =
+      EEWMonitorDisplayWindowConfig();
 
   /// アプリケーションを実行する
   Future<void> main() async {
@@ -45,12 +37,7 @@ final class EewMonitorDisplay {
       logger?.warning(error);
     }
 
-    runApp(
-      UncontrolledProviderScope(
-        container: container,
-        child: const EewMonitorDisplayApp(),
-      ),
-    );
+    runApp(const ProviderScope(child: EewMonitorDisplayApp()));
   }
 
   /// デスクトップウィンドウをイニシャライズする

@@ -14,7 +14,6 @@ import 'package:logging/logging.dart';
 import 'package:http/http.dart';
 import 'package:weather/weather.dart';
 import 'package:ydits_ssc/apps/weather_earthquake_telop_display/provider/weather_earthquake_telop_display_config_provider.dart';
-import 'package:ydits_ssc/core/providers/logger/notifier/logger_notifier.dart';
 import 'package:ydits_ssc/features/telop/telop_content/notifier/telop_content_state_notifier.dart';
 import 'package:ydits_ssc/features/telop/telop_label/notifier/telop_label_state_notifier.dart';
 
@@ -24,21 +23,20 @@ import 'package:ydits_ssc/features/telop/telop_label/widget/telop_label.dart';
 import 'package:ydits_ssc/features/telop/telop_content/widget/telop_content.dart';
 
 class WeatherEarthquakeTelopDisplayHomePage extends ConsumerStatefulWidget {
-  const WeatherEarthquakeTelopDisplayHomePage({super.key});
+  const WeatherEarthquakeTelopDisplayHomePage({super.key, this.logger});
+
+  final Logger? logger;
 
   @override
   ConsumerState<WeatherEarthquakeTelopDisplayHomePage> createState() => _HomePage();
 }
 
 class _HomePage extends ConsumerState<WeatherEarthquakeTelopDisplayHomePage> {
-  late Logger? _logger;
   late WeatherFactory _weatherFactory;
 
   @override
   void initState() {
     super.initState();
-    _logger = ref.read(loggerNotifierProvider);
-
     initWeatherFactory();
     updateWeather();
     // updateEqinfo();
@@ -58,7 +56,7 @@ class _HomePage extends ConsumerState<WeatherEarthquakeTelopDisplayHomePage> {
   }
 
   Future<void> fetchWeatherData() async {
-    _logger?.info("fetchWeatherData");
+    widget.logger?.info("fetchWeatherData");
     ref.read(telopLabelStateProvider().notifier).setText("現在の天気");
     ref.read(telopContentStateProvider().notifier).setText("");
 

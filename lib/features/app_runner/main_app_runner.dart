@@ -6,15 +6,20 @@
 // https://github.com/YDITS/YDITS-SSC
 //
 
+import 'package:configure/configure.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:ydits_ssc/apps/main_app/model/main_app_window_config.dart';
 
 import 'package:ydits_ssc/core/app_runner/main_app_runner.dart';
 import 'package:ydits_ssc/apps/main_app/widget/main_app.dart';
 
 /// YDITS for SSC メインアプリケーションの実行管理
 final class YditsSscMainAppRunner extends MainAppRunner {
-  YditsSscMainAppRunner({required super.container});
+  YditsSscMainAppRunner({super.logger});
+
+  @override
+  final WindowConfig windowConfig = YditsSscWindowConfig();
 
   /// アプリケーションを実行する
   @override
@@ -24,11 +29,6 @@ final class YditsSscMainAppRunner extends MainAppRunner {
     final subWindows = await configureSubWindows();
     await initializeDesktopWindow();
 
-    runApp(
-      UncontrolledProviderScope(
-        container: container,
-        child: YditsSscMainApp(subWindows: subWindows),
-      ),
-    );
+    runApp(ProviderScope(child: YditsSscMainApp(subWindows: subWindows)));
   }
 }

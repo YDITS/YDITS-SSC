@@ -12,9 +12,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:window_manager/window_manager.dart';
 import "package:configure/configure.dart";
-import 'package:ydits_ssc/apps/main_app/provider/main_app_config_provider.dart';
 import 'package:ydits_ssc/core/exceptions/exceptions.dart';
-import 'package:ydits_ssc/core/providers/logger/notifier/logger_notifier.dart';
 
 import 'package:ydits_ssc/core/utils/is_platform_desktop.dart';
 import 'package:ydits_ssc/core/window_manager/window_manager.dart';
@@ -23,25 +21,19 @@ import 'package:ydits_ssc/core/sub_windows/sub_windows.dart';
 
 /// メインアプリケーションの実行管理
 abstract class MainAppRunner {
-  MainAppRunner({required this.container}) {
-    logger = container.read(loggerNotifierProvider);
-    windowConfig = container.read(yditsSscWindowConfigProvider);
-  }
-
-  /// Loggerインスタンス
-  final ProviderContainer container;
+  MainAppRunner({this.logger});
 
   /// アプリケーションウィジェット
   late final Widget app;
 
   /// メインアプリケーションウィンドウの構成
-  late final WindowConfig windowConfig;
+  abstract final WindowConfig windowConfig;
 
   /// サブウィンドウを保持するMap
-  late final Map<SubWindows, WindowController> subWindows;
+  late Map<SubWindows, WindowController> subWindows;
 
   /// Loggerインスタンス
-  late final Logger? logger;
+  final Logger? logger;
 
   /// アプリケーションを実行する
   Future<void> run() async {
@@ -60,7 +52,7 @@ abstract class MainAppRunner {
       logger?.warning(error);
     }
 
-    runApp(UncontrolledProviderScope(container: container, child: app));
+    runApp(ProviderScope(child: app));
   }
 
   /// メインアプリケーションのウィンドウをイニシャライズする

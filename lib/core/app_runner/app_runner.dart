@@ -6,24 +6,17 @@
 // https://github.com/YDITS/YDITS-SSC
 //
 
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:logging/logging.dart';
 import 'package:ydits_ssc/core/app_runner/main_app_runner.dart';
 import 'package:ydits_ssc/core/app_runner/sub_app_runner.dart';
 import 'package:ydits_ssc/core/exceptions/exceptions.dart';
-import 'package:ydits_ssc/core/providers/logger/notifier/logger_notifier.dart';
 
 /// アプリケーションの実行処理
 abstract class AppRunner {
-  AppRunner({required this.args, required this.container}) {
-    logger = container.read(loggerNotifierProvider);
-  }
+  AppRunner({required this.args, this.logger});
 
   /// Desktop Multi Window Caller Arguments
   final List<String> args;
-
-  /// ProviderContainer インスタンス
-  final ProviderContainer container;
 
   /// サブアプリケーションの実行処理クラス
   late final SubAppRunner subAppRunner;
@@ -32,7 +25,7 @@ abstract class AppRunner {
   late final MainAppRunner mainAppRunner;
 
   /// Loggerインスタンス
-  late final Logger? logger;
+  final Logger? logger;
 
   /// アプリケーションを実行する
   /// ---

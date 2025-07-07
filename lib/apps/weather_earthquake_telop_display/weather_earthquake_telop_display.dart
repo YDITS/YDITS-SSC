@@ -10,8 +10,6 @@ import 'package:logging/logging.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/material.dart';
 import 'package:window_manager/window_manager.dart';
-import 'package:ydits_ssc/apps/weather_earthquake_telop_display/provider/weather_earthquake_telop_display_config_provider.dart';
-import 'package:ydits_ssc/core/providers/logger/notifier/logger_notifier.dart';
 
 import 'package:ydits_ssc/core/utils/is_platform_desktop.dart';
 import 'package:ydits_ssc/apps/weather_earthquake_telop_display/widget/weather_earthquake_telop_display_app.dart';
@@ -19,27 +17,22 @@ import 'package:ydits_ssc/apps/weather_earthquake_telop_display/model/weather_ea
 
 /// Weather Earthquake Telop Display
 class WeatherEarthquakeTelopDisplay {
-  WeatherEarthquakeTelopDisplay({required this.container}) {
-    logger = container.read(loggerNotifierProvider);
-    config = container.read(weatherEarthquakeTelopDisplayConfigProvider);
-    appConfig = container.read(weatherEarthquakeTelopDisplayAppConfigProvider);
-    windowConfig = container.read(weatherEarthquakeTelopDisplayWindowConfigProvider);
-  }
-
-  /// ProviderContainer インスタンス
-  final ProviderContainer container;
+  WeatherEarthquakeTelopDisplay({this.logger});
 
   /// Logger インスタンス
-  late final Logger? logger;
+  Logger? logger;
 
   /// WeatherEarthquakeTelopDisplayConfig インスタンス
-  late final WeatherEarthquakeTelopDisplayConfig config;
+  final WeatherEarthquakeTelopDisplayConfig config =
+      WeatherEarthquakeTelopDisplayConfig();
 
   /// WeatherEarthquakeTelopDisplayAppConfig インスタンス
-  late final WeatherEarthquakeTelopDisplayAppConfig appConfig;
-  
+  final WeatherEarthquakeTelopDisplayAppConfig appConfig =
+      WeatherEarthquakeTelopDisplayAppConfig();
+
   /// WeatherEarthquakeTelopDisplayWindowConfig インスタンス
-  late final WeatherEarthquakeTelopDisplayWindowConfig windowConfig;
+  final WeatherEarthquakeTelopDisplayWindowConfig windowConfig =
+      WeatherEarthquakeTelopDisplayWindowConfig();
 
   /// アプリケーションを実行する
   Future<void> main() async {
@@ -49,12 +42,7 @@ class WeatherEarthquakeTelopDisplay {
       logger?.warning(error);
     }
 
-    runApp(
-      UncontrolledProviderScope(
-        container: container,
-        child: const WeatherEarthquakeTelopDisplayApp(),
-      ),
-    );
+    runApp(const ProviderScope(child: WeatherEarthquakeTelopDisplayApp()));
   }
 
   /// ウィンドウをイニシャライズする
@@ -92,7 +80,10 @@ class WeatherEarthquakeTelopDisplay {
       "WeatherEarthquakeTelopDisplay application window options: ${windowOptions.toString()}",
     );
 
-    windowManager.waitUntilReadyToShow(windowOptions, () async => await onReadyToShowWindow());
+    windowManager.waitUntilReadyToShow(
+      windowOptions,
+      () async => await onReadyToShowWindow(),
+    );
   }
 
   /// ウィンドウの表示が可能になったときの処理

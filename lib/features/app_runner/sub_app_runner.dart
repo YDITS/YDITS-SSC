@@ -16,7 +16,7 @@ import 'package:ydits_ssc/apps/weather_earthquake_telop_display/weather_earthqua
 
 /// YDITS for SSC サブアプリケーションの実行管理
 final class YditsSscSubAppRunner extends SubAppRunner {
-  YditsSscSubAppRunner({required super.container});
+  YditsSscSubAppRunner({super.logger});
 
   @override
   Future<void> run(List<String> args) async {
@@ -37,15 +37,15 @@ final class YditsSscSubAppRunner extends SubAppRunner {
     final Map<SubWindows, Function()> subWindowsRoute = {
       SubWindows.eewMonitorDisplay: () async {
         logger?.info("Starting EEW Monitor Display Window...");
-        await EewMonitorDisplay(container: container).main();
+        await EewMonitorDisplay(logger: logger).main();
       },
       SubWindows.tsunamiMonitorDisplay: () async {
         logger?.info("Starting Tsunami Monitor Display Window...");
-        await TsunamiMonitorDisplay(container: container).main();
+        await TsunamiMonitorDisplay(logger: logger).main();
       },
       SubWindows.weatherEarthquakeTelopDisplay: () async {
         logger?.info("Starting Weather Earthquake Telop Display Window...");
-        await WeatherEarthquakeTelopDisplay(container: container).main();
+        await WeatherEarthquakeTelopDisplay(logger: logger).main();
       },
     };
 

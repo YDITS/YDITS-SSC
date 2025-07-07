@@ -10,8 +10,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:logging/logging.dart';
 import 'package:window_manager/window_manager.dart';
 import 'package:flutter/material.dart';
-import 'package:ydits_ssc/apps/tsunami_monitor_display/provider/tsunami_monitor_display_config_provider.dart';
-import 'package:ydits_ssc/core/providers/logger/notifier/logger_notifier.dart';
 
 import 'package:ydits_ssc/core/utils/is_platform_desktop.dart';
 import 'package:ydits_ssc/apps/tsunami_monitor_display/widget/tsunami_monitor_display_app.dart';
@@ -19,23 +17,18 @@ import 'package:ydits_ssc/apps/tsunami_monitor_display/model/tsunami_monitor_dis
 
 /// Tsunami Monitor Display
 final class TsunamiMonitorDisplay {
-  TsunamiMonitorDisplay({required this.container}) {
-    logger = container.read(loggerNotifierProvider);
-    config = container.read(tsunamiMonitorDisplayAppConfigProvider);
-    windowConfig = container.read(tsunamiMonitorDisplayWindowConfigProvider);
-  }
-
-  /// ProviderContainer インスタンス
-  final ProviderContainer container;
+  TsunamiMonitorDisplay({this.logger});
 
   /// Logger インスタンス
-  late final Logger? logger;
+  Logger? logger;
 
   /// TsunamiMonitorDisplayAppConfig インスタンス
-  late final TsunamiMonitorDisplayAppConfig config;
+  final TsunamiMonitorDisplayAppConfig config =
+      TsunamiMonitorDisplayAppConfig();
 
   /// TsunamiMonitorDisplayWindowConfig インスタンス
-  late final TsunamiMonitorDisplayWindowConfig windowConfig;
+  final TsunamiMonitorDisplayWindowConfig windowConfig =
+      TsunamiMonitorDisplayWindowConfig();
 
   /// アプリケーションを実行する
   Future<void> main() async {
@@ -45,12 +38,7 @@ final class TsunamiMonitorDisplay {
       logger?.warning(error);
     }
 
-    runApp(
-      UncontrolledProviderScope(
-        container: container,
-        child: const TsunamiMonitorDisplayApp(),
-      ),
-    );
+    runApp(const ProviderScope(child: TsunamiMonitorDisplayApp()));
   }
 
   /// ウィンドウをイニシャライズする
