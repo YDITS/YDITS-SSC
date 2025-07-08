@@ -10,7 +10,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ydits_ssc/core/providers/constants/copyright_name/copyright_name_provider.dart';
 
-final class CopyrightFooter extends ConsumerWidget {
+/// A widget that displays a copyright footer.
+class CopyrightFooter extends ConsumerWidget {
   const CopyrightFooter({
     super.key,
   });
@@ -21,13 +22,11 @@ final class CopyrightFooter extends ConsumerWidget {
 
     return Container(
       color: Colors.black87,
-      child: Padding(
-        padding: const EdgeInsets.all(12),
-        child: Center(
-          child: Text(
-            "Copyright © $name",
-            style: const TextStyle(fontSize: 12, color: Colors.white),
-          ),
+      padding: const EdgeInsets.all(12),
+      child: Center(
+        child: Text(
+          'Copyright © $name',
+          style: const TextStyle(fontSize: 12, color: Colors.white),
         ),
       ),
     );
