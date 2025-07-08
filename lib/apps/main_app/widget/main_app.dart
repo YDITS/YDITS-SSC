@@ -17,10 +17,7 @@ import 'package:ydits_ssc/features/main_app_home/widget/main_app_home.dart';
 
 /// YDITS for SSC メインアプリケーション
 final class YditsSscMainApp extends ConsumerStatefulWidget {
-  const YditsSscMainApp({
-    super.key,
-    required this.subWindows,
-  });
+  const YditsSscMainApp({super.key, required this.subWindows});
 
   /// サブウィンドウを保持するマップ
   final Map<SubWindows, WindowController> subWindows;
@@ -37,12 +34,19 @@ final class _YditsSscMainAppState extends ConsumerState<YditsSscMainApp> {
   @override
   void initState() {
     super.initState();
-    _startWeatherTimer();
+
+    // Avoid modifying provider during widget lifecycle.
+    // This executes the provider update after the widget tree has been built.
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _startWeatherTimer();
+    });
   }
 
   /// 天気を処理するタイマーを開始する
   void _startWeatherTimer() {
-    final weatherTimerController = ref.read(weatherTimerNotifierProvider.notifier);
+    final weatherTimerController = ref.read(
+      weatherTimerNotifierProvider.notifier,
+    );
     weatherTimerController.start();
     _weatherTimer = Timer.periodic(const Duration(seconds: 1), (timer) {});
   }
