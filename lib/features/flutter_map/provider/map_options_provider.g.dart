@@ -6,7 +6,7 @@ part of 'map_options_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$mapOptionsHash() => r'46c83b570bc0e9ece425f00a89827a66931b9923';
+String _$mapOptionsHash() => r'3039335e4040e6a398de58b11463e71375649517';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -29,16 +29,24 @@ class _SystemHash {
   }
 }
 
-/// See also [mapOptions].
+/// A provider that returns the appropriate [MapOptions] based on the given [MapTypes].
+///
+/// Copied from [mapOptions].
 @ProviderFor(mapOptions)
 const mapOptionsProvider = MapOptionsFamily();
 
-/// See also [mapOptions].
+/// A provider that returns the appropriate [MapOptions] based on the given [MapTypes].
+///
+/// Copied from [mapOptions].
 class MapOptionsFamily extends Family<MapOptions> {
-  /// See also [mapOptions].
+  /// A provider that returns the appropriate [MapOptions] based on the given [MapTypes].
+  ///
+  /// Copied from [mapOptions].
   const MapOptionsFamily();
 
-  /// See also [mapOptions].
+  /// A provider that returns the appropriate [MapOptions] based on the given [MapTypes].
+  ///
+  /// Copied from [mapOptions].
   MapOptionsProvider call(MapTypes mapType) {
     return MapOptionsProvider(mapType);
   }
@@ -65,9 +73,13 @@ class MapOptionsFamily extends Family<MapOptions> {
   String? get name => r'mapOptionsProvider';
 }
 
-/// See also [mapOptions].
+/// A provider that returns the appropriate [MapOptions] based on the given [MapTypes].
+///
+/// Copied from [mapOptions].
 class MapOptionsProvider extends AutoDisposeProvider<MapOptions> {
-  /// See also [mapOptions].
+  /// A provider that returns the appropriate [MapOptions] based on the given [MapTypes].
+  ///
+  /// Copied from [mapOptions].
   MapOptionsProvider(MapTypes mapType)
     : this._internal(
         (ref) => mapOptions(ref as MapOptionsRef, mapType),

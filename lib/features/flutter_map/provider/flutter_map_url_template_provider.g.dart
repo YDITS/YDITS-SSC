@@ -7,9 +7,11 @@ part of 'flutter_map_url_template_provider.dart';
 // **************************************************************************
 
 String _$flutterMapUrlTemplateHash() =>
-    r'b49bf4c4cb33a1c0c06c9866e6bf356ab4d8e088';
+    r'14655b8bde970177aa9fd94cbdfbac6be4a7cd20';
 
-/// See also [flutterMapUrlTemplate].
+/// A provider that supplies the URL template for the map tiles.
+///
+/// Copied from [flutterMapUrlTemplate].
 @ProviderFor(flutterMapUrlTemplate)
 final flutterMapUrlTemplateProvider = AutoDisposeProvider<String>.internal(
   flutterMapUrlTemplate,

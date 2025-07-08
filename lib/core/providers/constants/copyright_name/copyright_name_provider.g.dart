@@ -6,9 +6,11 @@ part of 'copyright_name_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$copyrightNameHash() => r'981f815aa3ad14f7abea421be0751247d3d14181';
+String _$copyrightNameHash() => r'78116b05edbdef91fdf30b58416a74caeb16713f';
 
-/// See also [copyrightName].
+/// A provider that returns the copyright holder's name.
+///
+/// Copied from [copyrightName].
 @ProviderFor(copyrightName)
 final copyrightNameProvider = AutoDisposeProvider<String>.internal(
   copyrightName,

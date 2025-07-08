@@ -6,9 +6,11 @@ part of 'weather_timer_notifier.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$weatherTimerHash() => r'9d54a6ceb729856d4da736a10464ec7842da7781';
+String _$weatherTimerHash() => r'de08fe4c1551649bbfd7748fb1f81f22b37c3f21';
 
-/// See also [WeatherTimer].
+/// A notifier for managing a timer that periodically triggers weather updates.
+///
+/// Copied from [WeatherTimer].
 @ProviderFor(WeatherTimer)
 final weatherTimerProvider =
     AutoDisposeNotifierProvider<WeatherTimer, WeatherTimerStateModel>.internal(

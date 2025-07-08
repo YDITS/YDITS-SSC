@@ -12,13 +12,31 @@ import 'package:flutter/material.dart';
 @immutable
 class TelopLabelStateModel {
   const TelopLabelStateModel({
-    required this.width,
-    required this.text,
-    required this.bgColor,
-    required this.fontColor,
-    required this.fontSize,
-    required this.fontFamily,
+    this.width = defaultWidth,
+    this.text = defaultInitialText,
+    this.bgColor = defaultBgColor,
+    this.fontColor = defaultFontColor,
+    this.fontSize = defaultFontSize,
+    this.fontFamily = defaultFontFamily,
   });
+
+  /// The default width of the telop label.
+  static const double defaultWidth = 144;
+
+  /// The default initial text for the telop label.
+  static const String defaultInitialText = 'Initializing...';
+
+  /// The default background color of the telop label.
+  static const Color defaultBgColor = Color.fromARGB(255, 31, 31, 31);
+
+  /// The default font color of the telop label.
+  static const Color defaultFontColor = Color.fromARGB(255, 223, 223, 223);
+
+  /// The default font size.
+  static const double defaultFontSize = 32;
+
+  /// The default font family.
+  static const String defaultFontFamily = 'M PLUS 2';
 
   /// The width of the label.
   final double width;

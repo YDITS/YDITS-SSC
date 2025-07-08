@@ -12,11 +12,23 @@ import 'package:flutter/material.dart';
 @immutable
 class TelopContentStateModel {
   const TelopContentStateModel({
-    required this.text,
-    required this.fontSize,
-    required this.fontFamily,
-    required this.speed,
+    this.text = defaultInitialText,
+    this.fontSize = defaultFontSize,
+    this.fontFamily = defaultFontFamily,
+    this.speed = defaultSpeed,
   });
+
+  /// The default initial text for the telop content.
+  static const String defaultInitialText = 'Fetching information...';
+
+  /// The default font size.
+  static const double defaultFontSize = 32;
+
+  /// The default font family.
+  static const String defaultFontFamily = 'M PLUS 2';
+
+  /// The default speed for the sliding animation of the telop.
+  static const int defaultSpeed = 15;
 
   /// The text to be displayed.
   final String text;

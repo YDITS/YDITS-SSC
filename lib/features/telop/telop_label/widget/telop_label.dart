@@ -19,7 +19,7 @@ class TelopLabel extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final state = ref.watch(telopLabelStateProvider());
+    final state = ref.watch(telopLabelStateProvider);
 
     return Container(
       width: state.width,

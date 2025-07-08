@@ -7,9 +7,11 @@ part of 'flutter_map_user_agent_package_name_provider.dart';
 // **************************************************************************
 
 String _$flutterMapUserAgentPackageNameHash() =>
-    r'6acf505ab0aa8e607bc201ccaceb955285bdb282';
+    r'3c2097e21839a8e8577831a82a88354159a907a0';
 
-/// See also [flutterMapUserAgentPackageName].
+/// A provider that supplies the user agent package name for the map service.
+///
+/// Copied from [flutterMapUserAgentPackageName].
 @ProviderFor(flutterMapUserAgentPackageName)
 final flutterMapUserAgentPackageNameProvider =
     AutoDisposeProvider<String>.internal(

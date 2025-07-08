@@ -6,9 +6,11 @@ part of 'telop_settings_notifier.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$telopSettingsHash() => r'd6510ce119d2857d7f4b5d3c8bbd794c459c66fe';
+String _$telopSettingsHash() => r'80fb4117cc2bdebc3980d3d7a0ba24771eedf157';
 
-/// See also [TelopSettings].
+/// A notifier for managing the telop settings.
+///
+/// Copied from [TelopSettings].
 @ProviderFor(TelopSettings)
 final telopSettingsProvider =
     AutoDisposeNotifierProvider<TelopSettings, TelopSettingsModel>.internal(

@@ -8,7 +8,9 @@ part of 'flutter_secure_storage_provider.dart';
 
 String _$storageHash() => r'444b45682708efa93ecb645d3b4190f0d84d5c57';
 
-/// See also [storage].
+/// A provider that exposes an instance of [FlutterSecureStorage].
+///
+/// Copied from [storage].
 @ProviderFor(storage)
 final storageProvider = AutoDisposeProvider<FlutterSecureStorage>.internal(
   storage,

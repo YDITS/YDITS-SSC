@@ -6,9 +6,11 @@ part of 'weather_notifier.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$yditsSscWeatherHash() => r'062e2b83b969d2e3a506e85c0729002fa30ec7b3';
+String _$yditsSscWeatherHash() => r'1888aeb6e5e9a45f794f35feb0cf5623f48c89e6';
 
-/// See also [YditsSscWeather].
+/// A notifier for managing the weather state of the YDITS SSC application.
+///
+/// Copied from [YditsSscWeather].
 @ProviderFor(YditsSscWeather)
 final yditsSscWeatherProvider =
     AutoDisposeNotifierProvider<YditsSscWeather, WeatherStateModel>.internal(

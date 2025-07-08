@@ -8,7 +8,9 @@ part of 'main_app_home_state_notifier.dart';
 
 String _$mainAppHomeStateHash() => r'ccb07590392b82b51dd5611ac01d124fa89b42e7';
 
-/// See also [MainAppHomeState].
+/// A notifier for managing the state of the main application's home screen.
+///
+/// Copied from [MainAppHomeState].
 @ProviderFor(MainAppHomeState)
 final mainAppHomeStateProvider = AutoDisposeNotifierProvider<
   MainAppHomeState,

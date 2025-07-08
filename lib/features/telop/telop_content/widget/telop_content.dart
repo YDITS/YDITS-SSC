@@ -29,7 +29,7 @@ class _TelopContentState extends ConsumerState<TelopContent>
   void initState() {
     super.initState();
 
-    final speed = ref.read(telopContentStateProvider()).speed;
+    final speed = ref.read(telopContentStateProvider).speed;
 
     _controller = AnimationController(
       duration: Duration(seconds: speed), // Sliding duration
@@ -48,7 +48,7 @@ class _TelopContentState extends ConsumerState<TelopContent>
 
   @override
   Widget build(BuildContext context) {
-    final state = ref.watch(telopContentStateProvider());
+    final state = ref.watch(telopContentStateProvider);
 
     return ClipRect(
       child: LayoutBuilder(
