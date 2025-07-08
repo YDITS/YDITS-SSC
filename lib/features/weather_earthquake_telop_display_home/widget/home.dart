@@ -29,10 +29,10 @@ class WeatherEarthquakeTelopDisplayHomePage extends ConsumerStatefulWidget {
 
   @override
   ConsumerState<WeatherEarthquakeTelopDisplayHomePage> createState() =>
-      _HomePage();
+      _WeatherEarthquakeTelopDisplayHomePageState();
 }
 
-class _HomePage extends ConsumerState<WeatherEarthquakeTelopDisplayHomePage> {
+class _WeatherEarthquakeTelopDisplayHomePageState extends ConsumerState<WeatherEarthquakeTelopDisplayHomePage> {
   late WeatherFactory _weatherFactory;
 
   @override
