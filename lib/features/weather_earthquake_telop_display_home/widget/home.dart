@@ -28,7 +28,8 @@ class WeatherEarthquakeTelopDisplayHomePage extends ConsumerStatefulWidget {
   final Logger? logger;
 
   @override
-  ConsumerState<WeatherEarthquakeTelopDisplayHomePage> createState() => _HomePage();
+  ConsumerState<WeatherEarthquakeTelopDisplayHomePage> createState() =>
+      _HomePage();
 }
 
 class _HomePage extends ConsumerState<WeatherEarthquakeTelopDisplayHomePage> {
@@ -37,9 +38,14 @@ class _HomePage extends ConsumerState<WeatherEarthquakeTelopDisplayHomePage> {
   @override
   void initState() {
     super.initState();
-    initWeatherFactory();
-    updateWeather();
-    // updateEqinfo();
+
+    // Avoid modifying provider during widget lifecycle.
+    // This executes the provider update after the widget tree has been built.
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      initWeatherFactory();
+      updateWeather();
+      // updateEqinfo();
+    });
   }
 
   Future<void> initWeatherFactory() async {
@@ -66,7 +72,8 @@ class _HomePage extends ConsumerState<WeatherEarthquakeTelopDisplayHomePage> {
       Weather weather = await _weatherFactory.currentWeatherByCityName(
         prefecture,
       );
-      text += '$prefecture: ${weather.temperature?.celsius?.toStringAsFixed(1)}°C ${weather.weatherDescription} | ';
+      text +=
+          '$prefecture: ${weather.temperature?.celsius?.toStringAsFixed(1)}°C ${weather.weatherDescription} | ';
     }
 
     ref.read(telopContentStateProvider().notifier).setText(text);
@@ -101,11 +108,17 @@ class _HomePage extends ConsumerState<WeatherEarthquakeTelopDisplayHomePage> {
     ref.read(telopLabelStateProvider().notifier).setText("エラー");
 
     if (stack is Response) {
-      ref.read(telopContentStateProvider().notifier).setText("Failed to fetch data: ${stack.statusCode.toString()}");
+      ref
+          .read(telopContentStateProvider().notifier)
+          .setText("Failed to fetch data: ${stack.statusCode.toString()}");
     } else if (stack is Exception) {
-      ref.read(telopContentStateProvider().notifier).setText("Failed to fetch data: ${stack.toString()}");
+      ref
+          .read(telopContentStateProvider().notifier)
+          .setText("Failed to fetch data: ${stack.toString()}");
     } else {
-      throw Exception("Unhandled error at onFetchEqinfoError: ${stack.toString()}");
+      throw Exception(
+        "Unhandled error at onFetchEqinfoError: ${stack.toString()}",
+      );
     }
   }
 
@@ -113,12 +126,7 @@ class _HomePage extends ConsumerState<WeatherEarthquakeTelopDisplayHomePage> {
   Widget build(BuildContext context) {
     return const Scaffold(
       body: Center(
-        child: Row(
-          children: [
-            TelopLabel(),
-            Expanded(child: TelopContent()),
-          ],
-        ),
+        child: Row(children: [TelopLabel(), Expanded(child: TelopContent())]),
       ),
     );
   }
