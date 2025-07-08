@@ -9,7 +9,7 @@
 import 'package:flutter/material.dart';
 import 'package:ydits_ssc/features/eew_monitor_display_home/widget/eew_monitor_display_home.dart';
 
-/// EEW Monitor Display アプリケーションウィジェット
+/// The root widget for the EEW (Earthquake Early Warning) Monitor Display application.
 final class EewMonitorDisplayApp extends StatelessWidget {
   const EewMonitorDisplayApp({super.key});
 
