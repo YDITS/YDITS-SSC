@@ -11,9 +11,10 @@ import 'package:desktop_multi_window/desktop_multi_window.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:ydits_ssc/core/sub_windows/sub_windows.dart';
-import 'package:ydits_ssc/core/widgets/copyright_footer/copyright_footer.dart';
-import 'package:ydits_ssc/core/widgets/text_button_with_icon/text_button_with_icon.dart';
 import 'package:ydits_ssc/apps/main_app/model/main_app_config.dart';
+import 'package:ydits_ssc/features/main_app_home/notifier/main_app_home_state_notifier.dart';
+import 'package:ydits_ssc/features/main_app_home/widget/routes/window_launcher.dart';
+import 'package:ydits_ssc/features/settings/widget/settings_page.dart';
 
 final class YditsSscMainAppHomePage extends ConsumerStatefulWidget {
   const YditsSscMainAppHomePage({super.key, required this.windows});
@@ -28,94 +29,59 @@ final class YditsSscMainAppHomePage extends ConsumerStatefulWidget {
 final class _YditsSscMainAppHomePageState
     extends ConsumerState<YditsSscMainAppHomePage> {
   final YditsSscAppConfig _config = YditsSscAppConfig();
-  final ScrollController _scrollController = ScrollController();
 
   @override
   Widget build(BuildContext context) {
+    Widget page;
+
+    final int currentIndex =
+        ref.watch(mainAppHomeStateProvider).currentNavigationIndex;
+
+    switch (currentIndex) {
+      case 0:
+        page = WindowLauncher(windows: widget.windows);
+        break;
+      case 1:
+        page = const SettingsPage();
+        break;
+      default:
+        throw UnimplementedError(
+          "There isn't widget for `$currentIndex` in MainAppHomePage.",
+        );
+    }
+
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 16, 16, 16),
       appBar: AppBar(
         title: Text(_config.title, style: const TextStyle(color: Colors.white)),
         backgroundColor: Colors.black87,
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
+      body: Row(
         children: [
-          const SizedBox(height: 16),
-          const Center(
-            child: Text(
-              "Window Launcher",
-              style: TextStyle(fontSize: 24, color: Colors.white),
+          SafeArea(
+            child: NavigationRail(
+              extended: false,
+              destinations: const [
+                NavigationRailDestination(
+                  icon: Icon(Icons.home),
+                  label: Text("ホーム"),
+                ),
+                NavigationRailDestination(
+                  icon: Icon(Icons.settings),
+                  label: Text("設定"),
+                ),
+              ],
+              selectedIndex: currentIndex,
+              onDestinationSelected: (value) {
+                ref
+                    .read(mainAppHomeStateProvider.notifier)
+                    .setCurrentNavigationIndex(value);
+              },
             ),
           ),
-          const SizedBox(height: 16),
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.fromLTRB(32, 0, 32, 0),
-              child: ScrollbarTheme(
-                data: const ScrollbarThemeData(
-                  thumbColor: WidgetStatePropertyAll(
-                    Color.fromARGB(255, 127, 127, 127),
-                  ),
-                ),
-                child: Scrollbar(
-                  thumbVisibility: true,
-                  controller: _scrollController,
-                  child: ListView.separated(
-                    controller: _scrollController,
-                    itemCount: SubWindows.values.length + 1,
-                    itemBuilder: (BuildContext context, int index) {
-                      // 最後の要素の後にはContainerを返し、separatorを適用させる
-                      if (index == SubWindows.values.length) {
-                        return Container();
-                      }
-
-                      return Center(
-                        child: SizedBox(
-                          width: 384,
-                          child: windowsRootingButton(index),
-                        ),
-                      );
-                    },
-                    separatorBuilder: (BuildContext context, int index) {
-                      return const SizedBox(height: 24);
-                    },
-                  ),
-                ),
-              ),
-            ),
-          ),
-          const CopyrightFooter(),
+          Expanded(child: Container(child: page)),
         ],
       ),
     );
-  }
-
-  TextButtonWithIcon windowsRootingButton(index) {
-    final SubWindows pressedScreen = SubWindows.values[index];
-    final IconData iconData =
-        subWindowIconData[pressedScreen] ?? Icons.question_mark;
-
-    return TextButtonWithIcon(
-      iconData: iconData,
-      onPressed: () => _onSubWindowsRootingButtonPressed(pressedScreen),
-      child: Text(
-        subWindowsTitle.values.toList()[index],
-        style: const TextStyle(fontSize: 20, color: Colors.white),
-      ),
-    );
-  }
-
-  Future<void> _onSubWindowsRootingButtonPressed(
-    SubWindows pressedScreen,
-  ) async {
-    print(widget.windows);
-    print("Sub windows rooting button has clicked: `$pressedScreen`.");
-
-    if (!widget.windows.containsKey(pressedScreen)) {
-      return;
-    }
-
-    await widget.windows[pressedScreen]?.show();
   }
 }
