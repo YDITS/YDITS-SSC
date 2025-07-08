@@ -7,7 +7,7 @@
 //
 
 import 'package:flutter/material.dart';
-import 'package:ydits_ssc/features/tsunami_monitor_display_home/widget/home.dart';
+import 'package:ydits_ssc/features/tsunami_monitor_display_home/widget/tsunami_monitor_display_home.dart';
 
 /// Tsunami Monitor Display アプリケーションウィジェット
 final class TsunamiMonitorDisplayApp extends StatelessWidget {

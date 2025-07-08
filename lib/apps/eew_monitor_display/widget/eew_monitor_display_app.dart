@@ -7,7 +7,7 @@
 //
 
 import 'package:flutter/material.dart';
-import 'package:ydits_ssc/features/eew_monitor_display_home/widget/home.dart';
+import 'package:ydits_ssc/features/eew_monitor_display_home/widget/eew_monitor_display_home.dart';
 
 /// EEW Monitor Display アプリケーションウィジェット
 final class EewMonitorDisplayApp extends StatelessWidget {
