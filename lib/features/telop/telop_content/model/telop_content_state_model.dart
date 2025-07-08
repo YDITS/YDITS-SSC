@@ -8,6 +8,7 @@
 
 import 'package:flutter/material.dart';
 
+/// A data model representing the state of the telop content.
 @immutable
 class TelopContentStateModel {
   const TelopContentStateModel({
@@ -17,22 +18,30 @@ class TelopContentStateModel {
     required this.speed,
   });
 
+  /// The text to be displayed.
   final String text;
+
+  /// The font size of the text.
   final double fontSize;
+
+  /// The font family of the text.
   final String fontFamily;
+
+  /// The animation speed of the telop.
   final int speed;
 
+  /// Creates a copy of this model with the given fields replaced with new values.
   TelopContentStateModel copyWith({
-    required String newText,
-    required double newFontSize,
-    required String newFontFamily,
-    required int newSpeed,
+    String? newText,
+    double? newFontSize,
+    String? newFontFamily,
+    int? newSpeed,
   }) {
     return TelopContentStateModel(
-      text: newText,
-      fontSize: newFontSize,
-      fontFamily: newFontFamily,
-      speed: newSpeed,
+      text: newText ?? text,
+      fontSize: newFontSize ?? fontSize,
+      fontFamily: newFontFamily ?? fontFamily,
+      speed: newSpeed ?? speed,
     );
   }
 }

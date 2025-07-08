@@ -12,34 +12,35 @@ import 'package:ydits_ssc/features/telop/telop_label/model/telop_label_state_mod
 
 part 'telop_label_state_notifier.g.dart';
 
+/// A notifier for managing the state of the telop label.
 @riverpod
 class TelopLabelState extends _$TelopLabelState {
-  /// デフォルトのテロップラベルの幅
+  /// The default width of the telop label.
   static const double defaultWidth = 144;
 
-  /// デフォルトのテロップラベルの初期値
-  static const String defaultInitialText = "起動中…";
+  /// The default initial text for the telop label.
+  static const String defaultInitialText = 'Initializing...';
 
-  /// デフォルトのテロップラベルの背景色
+  /// The default background color of the telop label.
   static const Color defaultBgColor = Color.fromARGB(255, 31, 31, 31);
 
-  /// デフォルトのテロップラベルの文字色
+  /// The default font color of the telop label.
   static const Color defaultFontColor = Color.fromARGB(255, 223, 223, 223);
 
-  /// デフォルトのフォントサイズ
+  /// The default font size.
   static const double defaultFontSize = 32;
 
-  /// デフォルトのフォント
-  static const String defaultFontFamily = "M PLUS 2";
+  /// The default font family.
+  static const String defaultFontFamily = 'M PLUS 2';
 
   @override
   TelopLabelStateModel build({
-    width = TelopLabelState.defaultWidth,
-    text = TelopLabelState.defaultInitialText,
-    bgColor = TelopLabelState.defaultBgColor,
-    fontColor = TelopLabelState.defaultFontColor,
-    fontSize = TelopLabelState.defaultFontSize,
-    fontFamily = TelopLabelState.defaultFontFamily,
+    double width = defaultWidth,
+    String text = defaultInitialText,
+    Color bgColor = defaultBgColor,
+    Color fontColor = defaultFontColor,
+    double fontSize = defaultFontSize,
+    String fontFamily = defaultFontFamily,
   }) {
     return TelopLabelStateModel(
       width: width,
@@ -51,7 +52,8 @@ class TelopLabelState extends _$TelopLabelState {
     );
   }
 
-  void setText(text) {
+  /// Sets the text of the telop label.
+  void setText(String text) {
     state = state.copyWith(newText: text);
   }
 }

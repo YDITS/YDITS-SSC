@@ -10,7 +10,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ydits_ssc/features/telop/telop_label/notifier/telop_label_state_notifier.dart';
 
+/// A widget that displays a label for the telop.
 class TelopLabel extends ConsumerWidget {
+  /// Creates a [TelopLabel].
   const TelopLabel({
     super.key,
   });
@@ -20,9 +22,7 @@ class TelopLabel extends ConsumerWidget {
     final state = ref.watch(telopLabelStateProvider());
 
     return Container(
-      // decoration: BoxDecoration(color: Colors.black, borderRadius: BorderRadius.circular(8)),
       width: state.width,
-      height: null,
       color: state.bgColor,
       child: Center(
         child: Text(

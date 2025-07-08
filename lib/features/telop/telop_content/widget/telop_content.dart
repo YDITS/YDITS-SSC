@@ -10,6 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ydits_ssc/features/telop/telop_content/notifier/telop_content_state_notifier.dart';
 
+/// A widget that displays scrolling telop content.
 class TelopContent extends ConsumerStatefulWidget {
   const TelopContent({
     super.key,
@@ -22,27 +23,26 @@ class TelopContent extends ConsumerStatefulWidget {
 class _TelopContentState extends ConsumerState<TelopContent>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
-  late Animation<double>? _animation;
+  late Animation<double> _animation;
 
   @override
   void initState() {
     super.initState();
 
-    // Initialize animation controler
+    final speed = ref.read(telopContentStateProvider()).speed;
+
     _controller = AnimationController(
-      duration: const Duration(seconds: 15), // スライド時間
+      duration: Duration(seconds: speed), // Sliding duration
       vsync: this,
     );
 
-    // アニメーションの範囲を設定
     _animation = Tween<double>(begin: 1.0, end: -1.0).animate(
       CurvedAnimation(
         parent: _controller,
-        curve: Curves.linear, // 直線的に移動
+        curve: Curves.linear, // Linear movement
       ),
     );
 
-    // アニメーションを繰り返し設定
     _controller.repeat();
   }
 
@@ -56,21 +56,18 @@ class _TelopContentState extends ConsumerState<TelopContent>
           return AnimatedBuilder(
             animation: _controller,
             builder: (context, child) {
-              double screenWidth = MediaQuery.of(context).size.width;
+              final screenWidth = MediaQuery.of(context).size.width;
 
-              return SizedBox(
-                width: screenWidth,
-                child: Transform.translate(
-                  offset: Offset(screenWidth * _animation!.value, 0),
-                  child: Text(
-                    state.text,
-                    style: TextStyle(
-                      fontSize: state.fontSize,
-                      fontFamily: state.fontFamily,
-                    ),
-                    softWrap: false,
-                    overflow: TextOverflow.visible,
+              return Transform.translate(
+                offset: Offset(screenWidth * _animation.value, 0),
+                child: Text(
+                  state.text,
+                  style: TextStyle(
+                    fontSize: state.fontSize,
+                    fontFamily: state.fontFamily,
                   ),
+                  softWrap: false,
+                  overflow: TextOverflow.visible,
                 ),
               );
             },
