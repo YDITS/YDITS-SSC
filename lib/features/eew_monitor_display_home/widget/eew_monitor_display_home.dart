@@ -8,25 +8,20 @@
 
 import 'package:flutter/material.dart';
 
-/// EEW Monitor Display Home Page ウィジェット
-final class EEWMonitorDisplayHomePage extends StatefulWidget {
+/// The home page widget for the EEW (Earthquake Early Warning) Monitor Display.
+class EEWMonitorDisplayHomePage extends StatefulWidget {
   const EEWMonitorDisplayHomePage({super.key});
 
   @override
-  State<EEWMonitorDisplayHomePage> createState() => _HomePage();
+  State<EEWMonitorDisplayHomePage> createState() => _HomePageState();
 }
 
-final class _HomePage extends State<EEWMonitorDisplayHomePage> {
-  @override
-  void initState() {
-    super.initState();
-  }
-
+class _HomePageState extends State<EEWMonitorDisplayHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('EEWMonitorDisplay')),
-      body: const Center(child: Text('EEWMonitorDisplay')),
+      appBar: AppBar(title: const Text('EEW Monitor Display')),
+      body: const Center(child: Text('EEW Monitor Display')),
     );
   }
 }
