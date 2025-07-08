@@ -23,6 +23,7 @@ migrate_working_dir/*
 *.code-workspace
 
 # Flutter/Dart/Pub related
+.dart_tool
 **/doc/api/*
 **/ios/Flutter/.last_build_id
 .flutter-plugins
