@@ -7,20 +7,22 @@
 //
 
 import 'dart:ui';
-import 'package:version/version.dart';
+
 import 'package:configure/configure.dart';
+import 'package:version/version.dart';
 
-/// EEW Monitor Display アプリケーションの設定
+/// Configuration for the EEW (Earthquake Early Warning) Monitor Display application.
 final class EEWMonitorDisplayAppConfig implements AppConfig {
-  /// アプリケーションのタイトル
+  /// The title of the application.
   @override
-  final String title = "YDITS for SSC - EEW Monitor Display";
+  final String title = 'YDITS for SSC - EEW Monitor Display';
 
-  /// アプリケーションの説明
+  /// A description of the application.
   @override
-  final String description = "Saitama Sora Cam 用に制作された防災情報アプリケーション。";
+  final String description =
+      'A disaster prevention information application created for Saitama Sora Cam.';
 
-  /// アプリケーションのバージョン
+  /// The version of the application.
   @override
   final Version version = Version(
     major: 1,
@@ -30,25 +32,25 @@ final class EEWMonitorDisplayAppConfig implements AppConfig {
   );
 }
 
-/// EEW Monitor Display ウィンドウの設定
+/// Window configuration for the EEW (Earthquake Early Warning) Monitor Display.
 final class EEWMonitorDisplayWindowConfig implements WindowConfig {
-  /// ウィンドウのタイトル
+  /// The title of the window.
   @override
-  final String title = "EEW Monitor Display";
+  final String title = 'EEW Monitor Display';
 
-  /// ウィンドウのフレームデータ
+  /// The frame data of the window.
   @override
   final Rect frame = const Rect.fromLTWH(128, 128, 960, 540);
 
-  /// ウィンドウの初期サイズ
+  /// The initial size of the window.
   @override
   final Size initialSize = const Size(960, 540);
 
-  /// ウィンドウの最小サイズの制限値
+  /// The minimum allowed size of the window.
   @override
   final Size minSize = const Size(640, 360);
 
-  /// ウィンドウの最大サイズの制限値
+  /// The maximum allowed size of the window.
   @override
   final Size maxSize = Size.infinite;
 }
