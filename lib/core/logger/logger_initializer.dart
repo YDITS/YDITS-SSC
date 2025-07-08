@@ -16,7 +16,7 @@ Logger? initializeLogger() {
 
     Logger.root.level = Level.ALL;
     Logger.root.onRecord.listen((record) {
-      print('${record.level.name}: ${record.time}: ${record.message}');
+      print('[${record.level.name.padRight(5)}] ${record.time}: ${record.message}');
     });
     return logger;
   } catch (error) {
