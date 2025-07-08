@@ -146,7 +146,7 @@ abstract class MainAppRunner {
   /// Callback for when a sub-window fails to close.
   void _onFailedCloseWindow(int windowId) {
     logger?.warning(
-      WindowCloseFailed(
+      WindowCloseException(
         'Failed to close the sub window | Window ID: `${windowId.toString()}`',
       ),
     );
