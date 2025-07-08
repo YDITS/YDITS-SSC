@@ -11,5 +11,6 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'copyright_name_provider.g.dart';
 
+/// A provider that returns the copyright holder's name.
 @riverpod
-String copyrightName(Ref ref) => "よね/Yone";
+String copyrightName(Ref ref) => 'よね/Yone';
