@@ -25,6 +25,9 @@ class SettingsPage extends ConsumerWidget {
           RadioListTile(
             value: TelopDisplayMode.earthquake,
             groupValue: telopSettings.displayModeOverride,
+            title: Text(
+              telopDisplayModeToText[TelopDisplayMode.earthquake] ?? "-",
+            ),
             onChanged:
                 (TelopDisplayMode? value) async =>
                     await _onTelopDisplayModeRadioChanged(value, ref),
@@ -32,6 +35,9 @@ class SettingsPage extends ConsumerWidget {
           RadioListTile(
             value: TelopDisplayMode.eew,
             groupValue: telopSettings.displayModeOverride,
+            title: Text(
+              telopDisplayModeToText[TelopDisplayMode.eew] ?? "-",
+            ),
             onChanged:
                 (TelopDisplayMode? value) async =>
                     await _onTelopDisplayModeRadioChanged(value, ref),
@@ -39,6 +45,9 @@ class SettingsPage extends ConsumerWidget {
           RadioListTile(
             value: TelopDisplayMode.none,
             groupValue: telopSettings.displayModeOverride,
+            title: Text(
+              telopDisplayModeToText[TelopDisplayMode.none] ?? "-",
+            ),
             onChanged:
                 (TelopDisplayMode? value) async =>
                     await _onTelopDisplayModeRadioChanged(value, ref),
@@ -46,6 +55,9 @@ class SettingsPage extends ConsumerWidget {
           RadioListTile(
             value: TelopDisplayMode.tsunami,
             groupValue: telopSettings.displayModeOverride,
+            title: Text(
+              telopDisplayModeToText[TelopDisplayMode.tsunami] ?? "-",
+            ),
             onChanged:
                 (TelopDisplayMode? value) async =>
                     await _onTelopDisplayModeRadioChanged(value, ref),
@@ -53,6 +65,9 @@ class SettingsPage extends ConsumerWidget {
           RadioListTile(
             value: TelopDisplayMode.weatherToday,
             groupValue: telopSettings.displayModeOverride,
+            title: Text(
+              telopDisplayModeToText[TelopDisplayMode.weatherToday] ?? "-",
+            ),
             onChanged:
                 (TelopDisplayMode? value) async =>
                     await _onTelopDisplayModeRadioChanged(value, ref),
@@ -60,6 +75,9 @@ class SettingsPage extends ConsumerWidget {
           RadioListTile(
             value: TelopDisplayMode.weatherTommorow,
             groupValue: telopSettings.displayModeOverride,
+            title: Text(
+              telopDisplayModeToText[TelopDisplayMode.weatherTommorow] ?? "-",
+            ),
             onChanged:
                 (TelopDisplayMode? value) async =>
                     await _onTelopDisplayModeRadioChanged(value, ref),
