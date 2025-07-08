@@ -6,65 +6,81 @@
 // https://github.com/YDITS/YDITS-SSC
 //
 
-/// Base class of Exception
+/// A base class for custom exceptions in the application.
 class BaseException implements Exception {
   BaseException(this.message);
 
-  static String name = "Exception";
+  /// A descriptive name for the exception.
+  static String name = 'Exception';
+
+  /// The message or object associated with the exception.
   Object? message;
 
   @override
   String toString() {
     if (message != null) {
-      return "$name: ${Error.safeToString(message)}";
+      return '$name: ${Error.safeToString(message)}';
     }
-
     return name;
   }
 }
 
-/// Unhandled Exception thrown
+/// An exception thrown for unhandled errors.
 class UnhandledException extends BaseException {
   UnhandledException(super.key);
-  static String name = "UnhandledException";
+
+  /// The name of the exception.
+  static String name = 'UnhandledException';
 }
 
-/// Exception thrown when failed to initialize Logger
+/// An exception thrown when logger initialization fails.
 class LoggerInitializationFailed extends BaseException {
   LoggerInitializationFailed(super.key);
-  static String name = "LoggerInitializationFailed";
+
+  /// The name of the exception.
+  static String name = 'LoggerInitializationFailed';
 }
 
-/// Exception thrown when failed to run applications
+/// An exception thrown when an application runner fails.
 class AppRunnerException extends BaseException {
   AppRunnerException(super.key);
-  static String name = "AppRunnerException";
+
+  /// The name of the exception.
+  static String name = 'AppRunnerException';
 }
 
-/// Exception thrown when failed to run main application
+/// An exception thrown when the main application runner fails.
 class MainAppRunnerException extends AppRunnerException {
   @override
   MainAppRunnerException(super.key);
-  static String name = "MainAppRunnerException";
+
+  /// The name of the exception.
+  static String name = 'MainAppRunnerException';
 }
 
-/// Exception thrown when failed to run sub applications
+/// An exception thrown when a sub-application runner fails.
 class SubAppRunnerException extends AppRunnerException {
   @override
   SubAppRunnerException(super.key);
-  static String name = "SubAppRunnerException";
+
+  /// The name of the exception.
+  static String name = 'SubAppRunnerException';
 }
 
-/// Exception thrown when faild to initialize main window
+/// An exception thrown when the main window fails to initialize.
 class MainWindowInitializationFailed extends BaseException {
   @override
   MainWindowInitializationFailed(super.key);
-  static String name = "MainWindowInitializationFailed";
+
+  /// The name of the exception.
+  static String name = 'MainWindowInitializationFailed';
 }
 
-/// Exception thrown when faild to initialize sub windows
+/// An exception thrown when sub-windows fail to initialize.
 class SubWindowsInitializationFailed extends BaseException {
   @override
   SubWindowsInitializationFailed(super.key);
-  static String name = "SubWindowsInitializationFailed";
+
+  /// The name of the exception.
+  static String name = 'SubWindowsInitializationFailed';
 }
