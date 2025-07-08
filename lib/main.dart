@@ -18,7 +18,7 @@ Future<void> main(List<String> args) async {
 
   try {
     await YditsSscAppRunner(args: args, logger: logger).runApp();
-  } catch (error) {
-    print(error);
+  } catch (error, stackTrace) {
+    logger?.shout('An unhandled error occurred at startup', error, stackTrace);
   }
 }
