@@ -10,7 +10,10 @@ import 'package:ydits_ssc/core/app_runner/app_runner.dart';
 import 'package:ydits_ssc/features/app_runner/main_app_runner.dart';
 import 'package:ydits_ssc/features/app_runner/sub_app_runner.dart';
 
-/// YDITS for SSC アプリケーションの実行処理
+/// The application runner for the YDITS for SSC application.
+///
+/// This class extends [AppRunner] and sets up the specific runners
+/// for the main application and its sub-applications.
 final class YditsSscAppRunner extends AppRunner {
   YditsSscAppRunner({required super.args, super.logger}) {
     mainAppRunner = YditsSscMainAppRunner(logger: logger);
