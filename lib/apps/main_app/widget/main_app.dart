@@ -6,8 +6,6 @@
 // https://github.com/YDITS/YDITS-SSC
 //
 
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:desktop_multi_window/desktop_multi_window.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -28,9 +26,6 @@ final class YditsSscMainApp extends ConsumerStatefulWidget {
 
 /// YDITS for SSC メインアプリケーションの状態クラス
 final class _YditsSscMainAppState extends ConsumerState<YditsSscMainApp> {
-  /// 天気を処理するタイマー
-  Timer? _weatherTimer;
-
   @override
   void initState() {
     super.initState();
@@ -44,17 +39,7 @@ final class _YditsSscMainAppState extends ConsumerState<YditsSscMainApp> {
 
   /// 天気を処理するタイマーを開始する
   void _startWeatherTimer() {
-    final weatherTimerController = ref.read(
-      weatherTimerNotifierProvider.notifier,
-    );
-    weatherTimerController.start();
-    _weatherTimer = Timer.periodic(const Duration(seconds: 1), (timer) {});
-  }
-
-  @override
-  void dispose() {
-    _weatherTimer?.cancel();
-    super.dispose();
+    ref.read(weatherTimerProvider.notifier).start();
   }
 
   @override
