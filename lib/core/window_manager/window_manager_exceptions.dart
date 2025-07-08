@@ -8,8 +8,10 @@
 
 import 'package:ydits_ssc/core/exceptions/exceptions.dart';
 
-/// Exception thrown when failed to close window
-class WindowCloseFailed extends BaseException {
-  WindowCloseFailed(super.key);
-  static String name = "WindowCloseFailed";
+/// An exception thrown when a window fails to close.
+class WindowCloseException extends BaseException {
+  WindowCloseException(super.key);
+
+  /// The name of the exception.
+  static String name = 'WindowCloseException';
 }
