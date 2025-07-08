@@ -10,31 +10,23 @@ import 'package:flutter/material.dart';
 import 'package:ydits_ssc/features/tsunami_monitor_display_home/widget/routes/map.dart';
 import 'package:ydits_ssc/features/tsunami_monitor_display_home/widget/routes/menu.dart';
 
-/// Tsunami Monitor Display Home Page ウィジェット
-final class TsunamiMonitorDisplayHomePage extends StatefulWidget {
+/// The home page widget for the Tsunami Monitor Display.
+class TsunamiMonitorDisplayHomePage extends StatefulWidget {
   const TsunamiMonitorDisplayHomePage({super.key});
 
   @override
-  State<TsunamiMonitorDisplayHomePage> createState() => _HomePage();
+  State<TsunamiMonitorDisplayHomePage> createState() => _HomePageState();
 }
 
-final class _HomePage extends State<TsunamiMonitorDisplayHomePage> {
-  int selectedIndex = 0;
+class _HomePageState extends State<TsunamiMonitorDisplayHomePage> {
+  int _selectedIndex = 0;
 
   @override
   Widget build(BuildContext context) {
-    Widget page;
-
-    switch (selectedIndex) {
-      case 0:
-        page = const MapPage();
-        break;
-      case 1:
-        page = const MenuPage();
-        break;
-      default:
-        throw UnimplementedError("There isn't widget for `$selectedIndex`.");
-    }
+    final pages = <Widget>[
+      const MapPage(),
+      const MenuPage(),
+    ];
 
     return Scaffold(
       body: Row(
@@ -52,10 +44,10 @@ final class _HomePage extends State<TsunamiMonitorDisplayHomePage> {
                   label: Text("メニュー"),
                 ),
               ],
-              selectedIndex: selectedIndex,
+              selectedIndex: _selectedIndex,
               onDestinationSelected: (value) {
                 setState(() {
-                  selectedIndex = value;
+                  _selectedIndex = value;
                 });
               },
             ),
@@ -63,7 +55,7 @@ final class _HomePage extends State<TsunamiMonitorDisplayHomePage> {
           Expanded(
             child: Container(
               color: Theme.of(context).colorScheme.primaryContainer,
-              child: page,
+              child: pages[_selectedIndex],
             ),
           ),
         ],

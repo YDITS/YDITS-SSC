@@ -9,7 +9,8 @@
 import 'package:flutter/material.dart';
 import 'package:ydits_ssc/features/flutter_map/widget/flutter_map.dart';
 
-final class MapPage extends StatelessWidget {
+/// A page that displays the tsunami map.
+class MapPage extends StatelessWidget {
   const MapPage({super.key});
 
   @override

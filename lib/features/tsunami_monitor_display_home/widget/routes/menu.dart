@@ -8,7 +8,8 @@
 
 import 'package:flutter/material.dart';
 
-final class MenuPage extends StatelessWidget {
+/// A page that displays the menu for the Tsunami Monitor.
+class MenuPage extends StatelessWidget {
   const MenuPage({super.key});
 
   @override
