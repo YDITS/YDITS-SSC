@@ -7,27 +7,28 @@
 //
 
 import 'dart:ui';
-import "package:configure/configure.dart";
 
-/// YDITS for SSC メインウィンドウの構成設定
+import 'package:configure/configure.dart';
+
+/// Window configuration for the YDITS for SSC main application.
 final class YditsSscWindowConfig implements WindowConfig {
-  /// ウィンドウのタイトル
+  /// The title of the window.
   @override
-  final String title = "YDITS for SSC";
+  final String title = 'YDITS for SSC';
 
-  /// ウィンドウのフレームデータ
+  /// The frame data of the window.
   @override
   final Rect frame = const Rect.fromLTWH(128, 128, 960, 540);
 
-  /// ウィンドウの初期サイズ
+  /// The initial size of the window.
   @override
   final Size initialSize = const Size(960, 540);
 
-  /// ウィンドウの最小サイズの制限値
+  /// The minimum allowed size of the window.
   @override
   final Size minSize = const Size(640, 360);
 
-  /// ウィンドウの最大サイズの制限値
+  /// The maximum allowed size of the window.
   @override
   final Size maxSize = Size.infinite;
 }
