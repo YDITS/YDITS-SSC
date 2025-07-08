@@ -45,7 +45,7 @@ abstract class MainAppRunner {
     logger?.info('Running main application...');
 
     try {
-      subWindows = await _configureSubWindows();
+      subWindows = await configureSubWindows();
     } catch (error, stackTrace) {
       logger?.warning(
         'Failed to configure sub-windows.',
@@ -56,7 +56,7 @@ abstract class MainAppRunner {
 
     if (isPlatformDesktop) {
       try {
-        await _initializeDesktopWindow();
+        await initializeDesktopWindow();
       } catch (error, stackTrace) {
         logger?.warning(
           'Failed to initialize the main desktop window.',
@@ -70,7 +70,7 @@ abstract class MainAppRunner {
   }
 
   /// Initializes the main application window.
-  Future<void> _initializeDesktopWindow() async {
+  Future<void> initializeDesktopWindow() async {
     logger?.info('Initializing main application window...');
 
     try {
@@ -107,7 +107,7 @@ abstract class MainAppRunner {
   }
 
   /// Configures and creates all sub-windows.
-  Future<Map<SubWindows, WindowController>> _configureSubWindows() async {
+  Future<Map<SubWindows, WindowController>> configureSubWindows() async {
     logger?.info('Configuring sub-application windows...');
 
     try {
@@ -147,7 +147,7 @@ abstract class MainAppRunner {
   void _onFailedCloseWindow(int windowId) {
     logger?.warning(
       WindowCloseFailed(
-        'Failed to close the sub window | Window ID: `$windowId`',
+        'Failed to close the sub window | Window ID: `${windowId.toString()}`',
       ),
     );
   }
