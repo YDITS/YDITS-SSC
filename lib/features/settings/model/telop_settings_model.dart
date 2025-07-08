@@ -30,3 +30,12 @@ enum TelopDisplayMode {
 Map<String, TelopDisplayMode> telopDisplayModeStringToEnum = {
   TelopDisplayMode.none.toString(): TelopDisplayMode.none,
 };
+
+Map<TelopDisplayMode, String> telopDisplayModeToText = {
+  TelopDisplayMode.none: "オーバーライドしない",
+  TelopDisplayMode.weatherTommorow: "明日の天気",
+  TelopDisplayMode.weatherToday: "今日の天気",
+  TelopDisplayMode.eew: "緊急地震速報",
+  TelopDisplayMode.earthquake: "地震情報",
+  TelopDisplayMode.tsunami: "津波情報",
+};
