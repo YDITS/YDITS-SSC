@@ -27,20 +27,20 @@ class TelopLabelStateModel {
   final String fontFamily;
 
   TelopLabelStateModel copyWith({
-    required newWidth,
-    required newText,
-    required newBgColor,
-    required newFontColor,
-    required newFontSize,
-    required newFontFamily,
+    newWidth,
+    newText,
+    newBgColor,
+    newFontColor,
+    newFontSize,
+    newFontFamily,
   }) {
     return TelopLabelStateModel(
-      width: newWidth,
-      text: newText,
-      bgColor: newBgColor,
-      fontColor: newFontColor,
-      fontSize: newFontSize,
-      fontFamily: newFontFamily,
+      width: newWidth ?? width,
+      text: newText ?? text,
+      bgColor: newBgColor ?? bgColor,
+      fontColor: newFontColor ?? fontColor,
+      fontSize: newFontSize ?? fontSize,
+      fontFamily: newFontFamily ?? fontFamily,
     );
   }
 }
