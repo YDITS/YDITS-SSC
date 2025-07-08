@@ -13,9 +13,11 @@ import 'package:ydits_ssc/core/sub_windows/sub_windows.dart';
 import 'package:ydits_ssc/core/widgets/copyright_footer/copyright_footer.dart';
 import 'package:ydits_ssc/core/widgets/text_button_with_icon/text_button_with_icon.dart';
 
+/// A widget that provides a launcher for the various sub-windows.
 class WindowLauncher extends ConsumerWidget {
   WindowLauncher({super.key, required this.windows});
 
+  /// A map of sub-window controllers.
   final Map<SubWindows, WindowController> windows;
   final ScrollController _scrollController = ScrollController();
 
@@ -27,14 +29,14 @@ class WindowLauncher extends ConsumerWidget {
         const SizedBox(height: 16),
         const Center(
           child: Text(
-            "Window Launcher",
+            'Window Launcher',
             style: TextStyle(fontSize: 24, color: Colors.white),
           ),
         ),
         const SizedBox(height: 16),
         Expanded(
           child: Padding(
-            padding: const EdgeInsets.fromLTRB(32, 0, 32, 0),
+            padding: const EdgeInsets.symmetric(horizontal: 32),
             child: ScrollbarTheme(
               data: const ScrollbarThemeData(
                 thumbColor: WidgetStatePropertyAll(
@@ -56,7 +58,7 @@ class WindowLauncher extends ConsumerWidget {
                     return Center(
                       child: SizedBox(
                         width: 384,
-                        child: windowsRootingButton(index),
+                        child: _buildWindowButton(index),
                       ),
                     );
                   },
@@ -73,31 +75,33 @@ class WindowLauncher extends ConsumerWidget {
     );
   }
 
-  TextButtonWithIcon windowsRootingButton(index) {
-    final SubWindows pressedScreen = SubWindows.values[index];
-    final IconData iconData =
-        subWindowIconData[pressedScreen] ?? Icons.question_mark;
+  /// Builds a button for a specific sub-window.
+  Widget _buildWindowButton(int index) {
+    final subWindow = SubWindows.values[index];
+    final iconData = subWindowIconData[subWindow] ?? Icons.question_mark;
+    final title = subWindowsTitle[subWindow] ?? 'Unknown';
 
     return TextButtonWithIcon(
       iconData: iconData,
-      onPressed: () => _onSubWindowsRootingButtonPressed(pressedScreen),
+      onPressed: () => _onSubWindowButtonPressed(subWindow),
       child: Text(
-        subWindowsTitle.values.toList()[index],
+        title,
         style: const TextStyle(fontSize: 20, color: Colors.white),
       ),
     );
   }
 
-  Future<void> _onSubWindowsRootingButtonPressed(
-    SubWindows pressedScreen,
-  ) async {
-    print(windows);
-    print("Sub windows rooting button has clicked: `$pressedScreen`.");
+  /// Handles the press of a sub-window button.
+  Future<void> _onSubWindowButtonPressed(SubWindows subWindow) async {
+    // ignore: avoid_print
+    print('Sub-window button pressed: `$subWindow`');
 
-    if (!windows.containsKey(pressedScreen)) {
-      return;
+    final controller = windows[subWindow];
+    if (controller != null) {
+      await controller.show();
+    } else {
+      // ignore: avoid_print
+      print('No controller found for window: `$subWindow`');
     }
-
-    await windows[pressedScreen]?.show();
   }
 }

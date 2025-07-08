@@ -11,6 +11,7 @@ import 'package:ydits_ssc/features/main_app_home/model/main_app_home_state_model
 
 part 'main_app_home_state_notifier.g.dart';
 
+/// A notifier for managing the state of the main application's home screen.
 @riverpod
 class MainAppHomeState extends _$MainAppHomeState {
   @override
@@ -18,6 +19,7 @@ class MainAppHomeState extends _$MainAppHomeState {
     return MainAppHomeStateModel();
   }
 
+  /// Sets the current navigation index to the given [newIndex].
   void setCurrentNavigationIndex(int newIndex) {
     state = state.copyWith(newCurrentNavigationIndex: newIndex);
   }
