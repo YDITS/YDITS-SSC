@@ -7,7 +7,7 @@ part of 'weather_timer_notifier.dart';
 // **************************************************************************
 
 String _$weatherTimerNotifierHash() =>
-    r'aa8b6c6b5bfff1cc9626e92363c5eec746948ba3';
+    r'52c47530dc60e0cfc795848f5b34e810d73ce0b9';
 
 /// See also [WeatherTimerNotifier].
 @ProviderFor(WeatherTimerNotifier)
