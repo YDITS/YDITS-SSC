@@ -11,5 +11,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'flutter_map_url_template_provider.g.dart';
 
+/// A provider that supplies the URL template for the map tiles.
 @riverpod
-String flutterMapUrlTemplate(Ref ref) => "https://tile.openstreetmap.org/{z}/{x}/{y}.png";
+String flutterMapUrlTemplate(_) =>
+    'https://tile.openstreetmap.org/{z}/{x}/{y}.png';

@@ -7,14 +7,16 @@
 //
 
 import 'package:flutter_map/flutter_map.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:ydits_ssc/features/flutter_map/model/map_options.dart';
 import 'package:ydits_ssc/features/flutter_map/model/map_types.dart';
 
 part 'map_options_provider.g.dart';
 
+/// A provider that returns the appropriate [MapOptions] based on the given [MapTypes].
 @riverpod
-MapOptions mapOptions(MapOptionsRef ref, MapTypes mapType) {
+MapOptions mapOptions(_, MapTypes mapType) {
   switch (mapType) {
     case MapTypes.normal:
       return normalMapOptions;

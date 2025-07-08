@@ -7,29 +7,30 @@
 //
 
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_map/flutter_map.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ydits_ssc/features/flutter_map/model/map_types.dart';
-import 'package:ydits_ssc/features/flutter_map/provider/flutter_map_user_agent_package_name_provider.dart';
 import 'package:ydits_ssc/features/flutter_map/provider/flutter_map_url_template_provider.dart';
+import 'package:ydits_ssc/features/flutter_map/provider/flutter_map_user_agent_package_name_provider.dart';
 import 'package:ydits_ssc/features/flutter_map/provider/map_options_provider.dart';
 
-final class YditsSscFlutterMap extends ConsumerStatefulWidget {
+/// A widget that displays a map using FlutterMap.
+class YditsSscFlutterMap extends ConsumerStatefulWidget {
   const YditsSscFlutterMap({super.key});
 
   @override
-  ConsumerState<YditsSscFlutterMap> createState() => FlutterMapState();
+  ConsumerState<YditsSscFlutterMap> createState() => _FlutterMapState();
 }
 
-final class FlutterMapState extends ConsumerState<YditsSscFlutterMap> {
+class _FlutterMapState extends ConsumerState<YditsSscFlutterMap> {
   @override
   Widget build(BuildContext context) {
-    final String userAgentPackageName = ref.watch(
+    final userAgentPackageName = ref.watch(
       flutterMapUserAgentPackageNameProvider,
     );
-    final String urlTemplate = ref.watch(flutterMapUrlTemplateProvider);
-    final MapOptions mapOptions = ref.watch(
-      mapOptionsProvider(MapTypes.tsunami),
+    final urlTemplate = ref.watch(flutterMapUrlTemplateProvider);
+    final mapOptions = ref.watch(
+      mapOptionsProvider(MapTypes.tsunami), // Default to tsunami map
     );
 
     return FlutterMap(
@@ -46,7 +47,7 @@ final class FlutterMapState extends ConsumerState<YditsSscFlutterMap> {
           attributions: [
             TextSourceAttribution(
               'OpenStreetMap contributors',
-              onTap: () async => {},
+              onTap: () async {},
             ),
             const TextSourceAttribution(
               'This attribution is the same throughout this app, except '

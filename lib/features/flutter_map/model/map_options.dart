@@ -9,6 +9,7 @@
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 
+/// Default map options for general use.
 final MapOptions normalMapOptions = MapOptions(
   initialCenter: const LatLng(51.5, -0.09),
   initialZoom: 5,
@@ -17,6 +18,7 @@ final MapOptions normalMapOptions = MapOptions(
   ),
 );
 
+/// Map options specifically for the EEW (Earthquake Early Warning) display.
 final MapOptions eewMapOptions = MapOptions(
   initialCenter: const LatLng(51.5, -0.09),
   initialZoom: 5,
@@ -25,7 +27,8 @@ final MapOptions eewMapOptions = MapOptions(
   ),
 );
 
-final tsunamiMapOptions = MapOptions(
+/// Map options specifically for the Tsunami display.
+final MapOptions tsunamiMapOptions = MapOptions(
   initialCenter: const LatLng(51.5, -0.09),
   initialZoom: 5,
   cameraConstraint: CameraConstraint.contain(

@@ -11,5 +11,6 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'flutter_map_user_agent_package_name_provider.g.dart';
 
+/// A provider that supplies the user agent package name for the map service.
 @riverpod
-String flutterMapUserAgentPackageName(Ref ref) => "com.yoneyo.tests.ydits-ssc";
+String flutterMapUserAgentPackageName(_) => 'com.yoneyo.tests.ydits-ssc';
