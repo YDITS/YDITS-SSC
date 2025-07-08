@@ -52,13 +52,6 @@ class TelopLabelState extends _$TelopLabelState {
   }
 
   void setText(text) {
-    state = state.copyWith(
-      newWidth: state.width,
-      newText: text,
-      newBgColor: state.bgColor,
-      newFontColor: state.fontColor,
-      newFontSize: state.fontSize,
-      newFontFamily: state.fontFamily,
-    );
+    state = state.copyWith(newText: text);
   }
 }
