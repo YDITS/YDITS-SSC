@@ -6,20 +6,20 @@
 // https://github.com/YDITS/YDITS-SSC
 //
 
-import "package:version/version.dart";
-import "package:configure/configure.dart";
+import 'package:configure/configure.dart';
+import 'package:version/version.dart';
 
-/// YDITS for SSC メインアプリケーションの設定
+/// Configuration for the YDITS for SSC main application.
 final class YditsSscAppConfig implements AppConfig {
-  /// アプリケーションのタイトル
+  /// The title of the application.
   @override
-  final String title = "YDITS for SSC";
+  final String title = 'YDITS for SSC';
 
-  /// アプリケーションの説明
+  /// A description of the application.
   @override
-  final String description = "Saitama Sora Cam 用に制作された防災情報アプリケーション。";
+  final String description = 'Saitama Sora Cam 用に制作された防災情報アプリケーション。';
 
-  /// アプリケーションのバージョン
+  /// The version of the application.
   @override
   final Version version = Version(
     major: 1,
