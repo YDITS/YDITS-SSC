@@ -8,6 +8,7 @@
 
 import 'package:flutter/material.dart';
 
+/// A custom text button that includes an icon.
 class TextButtonWithIcon extends StatelessWidget {
   const TextButtonWithIcon({
     super.key,
@@ -16,9 +17,14 @@ class TextButtonWithIcon extends StatelessWidget {
     required this.onPressed,
   });
 
+  /// The icon to be displayed.
   final IconData iconData;
+
+  /// The widget to be displayed below the icon.
   final Widget child;
-  final void Function()? onPressed;
+
+  /// The callback that is called when the button is pressed.
+  final VoidCallback? onPressed;
 
   @override
   Widget build(BuildContext context) {
