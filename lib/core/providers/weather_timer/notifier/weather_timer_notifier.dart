@@ -9,13 +9,19 @@
 import 'dart:async';
 
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:ydits_ssc/core/providers/weather/notifier/weather_notifier.dart';
 import 'package:ydits_ssc/core/providers/weather_timer/model/weather_timer_state_model.dart';
 
 part 'weather_timer_notifier.g.dart';
 
 @riverpod
-class WeatherTimerNotifier extends _$WeatherTimerNotifier {
+class WeatherTimer extends _$WeatherTimer {
   Timer? _timer;
+  List<void Function()> listeners = [];
+
+  addListener(void Function() listener) {
+    listeners.add(listener);
+  }
 
   @override
   WeatherTimerStateModel build() {
@@ -40,5 +46,11 @@ class WeatherTimerNotifier extends _$WeatherTimerNotifier {
     state = state.copyWith(isRunning: false);
   }
 
-  void loop(Timer self) {}
+  void loop(Timer self) {
+    ref.read(yditsSscWeatherProvider.notifier).update();
+
+    for (void Function() listener in listeners) {
+      listener();
+    }
+  }
 }
