@@ -10,7 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ydits_ssc/features/weather_earthquake_telop_display_home/widget/weather_earthquake_telop_display_home.dart';
 
-/// Weather Earthquake Telop Display アプリケーションウィジェット
+/// The root widget for the Weather Earthquake Telop Display application.
 class WeatherEarthquakeTelopDisplayApp extends ConsumerWidget {
   const WeatherEarthquakeTelopDisplayApp({super.key});
 
