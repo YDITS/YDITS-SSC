@@ -15,12 +15,14 @@ import 'package:ydits_ssc/core/resources/japan_prefectures.dart';
 
 part 'weather_notifier.g.dart';
 
+/// A notifier for managing the weather state of the YDITS SSC application.
 @riverpod
 class YditsSscWeather extends _$YditsSscWeather {
   late WeatherFactory _weatherFactory;
 
   @override
   WeatherStateModel build() {
+    // Initialize the WeatherFactory after the first frame is rendered.
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _initWeatherFactory();
     });
@@ -28,22 +30,30 @@ class YditsSscWeather extends _$YditsSscWeather {
     return const WeatherStateModel();
   }
 
+  /// Initializes the [WeatherFactory] with the API key.
   Future<void> _initWeatherFactory() async {
     final config = ref.read(weatherEarthquakeTelopDisplayConfigProvider);
     _weatherFactory = WeatherFactory(config.openWeatherMapApiKey);
   }
 
+  /// Updates the weather information for all prefectures in Japan.
   Future<void> update() async {
-    String text = "";
+    final buffer = StringBuffer();
 
-    for (String prefecture in JapanPrefectures.stringList) {
-      Weather weather = await _weatherFactory.currentWeatherByCityName(
-        prefecture,
-      );
-      text +=
-          '$prefecture: ${weather.temperature?.celsius?.toStringAsFixed(1)}°C ${weather.weatherDescription} | ';
+    for (final prefecture in JapanPrefectures.stringList) {
+      try {
+        final weather = await _weatherFactory.currentWeatherByCityName(
+          prefecture,
+        );
+        buffer.write(
+          '$prefecture: ${weather.temperature?.celsius?.toStringAsFixed(1)}°C ${weather.weatherDescription} | ',
+        );
+      } catch (e) {
+        // Handle or log the error for a specific prefecture if needed.
+        buffer.write('$prefecture: (error) | ');
+      }
     }
 
-    state = state.copyWith(newTelopText: text);
+    state = state.copyWith(newTelopText: buffer.toString());
   }
 }

@@ -14,13 +14,15 @@ import 'package:ydits_ssc/core/providers/weather_timer/model/weather_timer_state
 
 part 'weather_timer_notifier.g.dart';
 
+/// A notifier for managing a timer that periodically triggers weather updates.
 @riverpod
 class WeatherTimer extends _$WeatherTimer {
   Timer? _timer;
-  List<void Function()> listeners = [];
+  final List<void Function()> _listeners = [];
 
-  addListener(void Function() listener) {
-    listeners.add(listener);
+  /// Adds a listener to be called on each timer tick.
+  void addListener(void Function() listener) {
+    _listeners.add(listener);
   }
 
   @override
@@ -28,28 +30,30 @@ class WeatherTimer extends _$WeatherTimer {
     return const WeatherTimerStateModel(isRunning: false);
   }
 
-  Timer? get timer {
-    return _timer;
-  }
+  /// Returns the underlying [Timer] instance.
+  Timer? get timer => _timer;
 
+  /// Starts the timer if it is not already active.
   void start() {
     if (_timer?.isActive == true) {
       return;
     }
 
-    _timer = Timer.periodic(const Duration(seconds: 1), (self) => loop(self));
+    _timer = Timer.periodic(const Duration(seconds: 1), _loop);
     state = state.copyWith(isRunning: true);
   }
 
+  /// Stops the timer.
   void stop() {
     _timer?.cancel();
     state = state.copyWith(isRunning: false);
   }
 
-  void loop(Timer self) {
+  /// The function that is executed on each timer tick.
+  void _loop(Timer self) {
     ref.read(yditsSscWeatherProvider.notifier).update();
 
-    for (void Function() listener in listeners) {
+    for (final listener in _listeners) {
       listener();
     }
   }
