@@ -10,19 +10,20 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:http/http.dart' as http;
 import 'package:logging/logging.dart';
-import 'package:http/http.dart';
-
 import 'package:ydits_ssc/core/providers/weather/notifier/weather_notifier.dart';
 import 'package:ydits_ssc/core/providers/weather_timer/notifier/weather_timer_notifier.dart';
 import 'package:ydits_ssc/features/telop/telop_content/notifier/telop_content_state_notifier.dart';
+import 'package:ydits_ssc/features/telop/telop_content/widget/telop_content.dart';
 import 'package:ydits_ssc/features/telop/telop_label/notifier/telop_label_state_notifier.dart';
 import 'package:ydits_ssc/features/telop/telop_label/widget/telop_label.dart';
-import 'package:ydits_ssc/features/telop/telop_content/widget/telop_content.dart';
 
+/// The home page for the Weather and Earthquake Telop Display.
 class WeatherEarthquakeTelopDisplayHomePage extends ConsumerStatefulWidget {
   const WeatherEarthquakeTelopDisplayHomePage({super.key, this.logger});
 
+  /// An optional logger for logging events.
   final Logger? logger;
 
   @override
@@ -37,57 +38,54 @@ class _WeatherEarthquakeTelopDisplayHomePageState
     super.initState();
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      ref.read(weatherTimerProvider.notifier).addListener(updateWeather);
+      ref.read(weatherTimerProvider.notifier).addListener(_updateWeather);
     });
   }
 
-  Future<void> updateWeather() async {
-    widget.logger?.info("fetchWeatherData");
-    final state = ref.watch(yditsSscWeatherProvider);
-    ref.read(telopLabelStateProvider().notifier).setText("現在の天気");
-    ref.read(telopContentStateProvider().notifier).setText(state.telopText);
+  /// Updates the weather information in the telop.
+  Future<void> _updateWeather() async {
+    widget.logger?.info('Updating weather data...');
+    final weatherState = ref.watch(yditsSscWeatherProvider);
+    ref.read(telopLabelStateProvider().notifier).setText('現在の天気');
+    ref.read(telopContentStateProvider().notifier).setText(weatherState.telopText);
   }
 
-  Future<void> fetchEqinfoData() async {
-    final url = Uri.parse("https://api2.ydits.net/eew.json");
+  /// Fetches earthquake information from the API.
+  Future<void> _fetchEqInfoData() async {
+    final url = Uri.parse('https://api2.ydits.net/vxse53');
 
     try {
-      final response = await get(url);
+      final response = await http.get(url);
 
       if (response.statusCode == 200) {
-        onFetchEqinfoSuccess(response);
-        return;
+        _onFetchEqInfoSuccess(response);
       } else {
-        onFetchEqinfoError(response);
-        return;
+        _onFetchEqInfoError(response);
       }
     } catch (error) {
-      onFetchEqinfoError(error);
-      return;
+      _onFetchEqInfoError(error);
     }
   }
 
-  Future<void> onFetchEqinfoSuccess(response) async {
+  /// Handles a successful fetch of earthquake information.
+  void _onFetchEqInfoSuccess(http.Response response) {
     final data = json.decode(response.body);
     ref.read(telopLabelStateProvider().notifier).setText("地震情報");
     ref.read(telopContentStateProvider().notifier).setText(data.toString());
   }
 
-  Future<void> onFetchEqinfoError(stack) async {
-    ref.read(telopLabelStateProvider().notifier).setText("エラー");
+  /// Handles an error when fetching earthquake information.
+  void _onFetchEqInfoError(dynamic error) {
+    ref.read(telopLabelStateProvider().notifier).setText('エラー');
 
-    if (stack is Response) {
+    if (error is http.Response) {
       ref
           .read(telopContentStateProvider().notifier)
-          .setText("Failed to fetch data: ${stack.statusCode.toString()}");
-    } else if (stack is Exception) {
-      ref
-          .read(telopContentStateProvider().notifier)
-          .setText("Failed to fetch data: ${stack.toString()}");
+          .setText('Failed to fetch data: ${error.statusCode}');
     } else {
-      throw Exception(
-        "Unhandled error at onFetchEqinfoError: ${stack.toString()}",
-      );
+      ref
+          .read(telopContentStateProvider().notifier)
+          .setText('Failed to fetch data: $error');
     }
   }
 
@@ -95,7 +93,9 @@ class _WeatherEarthquakeTelopDisplayHomePageState
   Widget build(BuildContext context) {
     return const Scaffold(
       body: Center(
-        child: Row(children: [TelopLabel(), Expanded(child: TelopContent())]),
+        child: Row(
+          children: [TelopLabel(), Expanded(child: TelopContent())],
+        ),
       ),
     );
   }
