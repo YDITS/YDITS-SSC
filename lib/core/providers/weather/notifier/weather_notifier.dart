@@ -9,6 +9,7 @@
 import 'package:flutter/material.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:weather/weather.dart';
+
 import 'package:ydits_ssc/apps/weather_earthquake_telop_display/provider/weather_earthquake_telop_display_config_provider.dart';
 import 'package:ydits_ssc/core/providers/weather/model/weather_state_model.dart';
 import 'package:ydits_ssc/core/resources/japan_prefectures.dart';

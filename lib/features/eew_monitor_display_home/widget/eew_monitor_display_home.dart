@@ -16,6 +16,7 @@ class EEWMonitorDisplayHomePage extends StatefulWidget {
   State<EEWMonitorDisplayHomePage> createState() => _HomePageState();
 }
 
+/// The private state class for the EEW Monitor Display home page.
 class _HomePageState extends State<EEWMonitorDisplayHomePage> {
   @override
   Widget build(BuildContext context) {

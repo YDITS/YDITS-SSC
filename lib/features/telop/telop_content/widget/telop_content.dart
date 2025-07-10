@@ -20,6 +20,7 @@ class TelopContent extends ConsumerStatefulWidget {
   ConsumerState<TelopContent> createState() => _TelopContentState();
 }
 
+/// The private state class for the [TelopContent] widget.
 class _TelopContentState extends ConsumerState<TelopContent>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;

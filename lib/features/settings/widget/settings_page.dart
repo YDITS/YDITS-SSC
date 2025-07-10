@@ -33,6 +33,7 @@ class SettingsPage extends ConsumerWidget {
     );
   }
 
+  /// Handles changes to the telop display mode radio buttons.
   Future<void> _onTelopDisplayModeRadioChanged(
     TelopDisplayMode? value,
     WidgetRef ref,

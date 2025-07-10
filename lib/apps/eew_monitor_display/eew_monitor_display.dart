@@ -10,15 +10,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:logging/logging.dart';
 import 'package:window_manager/window_manager.dart';
+
 import 'package:ydits_ssc/apps/eew_monitor_display/model/eew_monitor_display_config.dart';
 import 'package:ydits_ssc/apps/eew_monitor_display/widget/eew_monitor_display_app.dart';
 import 'package:ydits_ssc/core/utils/is_platform_desktop.dart';
 
 /// A class to manage the EEW (Earthquake Early Warning) Monitor Display window.
 final class EewMonitorDisplay {
-  /// Creates an instance of [EewMonitorDisplay].
-  ///
-  /// An optional [logger] can be provided for logging.
   EewMonitorDisplay({this.logger});
 
   /// An optional logger instance for logging application events.
@@ -53,7 +51,6 @@ final class EewMonitorDisplay {
   /// This method ensures that the necessary bindings are initialized and then
   /// proceeds to configure the window.
   Future<void> _initializeDesktopWindow() async {
-    WidgetsFlutterBinding.ensureInitialized();
     await windowManager.ensureInitialized();
     await _setWindowConfig();
   }

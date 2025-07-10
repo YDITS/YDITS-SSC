@@ -8,7 +8,6 @@
 
 /// A data model representing the state of the main application's home screen.
 class MainAppHomeStateModel {
-  /// Creates a [MainAppHomeStateModel].
   MainAppHomeStateModel({this.currentNavigationIndex = defaultNavigationIndex});
 
   /// The index of the currently selected navigation item.

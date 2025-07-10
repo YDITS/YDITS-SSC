@@ -12,8 +12,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:http/http.dart' as http;
 import 'package:logging/logging.dart';
+
 import 'package:ydits_ssc/core/providers/weather/notifier/weather_notifier.dart';
 import 'package:ydits_ssc/core/providers/weather_timer/notifier/weather_timer_notifier.dart';
+
 import 'package:ydits_ssc/features/telop/telop_content/notifier/telop_content_state_notifier.dart';
 import 'package:ydits_ssc/features/telop/telop_content/widget/telop_content.dart';
 import 'package:ydits_ssc/features/telop/telop_label/notifier/telop_label_state_notifier.dart';
@@ -31,6 +33,7 @@ class WeatherEarthquakeTelopDisplayHomePage extends ConsumerStatefulWidget {
       _WeatherEarthquakeTelopDisplayHomePageState();
 }
 
+/// The private state class for the Weather and Earthquake Telop Display home page.
 class _WeatherEarthquakeTelopDisplayHomePageState
     extends ConsumerState<WeatherEarthquakeTelopDisplayHomePage> {
   @override

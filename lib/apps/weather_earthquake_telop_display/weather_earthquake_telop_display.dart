@@ -10,6 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:logging/logging.dart';
 import 'package:window_manager/window_manager.dart';
+
 import 'package:ydits_ssc/apps/weather_earthquake_telop_display/model/weather_earthquake_telop_display_config.dart';
 import 'package:ydits_ssc/apps/weather_earthquake_telop_display/widget/weather_earthquake_telop_display_app.dart';
 import 'package:ydits_ssc/core/utils/is_platform_desktop.dart';

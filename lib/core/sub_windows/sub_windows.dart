@@ -21,10 +21,10 @@ enum SubWindows {
 }
 
 /// A map to convert a string representation of a sub-window to its [SubWindows] enum.
-const Map<String, SubWindows> subWindowsStringToEnum = {
-  'SubWindows.eewMonitorDisplay': SubWindows.eewMonitorDisplay,
-  'SubWindows.tsunamiMonitorDisplay': SubWindows.tsunamiMonitorDisplay,
-  'SubWindows.weatherEarthquakeTelopDisplay':
+Map<String, SubWindows> subWindowsStringToEnum = {
+  SubWindows.eewMonitorDisplay.toString(): SubWindows.eewMonitorDisplay,
+  SubWindows.tsunamiMonitorDisplay.toString(): SubWindows.tsunamiMonitorDisplay,
+  SubWindows.weatherEarthquakeTelopDisplay.toString():
       SubWindows.weatherEarthquakeTelopDisplay,
 };
 

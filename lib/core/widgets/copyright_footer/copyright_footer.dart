@@ -12,9 +12,7 @@ import 'package:ydits_ssc/core/providers/constants/copyright_name/copyright_name
 
 /// A widget that displays a copyright footer.
 class CopyrightFooter extends ConsumerWidget {
-  const CopyrightFooter({
-    super.key,
-  });
+  const CopyrightFooter({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

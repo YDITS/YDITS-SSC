@@ -8,7 +8,6 @@
 
 /// A data model for telop settings.
 final class TelopSettingsModel {
-  /// Creates a [TelopSettingsModel].
   const TelopSettingsModel({required this.displayModeOverride});
 
   /// The display mode override for the telop.

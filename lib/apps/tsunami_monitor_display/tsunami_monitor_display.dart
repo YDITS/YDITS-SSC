@@ -10,15 +10,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:logging/logging.dart';
 import 'package:window_manager/window_manager.dart';
+
 import 'package:ydits_ssc/apps/tsunami_monitor_display/model/tsunami_monitor_display_config.dart';
 import 'package:ydits_ssc/apps/tsunami_monitor_display/widget/tsunami_monitor_display_app.dart';
 import 'package:ydits_ssc/core/utils/is_platform_desktop.dart';
 
 /// A class to manage the Tsunami Monitor Display window.
 final class TsunamiMonitorDisplay {
-  /// Creates an instance of [TsunamiMonitorDisplay].
-  ///
-  /// An optional [logger] can be provided for logging.
   TsunamiMonitorDisplay({this.logger});
 
   /// An optional logger instance for logging application events.

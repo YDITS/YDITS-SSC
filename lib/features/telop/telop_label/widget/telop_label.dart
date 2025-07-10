@@ -12,10 +12,7 @@ import 'package:ydits_ssc/features/telop/telop_label/notifier/telop_label_state_
 
 /// A widget that displays a label for the telop.
 class TelopLabel extends ConsumerWidget {
-  /// Creates a [TelopLabel].
-  const TelopLabel({
-    super.key,
-  });
+  const TelopLabel({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
