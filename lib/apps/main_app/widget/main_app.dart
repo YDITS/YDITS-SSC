@@ -7,8 +7,12 @@
 //
 
 import 'package:desktop_multi_window/desktop_multi_window.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:version/version.dart';
+import 'package:ydits_ssc/apps/main_app/provider/main_app_config_provider.dart';
+import 'package:ydits_ssc/core/providers/constants/build_channel_to_text/build_channel_to_text.dart';
 
 import 'package:ydits_ssc/core/providers/weather_timer/notifier/weather_timer_notifier.dart';
 import 'package:ydits_ssc/core/sub_windows/sub_windows.dart';
@@ -45,8 +49,25 @@ final class _YditsSscMainAppState extends ConsumerState<YditsSscMainApp> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: YditsSscMainAppHomePage(windows: widget.subWindows),
-    );
+    final config = ref.watch(yditsSscAppConfigProvider);
+    final buildChannel = config.version.level;
+    final isStable = buildChannel == VersionLevels.stable;
+
+    Widget home = YditsSscMainAppHomePage(windows: widget.subWindows);
+
+    if (!isStable) {
+      final buildChannelToText = ref.read(buildChannelToTextProvider);
+      final buildChannelText = buildChannelToText[buildChannel] ?? '';
+      home = Banner(
+        message: buildChannelText,
+        color: Colors.teal.shade800,
+        textStyle: const TextStyle(color: Colors.white),
+        location:
+            kReleaseMode ? BannerLocation.topEnd : BannerLocation.topStart,
+        child: home,
+      );
+    }
+
+    return MaterialApp(home: home);
   }
 }
