@@ -50,18 +50,16 @@ final class _YditsSscMainAppState extends ConsumerState<YditsSscMainApp> {
   @override
   Widget build(BuildContext context) {
     final config = ref.watch(yditsSscAppConfigProvider);
-    final buildChannel = config.version.level;
-    final isStable = buildChannel == VersionLevels.stable;
+    final buildMode = config.version.level;
+    final isStable = buildMode == VersionLevels.stable;
 
     Widget home = YditsSscMainAppHomePage(windows: widget.subWindows);
 
     if (!isStable) {
-      final buildChannelToText = ref.read(buildChannelToTextProvider);
-      final buildChannelText = buildChannelToText[buildChannel] ?? '';
+      final buildModeToText = ref.read(buildChannelToTextProvider);
+      final buildModeText = buildModeToText[buildMode] ?? '';
       home = Banner(
-        message: buildChannelText,
-        color: Colors.teal.shade800,
-        textStyle: const TextStyle(color: Colors.white),
+        message: buildModeText,
         location:
             kReleaseMode ? BannerLocation.topEnd : BannerLocation.topStart,
         child: home,
