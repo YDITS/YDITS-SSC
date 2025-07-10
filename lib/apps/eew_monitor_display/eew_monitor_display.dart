@@ -51,7 +51,6 @@ final class EewMonitorDisplay {
   /// This method ensures that the necessary bindings are initialized and then
   /// proceeds to configure the window.
   Future<void> _initializeDesktopWindow() async {
-    await windowManager.ensureInitialized();
     await _setWindowConfig();
   }
 

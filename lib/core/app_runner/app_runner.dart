@@ -6,30 +6,34 @@
 // https://github.com/YDITS/YDITS-SSC
 //
 
+import 'dart:io';
+
+import 'package:flutter_single_instance/flutter_single_instance.dart';
 import 'package:logging/logging.dart';
 import 'package:ydits_ssc/core/app_runner/main_app_runner.dart';
 import 'package:ydits_ssc/core/app_runner/sub_app_runner.dart';
 import 'package:ydits_ssc/core/exceptions/exceptions.dart';
 
-/// アプリケーションの実行処理
+/// Handles the application execution process.
 abstract class AppRunner {
   AppRunner({required this.args, this.logger});
 
-  /// Desktop Multi Window Caller Arguments
+  /// Desktop Multi Window Caller Arguments.
   final List<String> args;
 
-  /// サブアプリケーションの実行処理クラス
+  /// The runner class for sub-applications.
   late final SubAppRunner subAppRunner;
 
-  /// メインアプリケーションの実行処理クラス
+  /// The runner class for the main application.
   late final MainAppRunner mainAppRunner;
 
-  /// Loggerインスタンス
+  /// The logger instance.
   final Logger? logger;
 
-  /// アプリケーションを実行する
+  /// Runs the application.
   /// ---
-  /// desktop_multi_window caller arguments [args] リストを参照して、実行するアプリケーションをルーティングします。
+  /// Routes which application to run based on the `desktop_multi_window`
+  /// caller arguments [args] list.
   Future<void> runApp() async {
     logger?.info("Running new application... | Args: ${args.toString()}");
 
@@ -42,10 +46,27 @@ abstract class AppRunner {
       return;
     }
 
+    await _checkAndHandleFirstInstance();
+
     try {
       await mainAppRunner.run();
     } catch (error) {
       throw MainAppRunnerException(error);
+    }
+  }
+
+  /// Checks if this is the first instance of the application and handles it.
+  ///
+  /// If it is the first instance, this method completes normally.
+  /// If an instance is already running, it focuses the existing instance and
+  /// then exits the current process with `exit(0)`.
+  Future<void> _checkAndHandleFirstInstance() async {
+    final bool isFirstInstance = await FlutterSingleInstance().isFirstInstance();
+
+    if (!isFirstInstance) {
+      logger?.info("Application instance is already running.");
+      await FlutterSingleInstance().focus();
+      exit(0);
     }
   }
 }

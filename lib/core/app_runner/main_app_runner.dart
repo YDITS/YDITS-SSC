@@ -75,7 +75,6 @@ abstract class MainAppRunner {
     logger?.info('Initializing main application window...');
 
     try {
-      await windowManager.ensureInitialized();
       await _setWindowConfig();
     } catch (error) {
       throw MainWindowInitializationFailed(error);

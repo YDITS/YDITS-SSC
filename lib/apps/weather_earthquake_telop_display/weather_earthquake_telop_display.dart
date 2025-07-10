@@ -52,7 +52,6 @@ class WeatherEarthquakeTelopDisplay {
   /// proceeds to configure the window.
   Future<void> _initializeDesktopWindow() async {
     WidgetsFlutterBinding.ensureInitialized();
-    await windowManager.ensureInitialized();
     await _setWindowConfig();
   }
 

@@ -10,11 +10,13 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:logging/logging.dart';
+import 'package:window_manager/window_manager.dart';
 import 'package:ydits_ssc/core/logger/logger_initializer.dart';
 import 'package:ydits_ssc/features/app_runner/app_runner.dart';
 
 Future<void> main(List<String> args) async {
   WidgetsFlutterBinding.ensureInitialized();
+  windowManager.ensureInitialized();
   final Logger? logger = initializeLogger();
 
   try {
