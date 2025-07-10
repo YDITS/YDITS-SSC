@@ -12,7 +12,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:version/version.dart';
 import 'package:ydits_ssc/apps/main_app/provider/main_app_config_provider.dart';
-import 'package:ydits_ssc/core/providers/constants/build_channel_to_text/build_channel_to_text.dart';
+import 'package:ydits_ssc/core/providers/constants/build_mode_to_bannar_text/build_mode_to_banner_text_provider.dart';
 
 import 'package:ydits_ssc/core/providers/weather_timer/notifier/weather_timer_notifier.dart';
 import 'package:ydits_ssc/core/sub_windows/sub_windows.dart';
@@ -49,17 +49,15 @@ final class _YditsSscMainAppState extends ConsumerState<YditsSscMainApp> {
 
   @override
   Widget build(BuildContext context) {
-    final config = ref.watch(yditsSscAppConfigProvider);
-    final buildMode = config.version.level;
+    final buildMode = ref.watch(yditsSscAppConfigProvider).version.level;
     final isStable = buildMode == VersionLevels.stable;
 
     Widget home = YditsSscMainAppHomePage(windows: widget.subWindows);
 
     if (!isStable) {
-      final buildModeToText = ref.read(buildChannelToTextProvider);
-      final buildModeText = buildModeToText[buildMode] ?? '';
+      final buildModeBannerText = ref.read(buildModeToBannarTextProvider)[buildMode] ?? '';
       home = Banner(
-        message: buildModeText,
+        message: buildModeBannerText,
         location:
             kReleaseMode ? BannerLocation.topEnd : BannerLocation.topStart,
         child: home,
