@@ -7,6 +7,7 @@
 //
 
 import 'package:desktop_multi_window/desktop_multi_window.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -94,15 +95,17 @@ class WindowLauncher extends ConsumerWidget {
 
   /// Handles the press of a sub-window button.
   Future<void> _onSubWindowButtonPressed(SubWindows subWindow) async {
-    // ignore: avoid_print
-    print('Sub-window button pressed: `$subWindow`');
+    if (kDebugMode) {
+      debugPrint('Sub-window button pressed: `$subWindow`');
+    }
 
     final controller = windows[subWindow];
     if (controller != null) {
       await controller.show();
     } else {
-      // ignore: avoid_print
-      print('No controller found for window: `$subWindow`');
+      if (kDebugMode) {
+        debugPrint('No controller found for window: `$subWindow`');
+      }
     }
   }
 }

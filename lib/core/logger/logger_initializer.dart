@@ -8,6 +8,7 @@
 
 import 'dart:io';
 
+import 'package:flutter/foundation.dart';
 import 'package:logging/logging.dart';
 import 'package:ydits_ssc/core/exceptions/exceptions.dart';
 
@@ -30,13 +31,17 @@ Logger? initializeLogger() {
     Logger.root.onRecord.listen((record) {
       final message =
           '[${record.level.name.padRight(5)}] ${record.time}: ${record.message}';
-      print(message);
+      if (kDebugMode) {
+        debugPrint(message);
+      }
       sink.writeln(message);
     });
 
     return logger;
   } catch (error) {
-    print(LoggerInitializationFailed(error).toString());
+    if (kDebugMode) {
+      debugPrint(LoggerInitializationFailed(error).toString());
+    }
     return null;
   }
 }

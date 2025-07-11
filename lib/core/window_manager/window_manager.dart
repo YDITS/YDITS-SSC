@@ -9,6 +9,8 @@
 import 'dart:convert';
 
 import 'package:desktop_multi_window/desktop_multi_window.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:ydits_ssc/core/sub_windows/sub_windows.dart';
 
@@ -85,7 +87,9 @@ final class YditsSscWindowManager {
   }
 
   Future<void> _windowMethodHandler(MethodCall call, int fromWindowId) async {
-    print('Method called from window: `${fromWindowId.toString()}`');
+    if (kDebugMode) {
+      debugPrint('Method called from window: `${fromWindowId.toString()}`');
+    }
   }
 
   /// A wrapper for the callback to handle window close failures.
