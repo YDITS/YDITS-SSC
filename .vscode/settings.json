@@ -1,5 +1,11 @@
 {
+    "editor.codeActionsOnSave": {
+        "quickfix.insertSemicolon": "always",
+        "source.organizeImports": "always",
+        "source.fixAll": "always"
+    },
+    "editor.formatOnSave": true,
+    "editor.tabSize": 4,
     "IDX.aI.enableInlineCompletion": true,
     "IDX.aI.enableCodebaseIndexing": true,
-    "editor.tabSize": 4
 }
