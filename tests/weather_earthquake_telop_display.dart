@@ -14,5 +14,5 @@ import 'package:ydits_ssc/core/logger/logger_initializer.dart';
 Future<void> main(List<String> args) async {
   WidgetsFlutterBinding.ensureInitialized();
   final Logger? logger = initializeLogger();
-  WeatherEarthquakeTelopDisplay(logger: logger).run();
+  await WeatherEarthquakeTelopDisplay(logger: logger).run();
 }
