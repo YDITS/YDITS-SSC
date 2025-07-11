@@ -18,22 +18,24 @@ import 'package:ydits_ssc/core/sub_windows/sub_windows.dart';
 final class YditsSscWindowManager {
   YditsSscWindowManager({required this.onFailedCloseWindowCallback}) {
     DesktopMultiWindow.setMethodHandler(
-      (call, fromWindowId) async => _windowMethodHandler(call, fromWindowId),
+      (MethodCall call, int fromWindowId) async =>
+          _windowMethodHandler(call, fromWindowId),
     );
   }
 
   /// A callback function that is invoked when a window fails to close.
   final void Function(int) onFailedCloseWindowCallback;
-  final List<WindowController> _windowList = [];
+  final List<WindowController> _windowList = <WindowController>[];
 
   /// A read-only list of all managed window controllers.
-  List<WindowController> get windowList => List.unmodifiable(_windowList);
+  List<WindowController> get windowList =>
+      List<WindowController>.unmodifiable(_windowList);
 
   /// Retrieves the active [WindowController] for the given [windowId].
   ///
   /// Throws an exception if the window is not found.
   Future<WindowController> active(int windowId) async {
-    for (final window in _windowList) {
+    for (final WindowController window in _windowList) {
       if (window.windowId == windowId) {
         return window;
       }
@@ -53,8 +55,8 @@ final class YditsSscWindowManager {
     Rect frame = const Rect.fromLTWH(128, 128, 960, 540),
     bool showOnCreate = false,
   }) async {
-    final newWindow = await DesktopMultiWindow.createWindow(
-      jsonEncode({'window': window.toString()}),
+    final WindowController newWindow = await DesktopMultiWindow.createWindow(
+      jsonEncode(<String, String>{'window': window.toString()}),
     );
 
     await newWindow.setFrame(frame);
@@ -72,7 +74,9 @@ final class YditsSscWindowManager {
 
   /// Closes all managed windows.
   Future<void> closeAllWindow() async {
-    for (final window in List<WindowController>.from(_windowList)) {
+    for (final WindowController window in List<WindowController>.from(
+      _windowList,
+    )) {
       try {
         await window.close();
       } catch (error) {

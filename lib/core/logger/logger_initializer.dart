@@ -19,17 +19,17 @@ import 'package:ydits_ssc/core/exceptions/exceptions.dart';
 Logger? initializeLogger() {
   try {
     // Ensure the directory exists before creating the file.
-    final logFile = File('./data/log.txt');
+    final File logFile = File('./data/log.txt');
     if (!logFile.parent.existsSync()) {
       logFile.parent.createSync(recursive: true);
     }
 
-    final sink = logFile.openWrite(mode: FileMode.append);
-    final logger = Logger('ydits_ssc');
+    final IOSink sink = logFile.openWrite(mode: FileMode.append);
+    final Logger logger = Logger('ydits_ssc');
 
     Logger.root.level = Level.ALL;
-    Logger.root.onRecord.listen((record) {
-      final message =
+    Logger.root.onRecord.listen((LogRecord record) {
+      final String message =
           '[${record.level.name.padRight(5)}] ${record.time}: ${record.message}';
       if (kDebugMode) {
         debugPrint(message);

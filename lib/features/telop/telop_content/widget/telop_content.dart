@@ -8,13 +8,12 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:ydits_ssc/features/telop/telop_content/model/telop_content_state_model.dart';
 import 'package:ydits_ssc/features/telop/telop_content/notifier/telop_content_state_notifier.dart';
 
 /// A widget that displays scrolling telop content.
 class TelopContent extends ConsumerStatefulWidget {
-  const TelopContent({
-    super.key,
-  });
+  const TelopContent({super.key});
 
   @override
   ConsumerState<TelopContent> createState() => _TelopContentState();
@@ -30,7 +29,7 @@ class _TelopContentState extends ConsumerState<TelopContent>
   void initState() {
     super.initState();
 
-    final speed = ref.read(telopContentStateProvider).speed;
+    final int speed = ref.read(telopContentStateProvider).speed;
 
     _controller = AnimationController(
       duration: Duration(seconds: speed), // Sliding duration
@@ -49,15 +48,15 @@ class _TelopContentState extends ConsumerState<TelopContent>
 
   @override
   Widget build(BuildContext context) {
-    final state = ref.watch(telopContentStateProvider);
+    final TelopContentStateModel state = ref.watch(telopContentStateProvider);
 
     return ClipRect(
       child: LayoutBuilder(
-        builder: (context, constraints) {
+        builder: (BuildContext context, BoxConstraints constraints) {
           return AnimatedBuilder(
             animation: _controller,
-            builder: (context, child) {
-              final screenWidth = MediaQuery.of(context).size.width;
+            builder: (BuildContext context, Widget? child) {
+              final double screenWidth = MediaQuery.of(context).size.width;
 
               return Transform.translate(
                 offset: Offset(screenWidth * _animation.value, 0),

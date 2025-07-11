@@ -16,7 +16,7 @@ class CopyrightFooter extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final name = ref.watch(copyrightNameProvider);
+    final String name = ref.watch(copyrightNameProvider);
 
     return Container(
       color: Colors.black87,

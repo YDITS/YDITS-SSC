@@ -10,7 +10,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:logging/logging.dart';
 import 'package:window_manager/window_manager.dart';
-
 import 'package:ydits_ssc/apps/weather_earthquake_telop_display/model/weather_earthquake_telop_display_config.dart';
 import 'package:ydits_ssc/apps/weather_earthquake_telop_display/widget/weather_earthquake_telop_display_app.dart';
 import 'package:ydits_ssc/core/utils/is_platform_desktop.dart';
@@ -61,7 +60,7 @@ class WeatherEarthquakeTelopDisplay {
       'Setting WeatherEarthquakeTelopDisplay application window configs...',
     );
 
-    final windowOptions = WindowOptions(
+    final WindowOptions windowOptions = WindowOptions(
       title: windowConfig.title,
       size: windowConfig.initialSize,
       minimumSize: windowConfig.minSize,
@@ -78,9 +77,9 @@ class WeatherEarthquakeTelopDisplay {
       'WeatherEarthquakeTelopDisplay application window options: $windowOptions',
     );
 
-    windowManager.waitUntilReadyToShow(
+    await windowManager.waitUntilReadyToShow(
       windowOptions,
-      () async => _onReadyToShowWindow(),
+      _onReadyToShowWindow,
     );
   }
 

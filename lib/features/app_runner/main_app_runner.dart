@@ -7,12 +7,13 @@
 //
 
 import 'package:configure/configure.dart';
+import 'package:desktop_multi_window/desktop_multi_window.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
 import 'package:ydits_ssc/apps/main_app/model/main_app_window_config.dart';
 import 'package:ydits_ssc/apps/main_app/widget/main_app.dart';
 import 'package:ydits_ssc/core/app_runner/main_app_runner.dart';
+import 'package:ydits_ssc/core/sub_windows/sub_windows.dart';
 
 /// The main application runner for the YDITS for SSC application.
 ///
@@ -32,7 +33,8 @@ final class YditsSscMainAppRunner extends MainAppRunner {
   Future<void> run() async {
     logger?.info("Running main application...");
 
-    final subWindows = await configureSubWindows();
+    final Map<SubWindows, WindowController> subWindows =
+        await configureSubWindows();
     await initializeDesktopWindow();
 
     runApp(ProviderScope(child: YditsSscMainApp(subWindows: subWindows)));

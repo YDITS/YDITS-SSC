@@ -21,7 +21,7 @@ enum SubWindows {
 }
 
 /// A map to convert a string representation of a sub-window to its [SubWindows] enum.
-Map<String, SubWindows> subWindowsStringToEnum = {
+Map<String, SubWindows> subWindowsStringToEnum = <String, SubWindows>{
   SubWindows.eewMonitorDisplay.toString(): SubWindows.eewMonitorDisplay,
   SubWindows.tsunamiMonitorDisplay.toString(): SubWindows.tsunamiMonitorDisplay,
   SubWindows.weatherEarthquakeTelopDisplay.toString():
@@ -29,14 +29,14 @@ Map<String, SubWindows> subWindowsStringToEnum = {
 };
 
 /// A map that associates each [SubWindows] with an icon.
-const Map<SubWindows, IconData> subWindowIconData = {
+const Map<SubWindows, IconData> subWindowIconData = <SubWindows, IconData>{
   SubWindows.eewMonitorDisplay: Icons.warning_amber_rounded,
   SubWindows.tsunamiMonitorDisplay: Icons.tsunami,
   SubWindows.weatherEarthquakeTelopDisplay: Icons.notifications_active,
 };
 
 /// A map that provides a title for each [SubWindows].
-const Map<SubWindows, String> subWindowsTitle = {
+const Map<SubWindows, String> subWindowsTitle = <SubWindows, String>{
   SubWindows.eewMonitorDisplay: 'EEW Monitor Display',
   SubWindows.tsunamiMonitorDisplay: 'Tsunami Monitor Display',
   SubWindows.weatherEarthquakeTelopDisplay: 'Weather Earthquake Telop Display',

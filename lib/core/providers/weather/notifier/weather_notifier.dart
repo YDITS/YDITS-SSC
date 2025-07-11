@@ -9,7 +9,7 @@
 import 'package:flutter/material.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:weather/weather.dart';
-
+import 'package:ydits_ssc/apps/weather_earthquake_telop_display/model/weather_earthquake_telop_display_config.dart';
 import 'package:ydits_ssc/apps/weather_earthquake_telop_display/provider/weather_earthquake_telop_display_config_provider.dart';
 import 'package:ydits_ssc/core/providers/weather/model/weather_state_model.dart';
 import 'package:ydits_ssc/core/resources/japan_prefectures.dart';
@@ -33,17 +33,19 @@ class YditsSscWeather extends _$YditsSscWeather {
 
   /// Initializes the [WeatherFactory] with the API key.
   Future<void> _initWeatherFactory() async {
-    final config = ref.read(weatherEarthquakeTelopDisplayConfigProvider);
+    final WeatherEarthquakeTelopDisplayConfig config = ref.read(
+      weatherEarthquakeTelopDisplayConfigProvider,
+    );
     _weatherFactory = WeatherFactory(config.openWeatherMapApiKey);
   }
 
   /// Updates the weather information for all prefectures in Japan.
   Future<void> update() async {
-    final buffer = StringBuffer();
+    final StringBuffer buffer = StringBuffer();
 
-    for (final prefecture in JapanPrefectures.stringList) {
+    for (final String prefecture in JapanPrefectures.stringList) {
       try {
-        final weather = await _weatherFactory.currentWeatherByCityName(
+        final Weather weather = await _weatherFactory.currentWeatherByCityName(
           prefecture,
         );
         buffer.write(

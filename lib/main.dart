@@ -16,16 +16,12 @@ import 'package:ydits_ssc/features/app_runner/app_runner.dart';
 
 Future<void> main(List<String> args) async {
   WidgetsFlutterBinding.ensureInitialized();
-  windowManager.ensureInitialized();
+  await windowManager.ensureInitialized();
   final Logger? logger = initializeLogger();
 
   try {
     await YditsSscAppRunner(args: args, logger: logger).runApp();
   } catch (error, stackTrace) {
-    logger?.shout(
-      'An unhandled error occurred at startup',
-      error,
-      stackTrace,
-    );
+    logger?.shout('An unhandled error occurred at startup', error, stackTrace);
   }
 }

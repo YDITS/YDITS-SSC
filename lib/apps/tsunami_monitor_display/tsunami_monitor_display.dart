@@ -10,7 +10,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:logging/logging.dart';
 import 'package:window_manager/window_manager.dart';
-
 import 'package:ydits_ssc/apps/tsunami_monitor_display/model/tsunami_monitor_display_config.dart';
 import 'package:ydits_ssc/apps/tsunami_monitor_display/widget/tsunami_monitor_display_app.dart';
 import 'package:ydits_ssc/core/utils/is_platform_desktop.dart';
@@ -59,7 +58,7 @@ final class TsunamiMonitorDisplay {
   Future<void> _setWindowConfig() async {
     logger?.info('Setting TsunamiMonitorDisplay application window configs...');
 
-    final windowOptions = WindowOptions(
+    final WindowOptions windowOptions = WindowOptions(
       title: windowConfig.title,
       size: windowConfig.initialSize,
       minimumSize: windowConfig.minSize,
@@ -76,9 +75,9 @@ final class TsunamiMonitorDisplay {
       'TsunamiMonitorDisplay application window options: $windowOptions',
     );
 
-    windowManager.waitUntilReadyToShow(
+    await windowManager.waitUntilReadyToShow(
       windowOptions,
-      () async => _onReadyToShowWindow(),
+      _onReadyToShowWindow,
     );
   }
 

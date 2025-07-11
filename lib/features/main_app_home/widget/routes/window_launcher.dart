@@ -10,14 +10,13 @@ import 'package:desktop_multi_window/desktop_multi_window.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
 import 'package:ydits_ssc/core/sub_windows/sub_windows.dart';
 import 'package:ydits_ssc/core/widgets/copyright_footer/copyright_footer.dart';
 import 'package:ydits_ssc/core/widgets/text_button_with_icon/text_button_with_icon.dart';
 
 /// A widget that provides a launcher for the various sub-windows.
 class WindowLauncher extends ConsumerWidget {
-  WindowLauncher({super.key, required this.windows});
+  WindowLauncher({required this.windows, super.key});
 
   /// A map of sub-window controllers.
   final Map<SubWindows, WindowController> windows;
@@ -27,7 +26,7 @@ class WindowLauncher extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
+      children: <Widget>[
         const SizedBox(height: 16),
         const Center(
           child: Text(
@@ -41,7 +40,7 @@ class WindowLauncher extends ConsumerWidget {
             padding: const EdgeInsets.symmetric(horizontal: 32),
             child: ScrollbarTheme(
               data: const ScrollbarThemeData(
-                thumbColor: WidgetStatePropertyAll(
+                thumbColor: WidgetStatePropertyAll<Color?>(
                   Color.fromARGB(255, 127, 127, 127),
                 ),
               ),
@@ -79,9 +78,10 @@ class WindowLauncher extends ConsumerWidget {
 
   /// Builds a button for a specific sub-window.
   Widget _buildWindowButton(int index) {
-    final subWindow = SubWindows.values[index];
-    final iconData = subWindowIconData[subWindow] ?? Icons.question_mark;
-    final title = subWindowsTitle[subWindow] ?? 'Unknown';
+    final SubWindows subWindow = SubWindows.values[index];
+    final IconData iconData =
+        subWindowIconData[subWindow] ?? Icons.question_mark;
+    final String title = subWindowsTitle[subWindow] ?? 'Unknown';
 
     return TextButtonWithIcon(
       iconData: iconData,
@@ -99,7 +99,7 @@ class WindowLauncher extends ConsumerWidget {
       debugPrint('Sub-window button pressed: `$subWindow`');
     }
 
-    final controller = windows[subWindow];
+    final WindowController? controller = windows[subWindow];
     if (controller != null) {
       await controller.show();
     } else {

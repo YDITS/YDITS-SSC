@@ -12,7 +12,7 @@ import 'package:version/version.dart';
 part 'build_mode_to_banner_text_provider.g.dart';
 
 @riverpod
-Map<VersionLevels, String> buildModeToBannarText(_) => {
+Map<VersionLevels, String> buildModeToBannarText(_) => <VersionLevels, String>{
   VersionLevels.stable: "STABLE",
   VersionLevels.beta: "BETA",
   VersionLevels.develop: "DEV",

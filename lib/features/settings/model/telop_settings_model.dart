@@ -43,21 +43,24 @@ enum TelopDisplayMode {
 }
 
 /// A map to convert a string representation of a telop display mode to its [TelopDisplayMode] enum.
-final Map<String, TelopDisplayMode> telopDisplayModeStringToEnum = {
-  TelopDisplayMode.none.toString(): TelopDisplayMode.none,
-  TelopDisplayMode.weatherTommorow.toString(): TelopDisplayMode.weatherTommorow,
-  TelopDisplayMode.weatherToday.toString(): TelopDisplayMode.weatherToday,
-  TelopDisplayMode.eew.toString(): TelopDisplayMode.eew,
-  TelopDisplayMode.earthquake.toString(): TelopDisplayMode.earthquake,
-  TelopDisplayMode.tsunami.toString(): TelopDisplayMode.tsunami,
-};
+final Map<String, TelopDisplayMode> telopDisplayModeStringToEnum =
+    <String, TelopDisplayMode>{
+      TelopDisplayMode.none.toString(): TelopDisplayMode.none,
+      TelopDisplayMode.weatherTommorow.toString():
+          TelopDisplayMode.weatherTommorow,
+      TelopDisplayMode.weatherToday.toString(): TelopDisplayMode.weatherToday,
+      TelopDisplayMode.eew.toString(): TelopDisplayMode.eew,
+      TelopDisplayMode.earthquake.toString(): TelopDisplayMode.earthquake,
+      TelopDisplayMode.tsunami.toString(): TelopDisplayMode.tsunami,
+    };
 
 /// A map that provides a human-readable text for each [TelopDisplayMode].
-const Map<TelopDisplayMode, String> telopDisplayModeToText = {
-  TelopDisplayMode.none: 'Do not override',
-  TelopDisplayMode.weatherTommorow: "Tomorrow's Weather",
-  TelopDisplayMode.weatherToday: "Today's Weather",
-  TelopDisplayMode.eew: 'Earthquake Early Warning',
-  TelopDisplayMode.earthquake: 'Earthquake Information',
-  TelopDisplayMode.tsunami: 'Tsunami Information',
-};
+const Map<TelopDisplayMode, String> telopDisplayModeToText =
+    <TelopDisplayMode, String>{
+      TelopDisplayMode.none: 'Do not override',
+      TelopDisplayMode.weatherTommorow: "Tomorrow's Weather",
+      TelopDisplayMode.weatherToday: "Today's Weather",
+      TelopDisplayMode.eew: 'Earthquake Early Warning',
+      TelopDisplayMode.earthquake: 'Earthquake Information',
+      TelopDisplayMode.tsunami: 'Tsunami Information',
+    };

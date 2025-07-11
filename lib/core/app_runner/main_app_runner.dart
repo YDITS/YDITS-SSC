@@ -12,7 +12,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:logging/logging.dart';
 import 'package:window_manager/window_manager.dart';
-
 import 'package:ydits_ssc/core/exceptions/exceptions.dart';
 import 'package:ydits_ssc/core/sub_windows/sub_windows.dart';
 import 'package:ydits_ssc/core/utils/is_platform_desktop.dart';
@@ -48,11 +47,7 @@ abstract class MainAppRunner {
     try {
       subWindows = await configureSubWindows();
     } catch (error, stackTrace) {
-      logger?.warning(
-        'Failed to configure sub-windows.',
-        error,
-        stackTrace,
-      );
+      logger?.warning('Failed to configure sub-windows.', error, stackTrace);
     }
 
     if (isPlatformDesktop) {
@@ -85,7 +80,7 @@ abstract class MainAppRunner {
   Future<void> _setWindowConfig() async {
     logger?.info('Setting main application window configs...');
 
-    final windowOptions = WindowOptions(
+    final WindowOptions windowOptions = WindowOptions(
       title: windowConfig.title,
       size: windowConfig.initialSize,
       minimumSize: windowConfig.minSize,
@@ -98,11 +93,13 @@ abstract class MainAppRunner {
       windowButtonVisibility: true,
     );
 
-    logger?.info('Main application window options: ${windowOptions.toString()}');
+    logger?.info(
+      'Main application window options: ${windowOptions.toString()}',
+    );
 
-    windowManager.waitUntilReadyToShow(windowOptions, () async {
-      await windowManager.show();
-      await windowManager.focus();
+    await windowManager.waitUntilReadyToShow(windowOptions, () {
+      windowManager.show();
+      windowManager.focus();
     });
   }
 
@@ -111,28 +108,29 @@ abstract class MainAppRunner {
     logger?.info('Configuring sub-application windows...');
 
     try {
-      final subWindowManager = YditsSscWindowManager(
+      final YditsSscWindowManager subWindowManager = YditsSscWindowManager(
         onFailedCloseWindowCallback:
-            (windowId) => _onFailedCloseWindow(windowId),
+            (int windowId) => _onFailedCloseWindow(windowId),
       );
 
-      final eewMonitorDisplayWindow = await subWindowManager.createNewWindow(
-        title: subWindowsTitle[SubWindows.eewMonitorDisplay] ?? '',
-        window: SubWindows.eewMonitorDisplay,
-      );
-      final tsunamiMonitorDisplayWindow =
+      final WindowController eewMonitorDisplayWindow = await subWindowManager
+          .createNewWindow(
+            title: subWindowsTitle[SubWindows.eewMonitorDisplay] ?? '',
+            window: SubWindows.eewMonitorDisplay,
+          );
+      final WindowController tsunamiMonitorDisplayWindow =
           await subWindowManager.createNewWindow(
-        title: subWindowsTitle[SubWindows.tsunamiMonitorDisplay] ?? '',
-        window: SubWindows.tsunamiMonitorDisplay,
-      );
-      final weatherEarthquakeTelopDisplayWindow =
+            title: subWindowsTitle[SubWindows.tsunamiMonitorDisplay] ?? '',
+            window: SubWindows.tsunamiMonitorDisplay,
+          );
+      final WindowController weatherEarthquakeTelopDisplayWindow =
           await subWindowManager.createNewWindow(
-        title:
-            subWindowsTitle[SubWindows.weatherEarthquakeTelopDisplay] ?? '',
-        window: SubWindows.weatherEarthquakeTelopDisplay,
-      );
+            title:
+                subWindowsTitle[SubWindows.weatherEarthquakeTelopDisplay] ?? '',
+            window: SubWindows.weatherEarthquakeTelopDisplay,
+          );
 
-      return {
+      return <SubWindows, WindowController>{
         SubWindows.eewMonitorDisplay: eewMonitorDisplayWindow,
         SubWindows.tsunamiMonitorDisplay: tsunamiMonitorDisplayWindow,
         SubWindows.weatherEarthquakeTelopDisplay:

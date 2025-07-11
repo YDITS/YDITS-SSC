@@ -7,7 +7,7 @@ part of 'build_mode_to_banner_text_provider.dart';
 // **************************************************************************
 
 String _$buildModeToBannarTextHash() =>
-    r'493590d8446bc3f06d93c6daf4fc4050b94ad8b1';
+    r'282ea5025e1ce128c01cc90c7674185f453ef5d8';
 
 /// See also [buildModeToBannarText].
 @ProviderFor(buildModeToBannarText)

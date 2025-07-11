@@ -9,7 +9,7 @@
 import 'package:desktop_multi_window/desktop_multi_window.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
+import 'package:ydits_ssc/apps/main_app/model/main_app_config.dart';
 import 'package:ydits_ssc/apps/main_app/provider/main_app_config_provider.dart';
 import 'package:ydits_ssc/core/sub_windows/sub_windows.dart';
 import 'package:ydits_ssc/features/main_app_home/notifier/main_app_home_state_notifier.dart';
@@ -18,17 +18,18 @@ import 'package:ydits_ssc/features/settings/widget/settings_page.dart';
 
 /// The home page widget for the main YDITS for SSC application.
 class YditsSscMainAppHomePage extends ConsumerWidget {
-  const YditsSscMainAppHomePage({super.key, required this.windows});
+  const YditsSscMainAppHomePage({required this.windows, super.key});
 
   /// A map of sub-window controllers.
   final Map<SubWindows, WindowController> windows;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final config = ref.watch(yditsSscAppConfigProvider);
-    final currentIndex = ref.watch(mainAppHomeStateProvider).currentNavigationIndex;
+    final YditsSscAppConfig config = ref.watch(yditsSscAppConfigProvider);
+    final int currentIndex =
+        ref.watch(mainAppHomeStateProvider).currentNavigationIndex;
 
-    final pages = [
+    final List<ConsumerWidget> pages = <ConsumerWidget>[
       WindowLauncher(windows: windows),
       const SettingsPage(),
     ];
@@ -40,11 +41,11 @@ class YditsSscMainAppHomePage extends ConsumerWidget {
         backgroundColor: Colors.black87,
       ),
       body: Row(
-        children: [
+        children: <Widget>[
           SafeArea(
             child: NavigationRail(
               extended: false,
-              destinations: const [
+              destinations: const <NavigationRailDestination>[
                 NavigationRailDestination(
                   icon: Icon(Icons.home),
                   label: Text("ホーム"),
@@ -55,7 +56,7 @@ class YditsSscMainAppHomePage extends ConsumerWidget {
                 ),
               ],
               selectedIndex: currentIndex,
-              onDestinationSelected: (value) {
+              onDestinationSelected: (int value) {
                 ref
                     .read(mainAppHomeStateProvider.notifier)
                     .setCurrentNavigationIndex(value);

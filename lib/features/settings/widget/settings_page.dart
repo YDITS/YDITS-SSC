@@ -17,18 +17,21 @@ class SettingsPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final telopSettings = ref.watch(telopSettingsProvider);
+    final TelopSettingsModel telopSettings = ref.watch(telopSettingsProvider);
 
     return Scaffold(
       body: ListView(
-        children: TelopDisplayMode.values.map((mode) {
-          return RadioListTile<TelopDisplayMode>(
-            value: mode,
-            groupValue: telopSettings.displayModeOverride,
-            title: Text(telopDisplayModeToText[mode] ?? '-'),
-            onChanged: (value) => _onTelopDisplayModeRadioChanged(value, ref),
-          );
-        }).toList(),
+        children:
+            TelopDisplayMode.values.map((TelopDisplayMode mode) {
+              return RadioListTile<TelopDisplayMode>(
+                value: mode,
+                groupValue: telopSettings.displayModeOverride,
+                title: Text(telopDisplayModeToText[mode] ?? '-'),
+                onChanged:
+                    (TelopDisplayMode? value) =>
+                        _onTelopDisplayModeRadioChanged(value, ref),
+              );
+            }).toList(),
       ),
     );
   }

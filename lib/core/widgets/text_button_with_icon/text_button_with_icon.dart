@@ -11,10 +11,10 @@ import 'package:flutter/material.dart';
 /// A custom text button that includes an icon.
 class TextButtonWithIcon extends StatelessWidget {
   const TextButtonWithIcon({
-    super.key,
     required this.iconData,
     required this.child,
     required this.onPressed,
+    super.key,
   });
 
   /// The icon to be displayed.
@@ -37,7 +37,7 @@ class TextButtonWithIcon extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
-          children: [
+          children: <Widget>[
             Icon(iconData, size: 64),
             const SizedBox(height: 16),
             Center(child: child),

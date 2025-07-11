@@ -23,18 +23,15 @@ class _HomePageState extends State<TsunamiMonitorDisplayHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    final pages = <Widget>[
-      const MapPage(),
-      const MenuPage(),
-    ];
+    final List<Widget> pages = <Widget>[const MapPage(), const MenuPage()];
 
     return Scaffold(
       body: Row(
-        children: [
+        children: <Widget>[
           SafeArea(
             child: NavigationRail(
               extended: false,
-              destinations: const [
+              destinations: const <NavigationRailDestination>[
                 NavigationRailDestination(
                   icon: Icon(Icons.home),
                   label: Text("ホーム"),
@@ -45,7 +42,7 @@ class _HomePageState extends State<TsunamiMonitorDisplayHomePage> {
                 ),
               ],
               selectedIndex: _selectedIndex,
-              onDestinationSelected: (value) {
+              onDestinationSelected: (int value) {
                 setState(() {
                   _selectedIndex = value;
                 });

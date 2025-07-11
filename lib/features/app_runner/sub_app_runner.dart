@@ -26,28 +26,29 @@ final class YditsSscSubAppRunner extends SubAppRunner {
     logger?.info('Running sub-application with args: $args');
 
     try {
-      final windowString = jsonDecode(args[2])['window'] as String?;
+      final String? windowString = jsonDecode(args[2])['window'] as String?;
       if (windowString == null) {
         throw Exception('Window argument is missing.');
       }
 
       logger?.info('Target window: $windowString');
 
-      final targetWindow = subWindowsStringToEnum[windowString];
+      final SubWindows? targetWindow = subWindowsStringToEnum[windowString];
       if (targetWindow == null) {
         throw Exception('Unknown window: $windowString');
       }
 
-      final subWindowsRoute = <SubWindows, Future<void> Function()>{
-        SubWindows.eewMonitorDisplay:
-            () => EewMonitorDisplay(logger: logger).run(),
-        SubWindows.tsunamiMonitorDisplay:
-            () => TsunamiMonitorDisplay(logger: logger).run(),
-        SubWindows.weatherEarthquakeTelopDisplay:
-            () => WeatherEarthquakeTelopDisplay(logger: logger).run(),
-      };
+      final Map<SubWindows, Future<void> Function()> subWindowsRoute =
+          <SubWindows, Future<void> Function()>{
+            SubWindows.eewMonitorDisplay:
+                () => EewMonitorDisplay(logger: logger).run(),
+            SubWindows.tsunamiMonitorDisplay:
+                () => TsunamiMonitorDisplay(logger: logger).run(),
+            SubWindows.weatherEarthquakeTelopDisplay:
+                () => WeatherEarthquakeTelopDisplay(logger: logger).run(),
+          };
 
-      final runner = subWindowsRoute[targetWindow];
+      final Future<void> Function()? runner = subWindowsRoute[targetWindow];
       if (runner == null) {
         throw Exception('No route found for window: $targetWindow');
       }

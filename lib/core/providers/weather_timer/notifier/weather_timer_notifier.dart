@@ -18,7 +18,7 @@ part 'weather_timer_notifier.g.dart';
 @riverpod
 class WeatherTimer extends _$WeatherTimer {
   Timer? _timer;
-  final List<void Function()> _listeners = [];
+  final List<void Function()> _listeners = <void Function()>[];
 
   /// Adds a listener to be called on each timer tick.
   void addListener(void Function() listener) {
@@ -53,7 +53,7 @@ class WeatherTimer extends _$WeatherTimer {
   void _loop(Timer self) {
     ref.read(yditsSscWeatherProvider.notifier).update();
 
-    for (final listener in _listeners) {
+    for (final void Function() listener in _listeners) {
       listener();
     }
   }

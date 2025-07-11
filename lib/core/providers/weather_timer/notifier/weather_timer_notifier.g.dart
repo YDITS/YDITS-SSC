@@ -6,7 +6,7 @@ part of 'weather_timer_notifier.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$weatherTimerHash() => r'de08fe4c1551649bbfd7748fb1f81f22b37c3f21';
+String _$weatherTimerHash() => r'e1c92bf29a1d2536d62d778abee71bab9f0c555c';
 
 /// A notifier for managing a timer that periodically triggers weather updates.
 ///

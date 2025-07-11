@@ -6,7 +6,7 @@ part of 'weather_notifier.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$yditsSscWeatherHash() => r'1888aeb6e5e9a45f794f35feb0cf5623f48c89e6';
+String _$yditsSscWeatherHash() => r'2da85b4fb9fdd27d3114a3a1a91e6e4a52b9faf1';
 
 /// A notifier for managing the weather state of the YDITS SSC application.
 ///
