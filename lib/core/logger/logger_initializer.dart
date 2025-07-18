@@ -30,7 +30,7 @@ Logger? initializeLogger() {
     Logger.root.level = Level.ALL;
     Logger.root.onRecord.listen((LogRecord record) {
       final String message =
-          '[${record.level.name.padRight(5)}] ${record.time}: ${record.message}';
+          '[${record.level.name.padRight(8)}] ${record.time}: ${record.message}';
       if (kDebugMode) {
         debugPrint(message);
       }
