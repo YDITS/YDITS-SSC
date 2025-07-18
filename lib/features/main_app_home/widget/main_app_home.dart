@@ -44,6 +44,7 @@ class YditsSscMainAppHomePage extends ConsumerWidget {
         children: <Widget>[
           SafeArea(
             child: NavigationRail(
+              backgroundColor: Colors.black87,
               extended: false,
               destinations: const <NavigationRailDestination>[
                 NavigationRailDestination(
