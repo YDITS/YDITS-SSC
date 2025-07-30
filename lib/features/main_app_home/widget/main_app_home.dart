@@ -38,7 +38,7 @@ class YditsSscMainAppHomePage extends ConsumerWidget {
     ];
 
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 32, 32, 32),
+      backgroundColor: theme.darkBackground,
       appBar: AppBar(
         title: Text(config.title),
         backgroundColor: const Color.fromARGB(255, 8, 8, 8),
