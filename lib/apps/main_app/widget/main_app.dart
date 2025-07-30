@@ -60,7 +60,7 @@ final class _YditsSscMainAppState extends ConsumerState<YditsSscMainApp> {
       home = Banner(
         message: buildModeBannerText,
         location:
-            kReleaseMode ? BannerLocation.topEnd : BannerLocation.topStart,
+            kReleaseMode ? BannerLocation.topEnd : BannerLocation.bottomEnd,
         child: home,
       );
     }
