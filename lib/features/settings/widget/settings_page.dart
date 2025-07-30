@@ -8,6 +8,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:ydits_ssc/core/providers/theme/model/theme_model.dart';
+import 'package:ydits_ssc/core/providers/theme/notifier/theme_notifier.dart';
 import 'package:ydits_ssc/features/settings/model/telop_settings_model.dart';
 import 'package:ydits_ssc/features/settings/notifier/telop_settings_notifier.dart';
 
@@ -18,15 +20,20 @@ class SettingsPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final TelopSettingsModel telopSettings = ref.watch(telopSettingsProvider);
+    final ThemeModel theme = ref.watch(themeProvider);
 
     return Scaffold(
+      backgroundColor: theme.darkBackground,
       body: ListView(
         children:
             TelopDisplayMode.values.map((TelopDisplayMode mode) {
               return RadioListTile<TelopDisplayMode>(
                 value: mode,
                 groupValue: telopSettings.displayModeOverride,
-                title: Text(telopDisplayModeToText[mode] ?? '-'),
+                title: Text(
+                  telopDisplayModeToText[mode] ?? '-',
+                  style: TextStyle(color: theme.darkForeground),
+                ),
                 onChanged:
                     (TelopDisplayMode? value) =>
                         _onTelopDisplayModeRadioChanged(value, ref),
