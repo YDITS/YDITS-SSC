@@ -57,10 +57,10 @@ final Map<String, TelopDisplayMode> telopDisplayModeStringToEnum =
 /// A map that provides a human-readable text for each [TelopDisplayMode].
 const Map<TelopDisplayMode, String> telopDisplayModeToText =
     <TelopDisplayMode, String>{
-      TelopDisplayMode.none: 'Do not override',
-      TelopDisplayMode.weatherTommorow: "Tomorrow's Weather",
-      TelopDisplayMode.weatherToday: "Today's Weather",
-      TelopDisplayMode.eew: 'Earthquake Early Warning',
-      TelopDisplayMode.earthquake: 'Earthquake Information',
-      TelopDisplayMode.tsunami: 'Tsunami Information',
+      TelopDisplayMode.none: 'オーバーライドしない',
+      TelopDisplayMode.weatherToday: "今日の天気",
+      TelopDisplayMode.weatherTommorow: "明日の天気",
+      TelopDisplayMode.eew: '緊急地震速報',
+      TelopDisplayMode.earthquake: '地震情報',
+      TelopDisplayMode.tsunami: '津波情報',
     };
