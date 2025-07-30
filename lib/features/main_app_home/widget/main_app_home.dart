@@ -11,6 +11,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ydits_ssc/apps/main_app/model/main_app_config.dart';
 import 'package:ydits_ssc/apps/main_app/provider/main_app_config_provider.dart';
+import 'package:ydits_ssc/core/providers/theme/model/theme_model.dart';
+import 'package:ydits_ssc/core/providers/theme/notifier/theme_notifier.dart';
 import 'package:ydits_ssc/core/sub_windows/sub_windows.dart';
 import 'package:ydits_ssc/features/main_app_home/notifier/main_app_home_state_notifier.dart';
 import 'package:ydits_ssc/features/main_app_home/widget/routes/window_launcher.dart';
@@ -26,6 +28,7 @@ class YditsSscMainAppHomePage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final YditsSscAppConfig config = ref.watch(yditsSscAppConfigProvider);
+    final ThemeModel theme = ref.watch(themeProvider);
     final int currentIndex =
         ref.watch(mainAppHomeStateProvider).currentNavigationIndex;
 
@@ -35,16 +38,17 @@ class YditsSscMainAppHomePage extends ConsumerWidget {
     ];
 
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 16, 16, 16),
+      backgroundColor: const Color.fromARGB(255, 32, 32, 32),
       appBar: AppBar(
-        title: Text(config.title, style: const TextStyle(color: Colors.white)),
-        backgroundColor: Colors.black87,
+        title: Text(config.title),
+        backgroundColor: const Color.fromARGB(255, 8, 8, 8),
+        foregroundColor: theme.darkForeground,
       ),
       body: Row(
         children: <Widget>[
           SafeArea(
             child: NavigationRail(
-              backgroundColor: Colors.black87,
+              backgroundColor: theme.darkBackground,
               extended: false,
               destinations: const <NavigationRailDestination>[
                 NavigationRailDestination(
