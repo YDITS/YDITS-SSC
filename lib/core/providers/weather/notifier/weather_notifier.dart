@@ -19,6 +19,7 @@ part 'weather_notifier.g.dart';
 /// A notifier for managing the weather state of the YDITS SSC application.
 @riverpod
 class YditsSscWeather extends _$YditsSscWeather {
+  /// The WeatherFactory instance used to fetch weather data.
   late WeatherFactory _weatherFactory;
 
   @override
