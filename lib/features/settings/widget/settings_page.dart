@@ -22,24 +22,21 @@ class SettingsPage extends ConsumerWidget {
     final TelopSettingsModel telopSettings = ref.watch(telopSettingsProvider);
     final ThemeModel theme = ref.watch(themeProvider);
 
-    return Scaffold(
-      backgroundColor: theme.darkBackground,
-      body: ListView(
-        children:
-            TelopDisplayMode.values.map((TelopDisplayMode mode) {
-              return RadioListTile<TelopDisplayMode>(
-                value: mode,
-                groupValue: telopSettings.displayModeOverride,
-                title: Text(
-                  telopDisplayModeToText[mode] ?? '-',
-                  style: TextStyle(color: theme.darkForeground),
-                ),
-                onChanged:
-                    (TelopDisplayMode? value) =>
-                        _onTelopDisplayModeRadioChanged(value, ref),
-              );
-            }).toList(),
-      ),
+    return ListView(
+      children:
+          TelopDisplayMode.values.map((TelopDisplayMode mode) {
+            return RadioListTile<TelopDisplayMode>(
+              value: mode,
+              groupValue: telopSettings.displayModeOverride,
+              title: Text(
+                telopDisplayModeToText[mode] ?? '-',
+                style: TextStyle(color: theme.darkForeground),
+              ),
+              onChanged:
+                  (TelopDisplayMode? value) =>
+                      _onTelopDisplayModeRadioChanged(value, ref),
+            );
+          }).toList(),
     );
   }
 

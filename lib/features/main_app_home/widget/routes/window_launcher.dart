@@ -11,7 +11,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ydits_ssc/core/sub_windows/sub_windows.dart';
-import 'package:ydits_ssc/core/widgets/copyright_footer/copyright_footer.dart';
 import 'package:ydits_ssc/core/widgets/text_button_with_icon/text_button_with_icon.dart';
 
 /// A widget that provides a launcher for the various sub-windows.
@@ -25,7 +24,6 @@ class WindowLauncher extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
       children: <Widget>[
         const SizedBox(height: 16),
         const Center(
@@ -71,7 +69,6 @@ class WindowLauncher extends ConsumerWidget {
             ),
           ),
         ),
-        const CopyrightFooter(),
       ],
     );
   }
