@@ -22,22 +22,41 @@ class SettingsPage extends ConsumerWidget {
     final TelopSettingsModel telopSettings = ref.watch(telopSettingsProvider);
     final ThemeModel theme = ref.watch(themeProvider);
 
-    return ListView(
-      children:
-          TelopDisplayMode.values.map((TelopDisplayMode mode) {
-            return RadioListTile<TelopDisplayMode>(
-              value: mode,
-              groupValue: telopSettings.displayModeOverride,
-              title: Text(
-                telopDisplayModeToText[mode] ?? '-',
-                style: TextStyle(color: theme.darkForeground),
-              ),
-              onChanged:
-                  (TelopDisplayMode? value) =>
-                      _onTelopDisplayModeRadioChanged(value, ref),
-            );
-          }).toList(),
+    return RadioGroup<TelopDisplayMode>(
+      groupValue: telopSettings.displayModeOverride,
+      onChanged:
+          (TelopDisplayMode? value) =>
+              _onTelopDisplayModeRadioChanged(value, ref),
+      child: Column(
+        children:
+            TelopDisplayMode.values.map((TelopDisplayMode mode) {
+              return RadioListTile<TelopDisplayMode>(
+                value: mode,
+                title: Text(
+                  telopDisplayModeToText[mode] ?? '-',
+                  style: TextStyle(color: theme.darkForeground),
+                ),
+              );
+            }).toList(),
+      ),
     );
+
+    // return ListView(
+    //   children:
+    //       TelopDisplayMode.values.map((TelopDisplayMode mode) {
+    //         return RadioListTile<TelopDisplayMode>(
+    //           value: mode,
+    //           groupValue: telopSettings.displayModeOverride,
+    //           title: Text(
+    //             telopDisplayModeToText[mode] ?? '-',
+    //             style: TextStyle(color: theme.darkForeground),
+    //           ),
+    //           onChanged:
+    //               (TelopDisplayMode? value) =>
+    //                   _onTelopDisplayModeRadioChanged(value, ref),
+    //         );
+    //       }).toList(),
+    // );
   }
 
   /// Handles changes to the telop display mode radio buttons.
