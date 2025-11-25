@@ -19,7 +19,7 @@ import 'package:ydits_ssc/core/exceptions/exceptions.dart';
 Logger? initializeLogger() {
   try {
     // Ensure the directory exists before creating the file.
-    final File logFile = File('./data/log.txt');
+    final File logFile = File('./data/_.log');
     if (!logFile.parent.existsSync()) {
       logFile.parent.createSync(recursive: true);
     }
