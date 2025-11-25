@@ -11,7 +11,6 @@ import 'package:desktop_multi_window/desktop_multi_window.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:logging/logging.dart';
-import 'package:window_manager/window_manager.dart';
 import 'package:ydits_ssc/core/exceptions/exceptions.dart';
 import 'package:ydits_ssc/core/sub_windows/sub_windows.dart';
 import 'package:ydits_ssc/core/utils/is_platform_desktop.dart';
@@ -79,28 +78,6 @@ abstract class MainAppRunner {
   /// Sets the configuration for the main application window.
   Future<void> _setWindowConfig() async {
     logger?.info('Setting main application window configs...');
-
-    final WindowOptions windowOptions = WindowOptions(
-      title: windowConfig.title,
-      size: windowConfig.initialSize,
-      minimumSize: windowConfig.minSize,
-      maximumSize: windowConfig.maxSize,
-      center: true,
-      fullScreen: false,
-      alwaysOnTop: false,
-      skipTaskbar: false,
-      titleBarStyle: TitleBarStyle.normal,
-      windowButtonVisibility: true,
-    );
-
-    logger?.info(
-      'Main application window options: ${windowOptions.toString()}',
-    );
-
-    await windowManager.waitUntilReadyToShow(windowOptions, () {
-      windowManager.show();
-      windowManager.focus();
-    });
   }
 
   /// Configures and creates all sub-windows.
