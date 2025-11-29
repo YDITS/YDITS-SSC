@@ -6,44 +6,100 @@ part of 'main_app_config_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint, type=warning
+
+@ProviderFor(yditsSscAppConfig)
+const yditsSscAppConfigProvider = YditsSscAppConfigProvider._();
+
+final class YditsSscAppConfigProvider
+    extends
+        $FunctionalProvider<
+          YditsSscAppConfig,
+          YditsSscAppConfig,
+          YditsSscAppConfig
+        >
+    with $Provider<YditsSscAppConfig> {
+  const YditsSscAppConfigProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'yditsSscAppConfigProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$yditsSscAppConfigHash();
+
+  @$internal
+  @override
+  $ProviderElement<YditsSscAppConfig> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  YditsSscAppConfig create(Ref ref) {
+    return yditsSscAppConfig(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(YditsSscAppConfig value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<YditsSscAppConfig>(value),
+    );
+  }
+}
+
 String _$yditsSscAppConfigHash() => r'1044092e5c7cc263472a8aea5d9a34f5ff2be544';
 
-/// See also [yditsSscAppConfig].
-@ProviderFor(yditsSscAppConfig)
-final yditsSscAppConfigProvider =
-    AutoDisposeProvider<YditsSscAppConfig>.internal(
-      yditsSscAppConfig,
-      name: r'yditsSscAppConfigProvider',
-      debugGetCreateSourceHash:
-          const bool.fromEnvironment('dart.vm.product')
-              ? null
-              : _$yditsSscAppConfigHash,
-      dependencies: null,
-      allTransitiveDependencies: null,
-    );
+@ProviderFor(yditsSscWindowConfig)
+const yditsSscWindowConfigProvider = YditsSscWindowConfigProvider._();
 
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-typedef YditsSscAppConfigRef = AutoDisposeProviderRef<YditsSscAppConfig>;
+final class YditsSscWindowConfigProvider
+    extends
+        $FunctionalProvider<
+          YditsSscWindowConfig,
+          YditsSscWindowConfig,
+          YditsSscWindowConfig
+        >
+    with $Provider<YditsSscWindowConfig> {
+  const YditsSscWindowConfigProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'yditsSscWindowConfigProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$yditsSscWindowConfigHash();
+
+  @$internal
+  @override
+  $ProviderElement<YditsSscWindowConfig> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  YditsSscWindowConfig create(Ref ref) {
+    return yditsSscWindowConfig(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(YditsSscWindowConfig value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<YditsSscWindowConfig>(value),
+    );
+  }
+}
+
 String _$yditsSscWindowConfigHash() =>
     r'037c4d8b7f442a1e13bf783a05b817d70c023fb0';
-
-/// See also [yditsSscWindowConfig].
-@ProviderFor(yditsSscWindowConfig)
-final yditsSscWindowConfigProvider =
-    AutoDisposeProvider<YditsSscWindowConfig>.internal(
-      yditsSscWindowConfig,
-      name: r'yditsSscWindowConfigProvider',
-      debugGetCreateSourceHash:
-          const bool.fromEnvironment('dart.vm.product')
-              ? null
-              : _$yditsSscWindowConfigHash,
-      dependencies: null,
-      allTransitiveDependencies: null,
-    );
-
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-typedef YditsSscWindowConfigRef = AutoDisposeProviderRef<YditsSscWindowConfig>;
-// ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

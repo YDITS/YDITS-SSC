@@ -19,14 +19,16 @@ import 'package:ydits_ssc/core/sub_windows/sub_windows.dart';
 /// This class is responsible for routing and running the various sub-applications
 /// based on the provided arguments.
 final class YditsSscSubAppRunner extends SubAppRunner {
-  YditsSscSubAppRunner({super.logger});
+  YditsSscSubAppRunner({required super.windowController, super.logger});
 
   @override
-  Future<void> run(List<String> args) async {
+  Future<void> run() async {
+    final String args = windowController.arguments;
+
     logger?.info('Running sub-application with args: $args');
 
     try {
-      final String? windowString = jsonDecode(args[2])['window'] as String?;
+      final String? windowString = jsonDecode(args)['window'] as String?;
       if (windowString == null) {
         throw Exception('Window argument is missing.');
       }

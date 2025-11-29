@@ -6,25 +6,50 @@ part of 'copyright_name_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$copyrightNameHash() => r'78116b05edbdef91fdf30b58416a74caeb16713f';
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint, type=warning
+/// A provider that returns the copyright holder's name.
+
+@ProviderFor(copyrightName)
+const copyrightNameProvider = CopyrightNameProvider._();
 
 /// A provider that returns the copyright holder's name.
-///
-/// Copied from [copyrightName].
-@ProviderFor(copyrightName)
-final copyrightNameProvider = AutoDisposeProvider<String>.internal(
-  copyrightName,
-  name: r'copyrightNameProvider',
-  debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product')
-          ? null
-          : _$copyrightNameHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
 
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-typedef CopyrightNameRef = AutoDisposeProviderRef<String>;
-// ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package
+final class CopyrightNameProvider
+    extends $FunctionalProvider<String, String, String>
+    with $Provider<String> {
+  /// A provider that returns the copyright holder's name.
+  const CopyrightNameProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'copyrightNameProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$copyrightNameHash();
+
+  @$internal
+  @override
+  $ProviderElement<String> $createElement($ProviderPointer pointer) =>
+      $ProviderElement(pointer);
+
+  @override
+  String create(Ref ref) {
+    return copyrightName(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(String value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<String>(value),
+    );
+  }
+}
+
+String _$copyrightNameHash() => r'78116b05edbdef91fdf30b58416a74caeb16713f';

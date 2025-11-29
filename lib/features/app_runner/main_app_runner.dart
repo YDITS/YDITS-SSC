@@ -19,7 +19,7 @@ import 'package:ydits_ssc/core/sub_windows/sub_windows.dart';
 ///
 /// This class is responsible for setting up and running the main application window.
 final class YditsSscMainAppRunner extends MainAppRunner {
-  YditsSscMainAppRunner({super.logger});
+  YditsSscMainAppRunner({required super.windowController, super.logger});
 
   @override
   final WindowConfig windowConfig = YditsSscWindowConfig();

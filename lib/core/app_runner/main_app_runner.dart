@@ -22,7 +22,7 @@ import 'package:ydits_ssc/core/window_manager/window_manager_exceptions.dart';
 /// This class handles the initialization of the main window, configuration of
 /// sub-windows, and running the main application widget.
 abstract class MainAppRunner {
-  MainAppRunner({this.logger});
+  MainAppRunner({required this.windowController, this.logger});
 
   /// The main application widget to be run.
   late final Widget app;
@@ -35,6 +35,8 @@ abstract class MainAppRunner {
 
   /// An optional logger instance for logging application events.
   final Logger? logger;
+
+  final WindowController windowController;
 
   /// Runs the main application.
   ///
@@ -86,8 +88,9 @@ abstract class MainAppRunner {
 
     try {
       final YditsSscWindowManager subWindowManager = YditsSscWindowManager(
-        onFailedCloseWindowCallback:
-            (int windowId) => _onFailedCloseWindow(windowId),
+        currentWindowController: windowController,
+        onFailedHideWindowCallback:
+            (String windowId) => _onFailedCloseWindow(windowId),
       );
 
       final WindowController eewMonitorDisplayWindow = await subWindowManager
@@ -119,7 +122,7 @@ abstract class MainAppRunner {
   }
 
   /// Callback for when a sub-window fails to close.
-  void _onFailedCloseWindow(int windowId) {
+  void _onFailedCloseWindow(String windowId) {
     logger?.warning(
       WindowCloseException(
         'Failed to close the sub window | Window ID: `${windowId.toString()}`',

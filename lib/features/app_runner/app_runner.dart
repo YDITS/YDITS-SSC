@@ -15,8 +15,14 @@ import 'package:ydits_ssc/features/app_runner/sub_app_runner.dart';
 /// This class extends [AppRunner] and sets up the specific runners
 /// for the main application and its sub-applications.
 final class YditsSscAppRunner extends AppRunner {
-  YditsSscAppRunner({required super.args, super.logger}) {
-    mainAppRunner = YditsSscMainAppRunner(logger: logger);
-    subAppRunner = YditsSscSubAppRunner(logger: logger);
+  YditsSscAppRunner({required super.windowController, super.logger}) {
+    mainAppRunner = YditsSscMainAppRunner(
+      windowController: windowController,
+      logger: logger,
+    );
+    subAppRunner = YditsSscSubAppRunner(
+      windowController: windowController,
+      logger: logger,
+    );
   }
 }

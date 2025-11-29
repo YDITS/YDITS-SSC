@@ -6,6 +6,7 @@
 // https://github.com/YDITS/YDITS-SSC
 //
 
+import 'package:desktop_multi_window/desktop_multi_window.dart';
 import 'package:logging/logging.dart';
 
 /// An abstract class for managing the execution of sub-applications.
@@ -13,7 +14,9 @@ import 'package:logging/logging.dart';
 /// Subclasses must implement the [run] method to define how a sub-application
 /// is launched based on the provided arguments.
 abstract class SubAppRunner {
-  SubAppRunner({this.logger});
+  SubAppRunner({required this.windowController, this.logger});
+
+  final WindowController windowController;
 
   /// An optional logger instance for logging application events.
   final Logger? logger;
@@ -22,5 +25,5 @@ abstract class SubAppRunner {
   ///
   /// This method is responsible for interpreting the arguments and launching the
   /// corresponding sub-application.
-  Future<void> run(List<String> args);
+  Future<void> run();
 }

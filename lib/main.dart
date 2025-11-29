@@ -8,6 +8,7 @@
 
 import 'dart:async';
 
+import 'package:desktop_multi_window/desktop_multi_window.dart';
 import 'package:flutter/material.dart';
 import 'package:logging/logging.dart';
 import 'package:ydits_ssc/core/logger/logger_initializer.dart';
@@ -17,8 +18,14 @@ Future<void> main(List<String> args) async {
   WidgetsFlutterBinding.ensureInitialized();
   final Logger? logger = initializeLogger();
 
+  final WindowController windowController =
+      await WindowController.fromCurrentEngine();
+
   try {
-    await YditsSscAppRunner(args: args, logger: logger).runApp();
+    await YditsSscAppRunner(
+      windowController: windowController,
+      logger: logger,
+    ).runApp();
   } catch (error, stackTrace) {
     logger?.shout('An unhandled error occurred at startup', error, stackTrace);
   }

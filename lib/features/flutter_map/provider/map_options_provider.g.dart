@@ -6,155 +6,90 @@ part of 'map_options_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$mapOptionsHash() => r'3039335e4040e6a398de58b11463e71375649517';
-
-/// Copied from Dart SDK
-class _SystemHash {
-  _SystemHash._();
-
-  static int combine(int hash, int value) {
-    // ignore: parameter_assignments
-    hash = 0x1fffffff & (hash + value);
-    // ignore: parameter_assignments
-    hash = 0x1fffffff & (hash + ((0x0007ffff & hash) << 10));
-    return hash ^ (hash >> 6);
-  }
-
-  static int finish(int hash) {
-    // ignore: parameter_assignments
-    hash = 0x1fffffff & (hash + ((0x03ffffff & hash) << 3));
-    // ignore: parameter_assignments
-    hash = hash ^ (hash >> 11);
-    return 0x1fffffff & (hash + ((0x00003fff & hash) << 15));
-  }
-}
-
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint, type=warning
 /// A provider that returns the appropriate [MapOptions] based on the given [MapTypes].
-///
-/// Copied from [mapOptions].
+
 @ProviderFor(mapOptions)
-const mapOptionsProvider = MapOptionsFamily();
+const mapOptionsProvider = MapOptionsFamily._();
 
 /// A provider that returns the appropriate [MapOptions] based on the given [MapTypes].
-///
-/// Copied from [mapOptions].
-class MapOptionsFamily extends Family<MapOptions> {
-  /// A provider that returns the appropriate [MapOptions] based on the given [MapTypes].
-  ///
-  /// Copied from [mapOptions].
-  const MapOptionsFamily();
 
+final class MapOptionsProvider
+    extends $FunctionalProvider<MapOptions, MapOptions, MapOptions>
+    with $Provider<MapOptions> {
   /// A provider that returns the appropriate [MapOptions] based on the given [MapTypes].
-  ///
-  /// Copied from [mapOptions].
-  MapOptionsProvider call(MapTypes mapType) {
-    return MapOptionsProvider(mapType);
+  const MapOptionsProvider._({
+    required MapOptionsFamily super.from,
+    required MapTypes super.argument,
+  }) : super(
+         retry: null,
+         name: r'mapOptionsProvider',
+         isAutoDispose: true,
+         dependencies: null,
+         $allTransitiveDependencies: null,
+       );
+
+  @override
+  String debugGetCreateSourceHash() => _$mapOptionsHash();
+
+  @override
+  String toString() {
+    return r'mapOptionsProvider'
+        ''
+        '($argument)';
   }
 
+  @$internal
   @override
-  MapOptionsProvider getProviderOverride(
-    covariant MapOptionsProvider provider,
-  ) {
-    return call(provider.mapType);
+  $ProviderElement<MapOptions> $createElement($ProviderPointer pointer) =>
+      $ProviderElement(pointer);
+
+  @override
+  MapOptions create(Ref ref) {
+    final argument = this.argument as MapTypes;
+    return mapOptions(ref, argument);
   }
 
-  static const Iterable<ProviderOrFamily>? _dependencies = null;
-
-  @override
-  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
-
-  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
-
-  @override
-  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
-      _allTransitiveDependencies;
-
-  @override
-  String? get name => r'mapOptionsProvider';
-}
-
-/// A provider that returns the appropriate [MapOptions] based on the given [MapTypes].
-///
-/// Copied from [mapOptions].
-class MapOptionsProvider extends AutoDisposeProvider<MapOptions> {
-  /// A provider that returns the appropriate [MapOptions] based on the given [MapTypes].
-  ///
-  /// Copied from [mapOptions].
-  MapOptionsProvider(MapTypes mapType)
-    : this._internal(
-        (ref) => mapOptions(ref as MapOptionsRef, mapType),
-        from: mapOptionsProvider,
-        name: r'mapOptionsProvider',
-        debugGetCreateSourceHash:
-            const bool.fromEnvironment('dart.vm.product')
-                ? null
-                : _$mapOptionsHash,
-        dependencies: MapOptionsFamily._dependencies,
-        allTransitiveDependencies: MapOptionsFamily._allTransitiveDependencies,
-        mapType: mapType,
-      );
-
-  MapOptionsProvider._internal(
-    super._createNotifier, {
-    required super.name,
-    required super.dependencies,
-    required super.allTransitiveDependencies,
-    required super.debugGetCreateSourceHash,
-    required super.from,
-    required this.mapType,
-  }) : super.internal();
-
-  final MapTypes mapType;
-
-  @override
-  Override overrideWith(MapOptions Function(MapOptionsRef provider) create) {
-    return ProviderOverride(
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(MapOptions value) {
+    return $ProviderOverride(
       origin: this,
-      override: MapOptionsProvider._internal(
-        (ref) => create(ref as MapOptionsRef),
-        from: from,
-        name: null,
-        dependencies: null,
-        allTransitiveDependencies: null,
-        debugGetCreateSourceHash: null,
-        mapType: mapType,
-      ),
+      providerOverride: $SyncValueProvider<MapOptions>(value),
     );
   }
 
   @override
-  AutoDisposeProviderElement<MapOptions> createElement() {
-    return _MapOptionsProviderElement(this);
-  }
-
-  @override
   bool operator ==(Object other) {
-    return other is MapOptionsProvider && other.mapType == mapType;
+    return other is MapOptionsProvider && other.argument == argument;
   }
 
   @override
   int get hashCode {
-    var hash = _SystemHash.combine(0, runtimeType.hashCode);
-    hash = _SystemHash.combine(hash, mapType.hashCode);
-
-    return _SystemHash.finish(hash);
+    return argument.hashCode;
   }
 }
 
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-mixin MapOptionsRef on AutoDisposeProviderRef<MapOptions> {
-  /// The parameter `mapType` of this provider.
-  MapTypes get mapType;
-}
+String _$mapOptionsHash() => r'3039335e4040e6a398de58b11463e71375649517';
 
-class _MapOptionsProviderElement extends AutoDisposeProviderElement<MapOptions>
-    with MapOptionsRef {
-  _MapOptionsProviderElement(super.provider);
+/// A provider that returns the appropriate [MapOptions] based on the given [MapTypes].
+
+final class MapOptionsFamily extends $Family
+    with $FunctionalFamilyOverride<MapOptions, MapTypes> {
+  const MapOptionsFamily._()
+    : super(
+        retry: null,
+        name: r'mapOptionsProvider',
+        dependencies: null,
+        $allTransitiveDependencies: null,
+        isAutoDispose: true,
+      );
+
+  /// A provider that returns the appropriate [MapOptions] based on the given [MapTypes].
+
+  MapOptionsProvider call(MapTypes mapType) =>
+      MapOptionsProvider._(argument: mapType, from: this);
 
   @override
-  MapTypes get mapType => (origin as MapOptionsProvider).mapType;
+  String toString() => r'mapOptionsProvider';
 }
-
-// ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

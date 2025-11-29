@@ -8,6 +8,7 @@
 
 import 'dart:io';
 
+import 'package:desktop_multi_window/desktop_multi_window.dart';
 import 'package:flutter_single_instance/flutter_single_instance.dart';
 import 'package:logging/logging.dart';
 import 'package:ydits_ssc/core/app_runner/main_app_runner.dart';
@@ -16,10 +17,10 @@ import 'package:ydits_ssc/core/exceptions/exceptions.dart';
 
 /// Handles the application execution process.
 abstract class AppRunner {
-  AppRunner({required this.args, this.logger});
+  AppRunner({required this.windowController, this.logger});
 
   /// Desktop Multi Window Caller Arguments.
-  final List<String> args;
+  final WindowController windowController;
 
   /// The runner class for sub-applications.
   late final SubAppRunner subAppRunner;
@@ -35,11 +36,13 @@ abstract class AppRunner {
   /// Routes which application to run based on the `desktop_multi_window`
   /// caller arguments [args] list.
   Future<void> runApp() async {
-    logger?.info("Running new application... | Args: ${args.toString()}");
+    logger?.info(
+      "Running new application... | Args: ${windowController.arguments}",
+    );
 
-    if (args.firstOrNull == "multi_window") {
+    if (windowController.arguments != "") {
       try {
-        await subAppRunner.run(args);
+        await subAppRunner.run();
       } catch (error) {
         throw SubAppRunnerException(error);
       }
@@ -61,7 +64,8 @@ abstract class AppRunner {
   /// If an instance is already running, it focuses the existing instance and
   /// then exits the current process with `exit(0)`.
   Future<void> _checkAndHandleFirstInstance() async {
-    final bool isFirstInstance = await FlutterSingleInstance().isFirstInstance();
+    final bool isFirstInstance =
+        await FlutterSingleInstance().isFirstInstance();
 
     if (!isFirstInstance) {
       logger?.info("Application instance is already running.");

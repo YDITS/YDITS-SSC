@@ -6,27 +6,52 @@ part of 'flutter_map_user_agent_package_name_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$flutterMapUserAgentPackageNameHash() =>
-    r'3c2097e21839a8e8577831a82a88354159a907a0';
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint, type=warning
+/// A provider that supplies the user agent package name for the map service.
+
+@ProviderFor(flutterMapUserAgentPackageName)
+const flutterMapUserAgentPackageNameProvider =
+    FlutterMapUserAgentPackageNameProvider._();
 
 /// A provider that supplies the user agent package name for the map service.
-///
-/// Copied from [flutterMapUserAgentPackageName].
-@ProviderFor(flutterMapUserAgentPackageName)
-final flutterMapUserAgentPackageNameProvider =
-    AutoDisposeProvider<String>.internal(
-      flutterMapUserAgentPackageName,
-      name: r'flutterMapUserAgentPackageNameProvider',
-      debugGetCreateSourceHash:
-          const bool.fromEnvironment('dart.vm.product')
-              ? null
-              : _$flutterMapUserAgentPackageNameHash,
-      dependencies: null,
-      allTransitiveDependencies: null,
-    );
 
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-typedef FlutterMapUserAgentPackageNameRef = AutoDisposeProviderRef<String>;
-// ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package
+final class FlutterMapUserAgentPackageNameProvider
+    extends $FunctionalProvider<String, String, String>
+    with $Provider<String> {
+  /// A provider that supplies the user agent package name for the map service.
+  const FlutterMapUserAgentPackageNameProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'flutterMapUserAgentPackageNameProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$flutterMapUserAgentPackageNameHash();
+
+  @$internal
+  @override
+  $ProviderElement<String> $createElement($ProviderPointer pointer) =>
+      $ProviderElement(pointer);
+
+  @override
+  String create(Ref ref) {
+    return flutterMapUserAgentPackageName(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(String value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<String>(value),
+    );
+  }
+}
+
+String _$flutterMapUserAgentPackageNameHash() =>
+    r'3c2097e21839a8e8577831a82a88354159a907a0';

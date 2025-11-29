@@ -6,68 +6,159 @@ part of 'weather_earthquake_telop_display_config_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint, type=warning
+
+@ProviderFor(weatherEarthquakeTelopDisplayConfig)
+const weatherEarthquakeTelopDisplayConfigProvider =
+    WeatherEarthquakeTelopDisplayConfigProvider._();
+
+final class WeatherEarthquakeTelopDisplayConfigProvider
+    extends
+        $FunctionalProvider<
+          WeatherEarthquakeTelopDisplayConfig,
+          WeatherEarthquakeTelopDisplayConfig,
+          WeatherEarthquakeTelopDisplayConfig
+        >
+    with $Provider<WeatherEarthquakeTelopDisplayConfig> {
+  const WeatherEarthquakeTelopDisplayConfigProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'weatherEarthquakeTelopDisplayConfigProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() =>
+      _$weatherEarthquakeTelopDisplayConfigHash();
+
+  @$internal
+  @override
+  $ProviderElement<WeatherEarthquakeTelopDisplayConfig> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  WeatherEarthquakeTelopDisplayConfig create(Ref ref) {
+    return weatherEarthquakeTelopDisplayConfig(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(WeatherEarthquakeTelopDisplayConfig value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<WeatherEarthquakeTelopDisplayConfig>(
+        value,
+      ),
+    );
+  }
+}
+
 String _$weatherEarthquakeTelopDisplayConfigHash() =>
     r'10ba8e93ffac45ed5fdf8eab539e359e0a01b554';
 
-/// See also [weatherEarthquakeTelopDisplayConfig].
-@ProviderFor(weatherEarthquakeTelopDisplayConfig)
-final weatherEarthquakeTelopDisplayConfigProvider =
-    AutoDisposeProvider<WeatherEarthquakeTelopDisplayConfig>.internal(
-      weatherEarthquakeTelopDisplayConfig,
-      name: r'weatherEarthquakeTelopDisplayConfigProvider',
-      debugGetCreateSourceHash:
-          const bool.fromEnvironment('dart.vm.product')
-              ? null
-              : _$weatherEarthquakeTelopDisplayConfigHash,
-      dependencies: null,
-      allTransitiveDependencies: null,
-    );
+@ProviderFor(weatherEarthquakeTelopDisplayAppConfig)
+const weatherEarthquakeTelopDisplayAppConfigProvider =
+    WeatherEarthquakeTelopDisplayAppConfigProvider._();
 
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-typedef WeatherEarthquakeTelopDisplayConfigRef =
-    AutoDisposeProviderRef<WeatherEarthquakeTelopDisplayConfig>;
+final class WeatherEarthquakeTelopDisplayAppConfigProvider
+    extends
+        $FunctionalProvider<
+          WeatherEarthquakeTelopDisplayAppConfig,
+          WeatherEarthquakeTelopDisplayAppConfig,
+          WeatherEarthquakeTelopDisplayAppConfig
+        >
+    with $Provider<WeatherEarthquakeTelopDisplayAppConfig> {
+  const WeatherEarthquakeTelopDisplayAppConfigProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'weatherEarthquakeTelopDisplayAppConfigProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() =>
+      _$weatherEarthquakeTelopDisplayAppConfigHash();
+
+  @$internal
+  @override
+  $ProviderElement<WeatherEarthquakeTelopDisplayAppConfig> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  WeatherEarthquakeTelopDisplayAppConfig create(Ref ref) {
+    return weatherEarthquakeTelopDisplayAppConfig(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(WeatherEarthquakeTelopDisplayAppConfig value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride:
+          $SyncValueProvider<WeatherEarthquakeTelopDisplayAppConfig>(value),
+    );
+  }
+}
+
 String _$weatherEarthquakeTelopDisplayAppConfigHash() =>
     r'5529463a8ee5dd596fcad6c896e6c33184ae700f';
 
-/// See also [weatherEarthquakeTelopDisplayAppConfig].
-@ProviderFor(weatherEarthquakeTelopDisplayAppConfig)
-final weatherEarthquakeTelopDisplayAppConfigProvider =
-    AutoDisposeProvider<WeatherEarthquakeTelopDisplayAppConfig>.internal(
-      weatherEarthquakeTelopDisplayAppConfig,
-      name: r'weatherEarthquakeTelopDisplayAppConfigProvider',
-      debugGetCreateSourceHash:
-          const bool.fromEnvironment('dart.vm.product')
-              ? null
-              : _$weatherEarthquakeTelopDisplayAppConfigHash,
-      dependencies: null,
-      allTransitiveDependencies: null,
-    );
+@ProviderFor(weatherEarthquakeTelopDisplayWindowConfig)
+const weatherEarthquakeTelopDisplayWindowConfigProvider =
+    WeatherEarthquakeTelopDisplayWindowConfigProvider._();
 
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-typedef WeatherEarthquakeTelopDisplayAppConfigRef =
-    AutoDisposeProviderRef<WeatherEarthquakeTelopDisplayAppConfig>;
+final class WeatherEarthquakeTelopDisplayWindowConfigProvider
+    extends
+        $FunctionalProvider<
+          WeatherEarthquakeTelopDisplayWindowConfig,
+          WeatherEarthquakeTelopDisplayWindowConfig,
+          WeatherEarthquakeTelopDisplayWindowConfig
+        >
+    with $Provider<WeatherEarthquakeTelopDisplayWindowConfig> {
+  const WeatherEarthquakeTelopDisplayWindowConfigProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'weatherEarthquakeTelopDisplayWindowConfigProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() =>
+      _$weatherEarthquakeTelopDisplayWindowConfigHash();
+
+  @$internal
+  @override
+  $ProviderElement<WeatherEarthquakeTelopDisplayWindowConfig> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  WeatherEarthquakeTelopDisplayWindowConfig create(Ref ref) {
+    return weatherEarthquakeTelopDisplayWindowConfig(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(WeatherEarthquakeTelopDisplayWindowConfig value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride:
+          $SyncValueProvider<WeatherEarthquakeTelopDisplayWindowConfig>(value),
+    );
+  }
+}
+
 String _$weatherEarthquakeTelopDisplayWindowConfigHash() =>
     r'77010ca9bb329d0af777caa949225959138e0eef';
-
-/// See also [weatherEarthquakeTelopDisplayWindowConfig].
-@ProviderFor(weatherEarthquakeTelopDisplayWindowConfig)
-final weatherEarthquakeTelopDisplayWindowConfigProvider =
-    AutoDisposeProvider<WeatherEarthquakeTelopDisplayWindowConfig>.internal(
-      weatherEarthquakeTelopDisplayWindowConfig,
-      name: r'weatherEarthquakeTelopDisplayWindowConfigProvider',
-      debugGetCreateSourceHash:
-          const bool.fromEnvironment('dart.vm.product')
-              ? null
-              : _$weatherEarthquakeTelopDisplayWindowConfigHash,
-      dependencies: null,
-      allTransitiveDependencies: null,
-    );
-
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-typedef WeatherEarthquakeTelopDisplayWindowConfigRef =
-    AutoDisposeProviderRef<WeatherEarthquakeTelopDisplayWindowConfig>;
-// ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package
