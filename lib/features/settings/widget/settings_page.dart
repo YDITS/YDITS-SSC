@@ -40,23 +40,6 @@ class SettingsPage extends ConsumerWidget {
             }).toList(),
       ),
     );
-
-    // return ListView(
-    //   children:
-    //       TelopDisplayMode.values.map((TelopDisplayMode mode) {
-    //         return RadioListTile<TelopDisplayMode>(
-    //           value: mode,
-    //           groupValue: telopSettings.displayModeOverride,
-    //           title: Text(
-    //             telopDisplayModeToText[mode] ?? '-',
-    //             style: TextStyle(color: theme.darkForeground),
-    //           ),
-    //           onChanged:
-    //               (TelopDisplayMode? value) =>
-    //                   _onTelopDisplayModeRadioChanged(value, ref),
-    //         );
-    //       }).toList(),
-    // );
   }
 
   /// Handles changes to the telop display mode radio buttons.
