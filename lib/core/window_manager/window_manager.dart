@@ -61,7 +61,6 @@ final class YditsSscWindowManager {
       ),
     );
 
-    await newWindow.invokeMethod("center");
     // await newWindow.setFrame(frame);
     // await newWindow.center();
     // await newWindow.setTitle(title);
