@@ -56,7 +56,7 @@ final class _YditsSscMainAppState extends ConsumerState<YditsSscMainApp> {
 
     if (!isStable) {
       final String buildModeBannerText =
-          ref.read(buildModeToBannarTextProvider)[buildMode] ?? '';
+          ref.watch(buildModeToBannarTextProvider)[buildMode] ?? '';
       home = Banner(
         message: buildModeBannerText,
         location:
