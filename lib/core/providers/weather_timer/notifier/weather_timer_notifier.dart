@@ -8,6 +8,7 @@
 
 import 'dart:async';
 
+import 'package:flutter/widgets.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:ydits_ssc/core/providers/weather/notifier/weather_notifier.dart';
 import 'package:ydits_ssc/core/providers/weather_timer/model/weather_timer_state_model.dart';
@@ -27,6 +28,9 @@ class WeatherTimer extends _$WeatherTimer {
 
   @override
   WeatherTimerStateModel build() {
+    ref.onDispose(() {
+      _timer?.cancel();
+    });
     return const WeatherTimerStateModel(isRunning: false);
   }
 
@@ -51,10 +55,18 @@ class WeatherTimer extends _$WeatherTimer {
 
   /// The function that is executed on each timer tick.
   void _loop(Timer self) {
-    ref.read(yditsSscWeatherProvider.notifier).update();
-
-    for (final void Function() listener in _listeners) {
-      listener();
+    if (_timer?.isActive != true) {
+      return;
     }
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (_timer?.isActive != true) {
+        return;
+      }
+      ref.read(yditsSscWeatherProvider.notifier).update();
+
+      for (final void Function() listener in _listeners) {
+        listener();
+      }
+    });
   }
 }

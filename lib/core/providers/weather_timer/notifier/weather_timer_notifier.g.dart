@@ -44,7 +44,7 @@ final class WeatherTimerProvider
   }
 }
 
-String _$weatherTimerHash() => r'e1c92bf29a1d2536d62d778abee71bab9f0c555c';
+String _$weatherTimerHash() => r'c4fa66a46c29c8cb6b9f4c955d64a1e1ee3be535';
 
 /// A notifier for managing a timer that periodically triggers weather updates.
 
