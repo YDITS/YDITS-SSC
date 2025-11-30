@@ -47,7 +47,7 @@ class _WeatherEarthquakeTelopDisplayHomePageState
   /// Updates the weather information in the telop.
   Future<void> _updateWeather() async {
     widget.logger?.info('Updating weather data...');
-    final WeatherStateModel weatherState = ref.watch(yditsSscWeatherProvider);
+    final WeatherStateModel weatherState = ref.read(yditsSscWeatherProvider);
     ref.read(telopLabelStateProvider.notifier).setText('現在の天気');
     ref
         .read(telopContentStateProvider.notifier)
